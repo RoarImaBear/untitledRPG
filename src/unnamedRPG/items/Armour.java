@@ -1,4 +1,4 @@
-package combatarena;
+package unnamedRPG.items;
 
 /**
  *
@@ -6,8 +6,8 @@ package combatarena;
  */
 public class Armour {
 
-    int protectionBonus;
-    int agilityBonus;
+    public int protectionBonus;
+    public int agilityBonus;
     
     public Armour() {
         

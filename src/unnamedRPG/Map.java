@@ -2,22 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package combatarena;
+package unnamedRPG;
 
-import static combatarena.CombatArena.MAP_LENGTH;
-import static combatarena.CombatArena.MAP_WIDTH;
-import static combatarena.CombatArena.random;
+import static unnamedRPG.UnnamedRPG.MAP_LENGTH;
+import static unnamedRPG.UnnamedRPG.MAP_WIDTH;
+import static unnamedRPG.UnnamedRPG.random;
 
 /**
  *
  * @author seb
  */
-public class Battlefield {
+public class Map {
 
     int width, length;
 
-    int[][] topography; // 0 - 4, depending on difficulty
-    char[][] terrain;
+    public int[][] topography; // 0 - 4, depending on difficulty
+    public char[][] terrain;
     
     char grass = '„'; 
     char bush = 'ϫ';
@@ -26,7 +26,7 @@ public class Battlefield {
     char water = '~';
     
 
-    public Battlefield() {
+    public Map() {
 
         this.width = MAP_WIDTH;
         this.length = MAP_LENGTH;
@@ -40,10 +40,6 @@ public class Battlefield {
         plantTrees(2);
         drawFissure();
         formRiver(5);
-
-        printTopography();
-        System.out.println("");
-        printTerrain();
     }
 
     void initiatePlane() {
@@ -81,7 +77,6 @@ public class Battlefield {
     void drawFissure() {
         int x = random.nextInt(width);
         for (int y = 0; y < 10; y++) {
-            System.out.println(x + " " + y);
             terrain[x][y] = fissure;  
             if (random.nextBoolean() && x < (width - 2)) {
                 x++;
@@ -97,21 +92,16 @@ public class Battlefield {
         int randomRigger = 0;
         boolean flowingRight = random.nextBoolean();
         int flowLeftBias = 3;
+        int depth = -1;
         
         for (int y = 0; y < length; y++) {
             randomRigger++;
-            int depth = -1;
             for (int i = x, j = riverWidth; i < x + riverWidth; i++) {
                 if (i > 0 && i < width) {
                     if (terrain[i][y] == water)
                         break;
                     terrain[i][y] = water;
                     topography[i][y] = depth;
-                    
-                    if(i >= x + riverWidth/2)
-                        depth++;
-                    else
-                        depth--;
                 }
             }
             

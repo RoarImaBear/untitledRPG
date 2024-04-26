@@ -1,4 +1,4 @@
-package combatarena;
+package unnamedRPG.items;
 
 /**
  *

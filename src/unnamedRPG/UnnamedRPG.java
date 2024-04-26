@@ -1,8 +1,14 @@
-package combatarena;
+package unnamedRPG;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import unnamedRPG.entities.Army;
+import unnamedRPG.entities.Soldier;
+import unnamedRPG.display.BackgroundLayer;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JFrame;
+import unnamedRPG.display.Display;
 
 /**
  *
@@ -13,79 +19,34 @@ import javax.swing.JFrame;
  * Have their village defend itself from your attacks.
  * 
  */
-public class CombatArena {
+public class UnnamedRPG {
+    
+    public int[] PLAYER_POSITION = new int [2];
+    
+    public static Dimension DISPLAY_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
     
     public static Random random = new Random();
     
-    public static final int MAP_WIDTH = 100;
-    public static final int MAP_LENGTH = 100;
     
-    public static final int FRAME_WIDTH = MAP_WIDTH * 10;
-    public static final int FRAME_HEIGHT = MAP_LENGTH * 10;
+    public static final int MAP_WIDTH = 1440;
+    public static final int MAP_LENGTH = 900;
+    
+    public static final int FRAME_WIDTH = DISPLAY_SIZE.width;
+    public static final int FRAME_HEIGHT = DISPLAY_SIZE.height;
+    public static final int[] FRAME_CENTER = {FRAME_WIDTH/2, FRAME_HEIGHT/2};
     
 
     public static void main(String[] args) {
         
-        
-//        Army armyOne = new Army();
-//        Army armyTwo = new Army();
-//        
-//        armyOne.rollCall();
-//        armyTwo.rollCall();
-//        
-//        System.out.println("Round one");
-//        battleRound(armyOne, armyTwo);
-//        
-//        armyOne.rollCall();
-//        armyTwo.rollCall();
+        Map map = new Map();
 
         
-
+        System.out.println("MAP MADE");
+        Display display = new Display(map);
+        Thread displayThread = new Thread(display);
+        displayThread.start();
         
-        int markWins = 0;
-        int steveWins = 0;
-
-        for (int i = 0; i < 1000; i++) {
-            Soldier steve = new Soldier("Steve");
-            Soldier mark = new Soldier("Mark");
-
-            steve.agility = 16;
-            mark.agility = 14;
-
-            steve.protection = 0;
-            mark.protection = 1;
-  
-            steve.proficiency = 0;
-            mark.proficiency = 1;
- 
-            
-            if(fight(steve, mark) > 0){
-                steveWins++;
-            }
-            else{
-                markWins++;
-            }
-        }
-       
-        System.out.println("Attacker victories: " + steveWins);
-        
-        System.out.println("Defender victories: " + markWins);
-       
-        
-        //Attacker has advantage.
-        
-        Battlefield map = new Battlefield();
-        
-        
-        
-        JFrame frame = new JFrame("Battle Simulator");
-        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        Panel panel = new Panel(frame, map);
-
-        frame.getContentPane().add(panel);
-        frame.setVisible(true);
+        System.out.println("Display: " + DISPLAY_SIZE.height + "x" + DISPLAY_SIZE.width);
   
 
     }

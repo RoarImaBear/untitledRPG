@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package combatarena;
+package unnamedRPG.entities;
 
-import static combatarena.Dice.rollDice;
+import unnamedRPG.items.Armour;
+import unnamedRPG.items.Weapon;
+import static unnamedRPG.utilities.Dice.rollDice;
 
 /**
  *
@@ -14,28 +16,28 @@ class Entity {
     
         String name;
     
-    int soldierID;
-    int healthPool;
+    public int soldierID;
+    public int healthPool;
     
-    int proficiency;
+    public int proficiency;
     
-    int agility;
-    int protection;
+    public int agility;
+    public int protection;
     
-    int experience;
-    int weaponExpertise;
+    public int experience;
+    public int weaponExpertise;
     
-    int damageDiceCount;
-    int damageDiceLimit;
+    public int damageDiceCount;
+    public int damageDiceLimit;
     
-    int attackDiceCount;
-    int attackDiceLimit;
+    public int attackDiceCount;
+    public int attackDiceLimit;
     
-    boolean dead;
-    boolean wounded;
+    public boolean dead;
+    public boolean wounded;
     
-    Weapon equippedWeapon;
-    Armour equippedArmour;
+    public Weapon equippedWeapon;
+    public Armour equippedArmour;
 
     
     

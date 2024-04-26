@@ -1,7 +1,11 @@
-package combatarena;
+package unnamedRPG.entities;
 
-import static combatarena.CombatArena.random;
-import static combatarena.Dice.rollDice;
+import unnamedRPG.items.Armour;
+import unnamedRPG.items.BronzeSpear;
+import unnamedRPG.items.Weapon;
+import unnamedRPG.entities.Entity;
+import static unnamedRPG.UnnamedRPG.random;
+import static unnamedRPG.utilities.Dice.rollDice;
 
 /**
  *

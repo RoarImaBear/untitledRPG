@@ -1,6 +1,7 @@
-package combatarena;
+package unnamedRPG.entities;
 
-import static combatarena.CombatArena.random;
+import unnamedRPG.entities.Soldier;
+import static unnamedRPG.UnnamedRPG.random;
 import java.util.ArrayList;
 
 /**
@@ -9,11 +10,11 @@ import java.util.ArrayList;
  */
 public class Army {
 
-    String name;
-    ArrayList<Soldier> activeSoldiers;
-    ArrayList<Soldier> wounded;
-    ArrayList<Soldier> dead;
-    ArrayList<Soldier> deserters;
+    public  String name;
+    public ArrayList<Soldier> activeSoldiers;
+    public ArrayList<Soldier> wounded;
+    public ArrayList<Soldier> dead;
+    public ArrayList<Soldier> deserters;
     
     public Army(String name) {
         this.name = name;

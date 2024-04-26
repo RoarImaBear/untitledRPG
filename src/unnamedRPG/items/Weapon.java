@@ -1,4 +1,4 @@
-package combatarena;
+package unnamedRPG.items;
 
 /**
  *
@@ -8,11 +8,11 @@ public class Weapon {
     
     String name;
     
-    int damageDiceCount;
-    int damageDiceLimit;
+    public int damageDiceCount;
+    public int damageDiceLimit;
     
-    int attackDiceCount;
-    int attackDiceLimit;
+    public int attackDiceCount;
+    public int attackDiceLimit;
     
     
     String type;
