@@ -24,11 +24,6 @@ import static unnamedRPG.UnnamedRPG.random;
         Map map;
         Camera camera;
         
-        int mapStartX;
-        int mapStartY;
-        int displayX;
-        int displayY;
-        
         
         Color[] grassGreens;
         int[] grassAnchor = {73, 156, 77};
@@ -47,7 +42,7 @@ import static unnamedRPG.UnnamedRPG.random;
             this.camera = camera;
             
             this.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
-            this.grassGreens = createPallette(10, grassAnchor, 5);
+            this.grassGreens = createPallette(10, grassAnchor, 3);
             this.waterBlues = createPallette(10, waterAnchor, 30);
         }
 
@@ -55,40 +50,26 @@ import static unnamedRPG.UnnamedRPG.random;
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
+
             
-            double displayWidth = DISPLAY_SIZE.width;
-            double displayHeight = DISPLAY_SIZE.height;
-            int baseNumYTiles = camera.baseNumYTiles;
-            double aspectRatio = (displayWidth / displayHeight);
-            int zoomOutModifier = camera.zoomOutModifier;
+            int tileSize = camera.tileSize;
+                        
+            int mapStartX = camera.mapStartX;
+            int mapStartY = camera.mapStartY;
             
-            mapStartX = camera.mapStartX;
-            
-            mapStartY = camera.mapStartY;
-            
-            int numXTiles = (int) (baseNumYTiles * aspectRatio * zoomOutModifier);
-            int numYTiles = baseNumYTiles * zoomOutModifier;
-            int tileSize = (int) (displayHeight/numYTiles);
             int displayStartX = camera.displayStartX;
             int displayStartY = camera.displayStartY;
             
-            int mapXLimit = mapStartX + numXTiles + 5;
-            int mapYLimit = mapStartY + numYTiles + 5;
-            if (mapXLimit > MAP_WIDTH){
-                mapXLimit = MAP_WIDTH;
-            }
-            if (mapYLimit > MAP_LENGTH){
-                mapYLimit = MAP_LENGTH;
-            }
+            int mapEndX = camera.mapEndX;
+            int mapEndY = camera.mapEndY;
             
-            
-                for (int mY = mapStartY, dY = displayStartY; mY < mapYLimit; mY++, dY += tileSize) {
-                    for (int mX = mapStartX, dX = displayStartX; mX < mapXLimit; mX++, dX += tileSize) {
-                        char currentTile = map.terrain[mX][mY];
-                        g.setColor(colorSwitch(currentTile));
-                        g.fillRect(dX, dY, tileSize, tileSize);
-                    }   
-                }
+            for (int mY = mapStartY, dY = displayStartY; mY < mapEndY; mY++, dY += tileSize) {
+                for (int mX = mapStartX, dX = displayStartX; mX < mapEndX; mX++, dX += tileSize) {
+                    char currentTile = map.terrain[mX][mY];
+                    g.setColor(colorSwitch(currentTile));
+                    g.fillRect(dX, dY, tileSize, tileSize);
+                }   
+            }
         }
     
     Color[] createPallette(int numberOfColors, int[] anchorValue, int variance) {
