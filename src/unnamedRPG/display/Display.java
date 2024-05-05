@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package unnamedRPG.display;
 
 import java.awt.event.ActionEvent;
@@ -24,6 +20,7 @@ public class Display implements Runnable {
     Timer displayClock;
     
     Camera camera;
+    ControlUnit controlUnit;
     
     
     public Display(Map map){
@@ -35,11 +32,15 @@ public class Display implements Runnable {
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         this.camera = new Camera();
+        this.controlUnit = new ControlUnit(camera);
         
         this.background = new BackgroundLayer(frame, map, camera);
         this.frame.add(background);
         
-        
+        this.frame.addKeyListener(controlUnit);
+        this.frame.addComponentListener(controlUnit);
+        this.frame.addMouseListener(controlUnit);
+
     }
     
 

@@ -45,7 +45,7 @@ public class Camera {
     
     public Camera() {
         this.zoomOutModifier = 1;
-        this.zoomOutMax = 6;
+        this.zoomOutMax = 8;
         this.baseNumYTiles = 10;
         
         this.mapStartX = 0;

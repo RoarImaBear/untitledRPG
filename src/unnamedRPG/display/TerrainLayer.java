@@ -5,6 +5,7 @@ import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.BLUE;
 import static java.awt.Color.WHITE;
+import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 import static unnamedRPG.UnnamedRPG.DISPLAY_SIZE;
@@ -34,6 +35,11 @@ import static unnamedRPG.UnnamedRPG.random;
         Color greenBush = new Color(34, 139, 34);
         Color greenTree = new Color(0, 128, 0);
         Color blackFissure = new Color(0, 0, 0);
+        
+        Font textFont;
+        Color fontColor = new Color (134, 239, 134);
+        
+        String charString;
 
 
 
@@ -63,11 +69,22 @@ import static unnamedRPG.UnnamedRPG.random;
             int mapEndX = camera.mapEndX;
             int mapEndY = camera.mapEndY;
             
-            for (int mY = mapStartY, dY = displayStartY; mY < mapEndY; mY++, dY += tileSize) {
-                for (int mX = mapStartX, dX = displayStartX; mX < mapEndX; mX++, dX += tileSize) {
-                    char currentTile = map.terrain[mX][mY];
+            g.setColor(BLACK);
+            g.fillRect(0, 0, MAP_WIDTH, MAP_LENGTH);
+            
+            textFont =  new Font("Arial", Font.PLAIN, (50 / camera.zoomOutModifier));
+            g.setFont(textFont);
+            
+            for (int mapY = mapStartY, displayY = displayStartY; mapY < mapEndY; mapY++, displayY += tileSize) {
+                for (int mapX = mapStartX, displayX = displayStartX; mapX < mapEndX; mapX++, displayX += tileSize) {
+                    char currentTile = map.terrain[mapX][mapY];
                     g.setColor(colorSwitch(currentTile));
-                    g.fillRect(dX, dY, tileSize, tileSize);
+                    g.fillRect(displayX, displayY, tileSize-1, tileSize-1);
+                    g.setColor(fontColor);
+                    charString = currentTile + "";
+                    g.drawString(charString, (displayX + tileSize/3), (displayY + tileSize/2 ));
+                    
+                    
                 }   
             }
         }
