@@ -1,4 +1,4 @@
-package unnamedRPG.display;
+package unnamedRPG.display.components;
 
 import java.awt.BasicStroke;
 import unnamedRPG.Map;
@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
+import unnamedRPG.display.Camera;
+import unnamedRPG.display.Limits;
 import static unnamedRPG.UnnamedRPG.DISPLAY_SIZE;
 import static unnamedRPG.UnnamedRPG.FRAME_HEIGHT;
 import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
@@ -22,7 +24,7 @@ import static unnamedRPG.UnnamedRPG.random;
  *
  * @author seb
  */
-    public class UIBorderComponent extends JComponent {
+    public class UIBorder extends JComponent {
         Map map;
         Camera camera;
         
@@ -36,15 +38,17 @@ import static unnamedRPG.UnnamedRPG.random;
         Color fontColor = new Color (48, 116, 42);
         
         String charString;
-        int[][] boardXYLimits;
-        int[][] frameXYLimits;
+        
+        Limits boardLimits;
+        Limits frameLimits;
 
 
-        public UIBorderComponent(Map map, Camera camera, int[][] boardXYLimits, int[][] frameXYLimits) {
+        public UIBorder(Map map, Camera camera, Limits boardLimits, Limits frameLimits) {
             this.map = map;
             this.camera = camera;
-            this.boardXYLimits = boardXYLimits;
-            this.frameXYLimits = frameXYLimits;
+            
+            this.boardLimits = boardLimits;
+            this.frameLimits = frameLimits;
             
             this.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
         }
@@ -58,28 +62,17 @@ import static unnamedRPG.UnnamedRPG.random;
             
             
             g.setColor(BLACK);
-            g.fillRect(0, boardXYLimits[1][1], frameXYLimits[0][1], frameXYLimits[1][1]);
+            g.fillRect(0, boardLimits.endY, frameLimits.lengthX, frameLimits.lengthY - boardLimits.lengthY);
             
-            g2d.setColor(BLACK);
+            g2d.setColor(RED);
             g2d.setStroke(new BasicStroke(10));
             
-            g2d.drawRect(boardXYLimits[0][0], boardXYLimits[1][0], boardXYLimits[0][1], boardXYLimits[1][1]);
+            g2d.drawRect(frameLimits.startX, frameLimits.startY, frameLimits.lengthX, boardLimits.lengthY);
             
             
-            textFont =  new Font("Arial", Font.PLAIN, (50 / camera.zoomOutModifier));
+            textFont =  new Font("Arial", Font.PLAIN, (50));
             
 
         }
-    
-    Color[] createPallette(int numberOfColors, int[] anchorValue, int variance) {
-        Color[] pallette = new Color[numberOfColors];
-        for (int i = 0; i < pallette.length; i++) {
-            pallette[i] = new Color(anchorValue[0] + random.nextInt(variance), 
-                anchorValue[1] + random.nextInt(variance), anchorValue[2] + 
-                random.nextInt(variance));
-        }
-        return pallette;
-    }
-    
 
 }

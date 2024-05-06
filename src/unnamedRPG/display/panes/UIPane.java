@@ -1,6 +1,7 @@
 
-package unnamedRPG.display;
+package unnamedRPG.display.panes;
 
+import unnamedRPG.display.components.UIBorder;
 import static unnamedRPG.UnnamedRPG.FRAME_HEIGHT;
 import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
 import java.awt.Color;
@@ -8,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.Timer;
 import unnamedRPG.Map;
+import unnamedRPG.display.Camera;
+import unnamedRPG.display.Limits;
 
 /**
  * @author Sebastian Dymanski
@@ -22,17 +25,23 @@ public class UIPane extends JLayeredPane  {
     Timer timer;
     
     
-    UIBorderComponent border;
+    UIBorder border;
+    
+    Limits boardLimits;
+    Limits frameLimits;
     
     int frameTracker = 0;
-    public UIPane(Map map, Camera camera, int boardXYLimits[][], int frameXYLimits[][]) {
+    public UIPane(Map map, Camera camera, Limits boardLimits, Limits frameLimits) {
         this.map = map;
         this.camera = camera;
+        
+        this.boardLimits = boardLimits;
+        this.frameLimits = frameLimits;
         
         this.setFocusable(true);
         this.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
         
-        this.border = new UIBorderComponent(map, camera, boardXYLimits, frameXYLimits);
+        this.border = new UIBorder(map, camera, boardLimits, frameLimits);
         
         border.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
         this.add(border, 100);

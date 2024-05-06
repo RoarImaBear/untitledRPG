@@ -1,5 +1,7 @@
 package unnamedRPG.display;
 
+import unnamedRPG.display.panes.UIPane;
+import unnamedRPG.display.components.GameBoard;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -19,8 +21,8 @@ import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
 public class Display implements Runnable {
     Map map;
     //MainPane mainPane;
-    UIPane userInterface;
-    GameBoardComponent gameBoard;
+    UIPane UIPane;
+    GameBoard gameBoard;
     
     JFrame frame;
     
@@ -28,18 +30,19 @@ public class Display implements Runnable {
     
     Camera camera;
     ControlUnit controlUnit;
-    int[][] boardXYLimits;
-    int[][] frameXYLimits;
-    
     final int frameWidth = DISPLAY_SIZE.width;
     final int frameHeight = DISPLAY_SIZE.height;
     final int[] frameCenter = {FRAME_WIDTH/2, FRAME_HEIGHT/2};
     
+    Limits boardLimits;
+    Limits frameLimits;
+    
     
     public Display(Map map){
         this.map = map;
-        this.boardXYLimits = new int[][] {{5, frameWidth-10}, {5, frameHeight-200}};
-        this.frameXYLimits = new int[][] {{0, frameWidth}, {0, frameHeight}};
+        
+        this.boardLimits = new Limits(0, 0, frameWidth, frameHeight-200);
+        this.frameLimits = new Limits(0, 0, frameWidth, frameHeight);
         
         this.frame = new JFrame("Game");
         this.frame.setSize(frameWidth, frameHeight);
@@ -50,10 +53,10 @@ public class Display implements Runnable {
         this.camera = new Camera();
         this.controlUnit = new ControlUnit(camera);
         
-        this.userInterface = new UIPane(map, camera, boardXYLimits, frameXYLimits);
-        this.frame.add(userInterface);
+        this.UIPane = new UIPane(map, camera, boardLimits, frameLimits);
+        this.frame.add(UIPane);
         
-        this.gameBoard = new GameBoardComponent(map, camera, boardXYLimits);
+        this.gameBoard = new GameBoard(map, camera, boardLimits);
         this.frame.add(gameBoard);
         
         this.frame.addKeyListener(controlUnit);
@@ -68,13 +71,17 @@ public class Display implements Runnable {
     public void run() {
         this.frame.requestFocus();
         displayClock = new Timer(1000/60, (ActionEvent e) -> {
-            userInterface.refresh();
+            UIPane.refresh();
             gameBoard.repaint();
         });
         displayClock.start();
     }
     
     
+    
+    void updateBoardLimits(){
+        
+    }
     
     
 }

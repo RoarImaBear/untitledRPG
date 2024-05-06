@@ -39,34 +39,34 @@ public class TokenLayer extends JComponent {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        int tileSize = camera.tileSize;
-
-        int mapStartX = camera.mapStartX;
-        int mapStartY = camera.mapStartY;
-
-        int displayStartX = camera.displayStartX;
-        int displayStartY = camera.displayStartY;
-
-        int mapEndX = camera.mapEndX;
-        int mapEndY = camera.mapEndY;
-
-        textFont = new Font("Arial", Font.PLAIN, (50 / camera.zoomOutModifier));
-        g.setFont(textFont);
-
-        for (int mapY = mapStartY, displayY = displayStartY; mapY < mapEndY; mapY++, displayY += tileSize) {
-            for (int mapX = mapStartX, displayX = displayStartX; mapX < mapEndX; mapX++, displayX += tileSize) {
-                if ( map.entities[mapX][mapY]!= null){
-                    Entity currentEntity = map.entities[mapX][mapY];
-                    String tokenString = currentEntity.tokenString;
-                    g.setColor(currentEntity.tokenColor);
-                    g.fillOval(displayX, displayY, tileSize - 1, tileSize - 1);
-                    g.setColor(fontColor);
-                    g.drawString(tokenString, (displayX + tileSize / 4), displayY + tileSize/2);
-                }
-
-            }
-        }
+//        super.paintComponent(g);
+//
+//        int tileSize = camera.tileSize;
+//
+//        int mapStartX = camera.mapStartX;
+//        int mapStartY = camera.mapStartY;
+//
+//        int displayStartX = camera.displayStartX;
+//        int displayStartY = camera.displayStartY;
+//
+//        int mapEndX = camera.mapEndX;
+//        int mapEndY = camera.mapEndY;
+//
+//        textFont = new Font("Arial", Font.PLAIN, (50 / camera.zoomOutModifier));
+//        g.setFont(textFont);
+//
+//        for (int mapY = mapStartY, displayY = displayStartY; mapY < mapEndY; mapY++, displayY += tileSize) {
+//            for (int mapX = mapStartX, displayX = displayStartX; mapX < mapEndX; mapX++, displayX += tileSize) {
+//                if ( map.entities[mapX][mapY]!= null){
+//                    Entity currentEntity = map.entities[mapX][mapY];
+//                    String tokenString = currentEntity.tokenString;
+//                    g.setColor(currentEntity.tokenColor);
+//                    g.fillOval(displayX, displayY, tileSize - 1, tileSize - 1);
+//                    g.setColor(fontColor);
+//                    g.drawString(tokenString, (displayX + tileSize / 4), displayY + tileSize/2);
+//                }
+//
+//            }
+//        }
     }
 }

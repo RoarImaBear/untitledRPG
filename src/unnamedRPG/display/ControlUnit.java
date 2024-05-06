@@ -39,38 +39,38 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
     @Override
     public void keyPressed(KeyEvent ke) {
         
-        int cameraSpeed = 1;
+//        int cameraSpeed = 1;
         if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.out.println("esc");
             System.exit(0);
         }
-        if (ke.getKeyCode() == KeyEvent.VK_PERIOD) {
-            camera.zoomIn();
-            System.out.println("Zoom In");
-        }
-        if (ke.getKeyCode() == KeyEvent.VK_COMMA) {
-            camera.zoomOut();
-            System.out.println("Zoom Out");
-        }
-        if (ke.getKeyCode() == KeyEvent.VK_UP) {
-            camera.changePosition(cameraSpeed, 'w');
-            System.out.println("UP");
-        }
-        if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-            camera.changePosition(cameraSpeed, 's');
-            System.out.println("DOWN");
-        }
-        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-            camera.changePosition(cameraSpeed, 'a');
-            System.out.println("LEFT");
-        }
-        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-            camera.changePosition(cameraSpeed, 'd');
-            System.out.println("RIGHT");
-        }
-        
-        
-        
+//        if (ke.getKeyCode() == KeyEvent.VK_PERIOD) {
+//            camera.zoomIn();
+//            System.out.println("Zoom In");
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_COMMA) {
+//            camera.zoomOut();
+//            System.out.println("Zoom Out");
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_UP) {
+//            camera.changePosition(cameraSpeed, 'w');
+//            System.out.println("UP");
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
+//            camera.changePosition(cameraSpeed, 's');
+//            System.out.println("DOWN");
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+//            camera.changePosition(cameraSpeed, 'a');
+//            System.out.println("LEFT");
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+//            camera.changePosition(cameraSpeed, 'd');
+//            System.out.println("RIGHT");
+//        }
+//        
+//        
+//        
 
     }
 
