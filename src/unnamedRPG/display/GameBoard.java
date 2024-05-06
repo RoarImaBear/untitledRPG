@@ -19,7 +19,7 @@ import static unnamedRPG.UnnamedRPG.random;
  *
  * @author seb
  */
-    public class TerrainLayer extends JComponent {
+    public class GameBoard extends JComponent {
         Map map;
         Camera camera;
         
@@ -43,7 +43,7 @@ import static unnamedRPG.UnnamedRPG.random;
 
 
 
-        public TerrainLayer(Map map, Camera camera) {
+        public GameBoard(Map map, Camera camera) {
             this.map = map;
             this.camera = camera;
             
