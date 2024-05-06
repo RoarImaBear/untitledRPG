@@ -15,3 +15,10 @@ public class Tile {
     
     
 }
+
+//
+//    char grass = '„';
+//    char bush = 'ϫ';
+//    char tree = 'ϒ';
+//    char fissure = '|';
+//    char water = '~';

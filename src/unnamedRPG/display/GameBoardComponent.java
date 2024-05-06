@@ -19,7 +19,7 @@ import static unnamedRPG.UnnamedRPG.random;
  *
  * @author seb
  */
-    public class GameBoard extends JComponent {
+    public class GameBoardComponent extends JComponent {
         Map map;
         Camera camera;
         
@@ -40,12 +40,15 @@ import static unnamedRPG.UnnamedRPG.random;
         Color fontColor = new Color (48, 116, 42);
         
         String charString;
+        
+        int[][] boardLimits;
 
 
 
-        public GameBoard(Map map, Camera camera) {
+        public GameBoardComponent(Map map, Camera camera, int[][] boardLimits) {
             this.map = map;
             this.camera = camera;
+            this.boardLimits = boardLimits;
             
             this.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
             this.grassGreens = createPallette(10, grassAnchor, 3);
@@ -69,22 +72,16 @@ import static unnamedRPG.UnnamedRPG.random;
             int mapEndX = camera.mapEndX;
             int mapEndY = camera.mapEndY;
             
-            g.setColor(BLACK);
-            g.fillRect(0, 0, MAP_WIDTH, MAP_LENGTH);
+            g.setColor(BLUE);
+            
+            g.fillRect(boardLimits[0][0], boardLimits[1][0], boardLimits[0][1], boardLimits[1][1]);
+            
+            
+//            System.out.println(boardXYLimits[0][0] +" "+ boardXYLimits[0][1] + " "+ boardXYLimits[1][0] + " " + boardXYLimits[1][1]);
             
             textFont =  new Font("Arial", Font.PLAIN, (50 / camera.zoomOutModifier));
             
-            for (int mapY = mapStartY, displayY = displayStartY; mapY < mapEndY; mapY++, displayY += tileSize) {
-                for (int mapX = mapStartX, displayX = displayStartX; mapX < mapEndX; mapX++, displayX += tileSize) {
-                    char currentTile = map.terrain[mapX][mapY];
-                    g.setColor(colorSwitch(currentTile));
-                    g.fillRect(displayX, displayY, tileSize-1, tileSize-1);
-                    g.setColor(fontColor);
-                    g.setFont(fontSwitch(currentTile));
-                    charString = currentTile + "";
-                    g.drawString(charString, (displayX + tileSize/5), (displayY + tileSize/2 ));
-                }   
-            }
+
         }
     
     Color[] createPallette(int numberOfColors, int[] anchorValue, int variance) {
@@ -134,3 +131,16 @@ import static unnamedRPG.UnnamedRPG.random;
 
 
 }
+
+
+//            for (int mapY = mapStartY, displayY = displayStartY; mapY < mapEndY; mapY++, displayY += tileSize) {
+//                for (int mapX = mapStartX, displayX = displayStartX; mapX < mapEndX; mapX++, displayX += tileSize) {
+//                    char currentTile = map.terrain[mapX][mapY];
+//                    g.setColor(colorSwitch(currentTile));
+//                    g.fillRect(displayX, displayY, tileSize-1, tileSize-1);
+//                    g.setColor(fontColor);
+//                    g.setFont(fontSwitch(currentTile));
+//                    charString = currentTile + "";
+//                    g.drawString(charString, (displayX + tileSize/5), (displayY + tileSize/2 ));
+//                }   
+//            }
