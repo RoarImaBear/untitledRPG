@@ -20,8 +20,6 @@ import static unnamedRPG.UnnamedRPG.random;
  * @author seb
  */
     public class TerrainLayer extends JComponent {
-        private int x, y;
-        
         Map map;
         Camera camera;
         
@@ -73,7 +71,6 @@ import static unnamedRPG.UnnamedRPG.random;
             g.fillRect(0, 0, MAP_WIDTH, MAP_LENGTH);
             
             textFont =  new Font("Arial", Font.PLAIN, (50 / camera.zoomOutModifier));
-            g.setFont(textFont);
             
             for (int mapY = mapStartY, displayY = displayStartY; mapY < mapEndY; mapY++, displayY += tileSize) {
                 for (int mapX = mapStartX, displayX = displayStartX; mapX < mapEndX; mapX++, displayX += tileSize) {
@@ -81,10 +78,9 @@ import static unnamedRPG.UnnamedRPG.random;
                     g.setColor(colorSwitch(currentTile));
                     g.fillRect(displayX, displayY, tileSize-1, tileSize-1);
                     g.setColor(fontColor);
+                    g.setFont(fontSwitch(currentTile));
                     charString = currentTile + "";
-                    g.drawString(charString, (displayX + tileSize/3), (displayY + tileSize/2 ));
-                    
-                    
+                    g.drawString(charString, (displayX + tileSize/5), (displayY + tileSize/2 ));
                 }   
             }
         }
@@ -114,6 +110,23 @@ import static unnamedRPG.UnnamedRPG.random;
                 return waterBlues[random.nextInt(10)];
         }
         return BLUE;
+    }
+    
+    Font fontSwitch (char subject) {
+
+        switch (subject) {
+            case ('„'):
+                return new Font("Arial", Font.PLAIN, (50 / camera.zoomOutModifier));
+            case ('ϫ'):
+                return new Font("Arial", Font.PLAIN, (80 / camera.zoomOutModifier));
+            case ('ϒ'):
+                return new Font("Arial", Font.PLAIN, (120 / camera.zoomOutModifier));
+            case ('|'):
+                return new Font("Arial", Font.PLAIN, (50 / camera.zoomOutModifier));
+            case ('~'):
+                return new Font("Arial", Font.PLAIN, (50 / camera.zoomOutModifier));
+        }
+        return new Font("Arial", Font.PLAIN, (50 / camera.zoomOutModifier));
     }
     
 

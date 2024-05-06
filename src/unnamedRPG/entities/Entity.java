@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package unnamedRPG.entities;
 
+import java.awt.Color;
 import unnamedRPG.items.Armour;
 import unnamedRPG.items.Weapon;
 import static unnamedRPG.utilities.Dice.rollDice;
@@ -12,9 +9,9 @@ import static unnamedRPG.utilities.Dice.rollDice;
  *
  * @author seb
  */
-class Entity {
+public class Entity {
     
-        String name;
+    String name;
     
     public int soldierID;
     public int healthPool;
@@ -38,7 +35,12 @@ class Entity {
     
     public Weapon equippedWeapon;
     public Armour equippedArmour;
+    
+    public Color tokenColor;
+    public String tokenString;
 
+    public Entity() {
+    }
     
     
     public void attack(Entity enemy) {

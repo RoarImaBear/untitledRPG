@@ -13,7 +13,7 @@ import unnamedRPG.Map;
  * @author Sebastian Dymanski
  * @id 14850975
  */
-public class BackgroundLayer extends JLayeredPane  {
+public class MainPane extends JLayeredPane  {
 
     Color color;
     Map map;
@@ -21,10 +21,11 @@ public class BackgroundLayer extends JLayeredPane  {
     JFrame frame;
     Timer timer;
     TerrainLayer terrainLayer;
+    TokenLayer tokenLayer;
     
     
     int frameTracker = 0;
-    public BackgroundLayer(JFrame frame, Map map, Camera camera) {
+    public MainPane(JFrame frame, Map map, Camera camera) {
         this.frame = frame;
         this.map = map;
         this.camera = camera;
@@ -35,12 +36,20 @@ public class BackgroundLayer extends JLayeredPane  {
         this.terrainLayer  = new TerrainLayer(map, camera);
         terrainLayer.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
         this.add(terrainLayer, 100);
+        
+        this.tokenLayer = new TokenLayer(map, camera);
+        tokenLayer.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        this.add(tokenLayer, 100);
+        
+        setComponentZOrder(terrainLayer, 1);
+        setComponentZOrder(tokenLayer, 0); 
 
     }
     
     public void refresh() {
         if(frameTracker%10 == 0) {
-            terrainLayer.repaint();
+            //terrainLayer.repaint();
+            tokenLayer.repaint();
         }
         frameTracker++;
     }

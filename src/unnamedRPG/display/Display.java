@@ -1,7 +1,6 @@
 package unnamedRPG.display;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import unnamedRPG.Map;
@@ -12,9 +11,13 @@ import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
  *
  * @author seb
  */
+
+// Add fog of war -- discovered [][]
+
+
 public class Display implements Runnable {
     Map map;
-    BackgroundLayer background;
+    MainPane mainPane;
     JFrame frame;
     
     Timer displayClock;
@@ -34,8 +37,8 @@ public class Display implements Runnable {
         this.camera = new Camera();
         this.controlUnit = new ControlUnit(camera);
         
-        this.background = new BackgroundLayer(frame, map, camera);
-        this.frame.add(background);
+        this.mainPane = new MainPane(frame, map, camera);
+        this.frame.add(mainPane);
         
         this.frame.addKeyListener(controlUnit);
         this.frame.addComponentListener(controlUnit);
@@ -48,11 +51,7 @@ public class Display implements Runnable {
     public void run() {
         
         displayClock = new Timer(1000/60, (ActionEvent e) -> {
-            
-            
-            
-            
-            background.refresh();
+            mainPane.refresh();
         });
         displayClock.start();
     }

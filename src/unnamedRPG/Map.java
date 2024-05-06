@@ -7,6 +7,8 @@ package unnamedRPG;
 import static unnamedRPG.UnnamedRPG.MAP_LENGTH;
 import static unnamedRPG.UnnamedRPG.MAP_WIDTH;
 import static unnamedRPG.UnnamedRPG.random;
+import unnamedRPG.entities.Entity;
+import unnamedRPG.entities.Player;
 
 /**
  *
@@ -18,6 +20,7 @@ public class Map {
 
     public int[][] topography; // 0 - 4, depending on difficulty
     public char[][] terrain;
+    public Entity[][] entities;
     
     char grass = '„'; 
     char bush = 'ϫ';
@@ -32,15 +35,25 @@ public class Map {
         this.length = MAP_LENGTH;
         this.topography = new int[width][length];
         this.terrain = new char[width][length];
+        this.entities = new Entity [width][length];
 
         initiatePlane();
         raiseTopography(10, 5);
         sowGrass();
-        plantBushes(10);
-        plantTrees(2);
+        plantBushes(40);
+        plantTrees(30);
         drawFissure();
-        formRiver(5);
+        formRiver(10);
+        
+        insertPlayer();
     }
+    
+    
+    void insertPlayer() {
+        entities [width/2][length/2] = new Player();
+        
+    }
+    
 
     void initiatePlane() {
         for (int y = 0; y < length; y++) {

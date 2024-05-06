@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import unnamedRPG.entities.Army;
 import unnamedRPG.entities.Soldier;
-import unnamedRPG.display.BackgroundLayer;
+import unnamedRPG.display.MainPane;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JFrame;
