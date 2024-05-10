@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import static unnamedRPG.UnnamedRPG.FRAME_CENTER;
+import unnamedRPG.display.components.GameBoard;
 
 /**
  *
@@ -19,9 +20,11 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
 
     
     Camera camera;
+    GameBoard gameBoard;
     
-    public ControlUnit(Camera camera) {
+    public ControlUnit(Camera camera, GameBoard gameBoard) {
         this.camera = camera;
+        this.gameBoard = gameBoard;
         
         addKeyListener(this);
         addComponentListener(this);
@@ -39,38 +42,37 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
     @Override
     public void keyPressed(KeyEvent ke) {
         
-//        int cameraSpeed = 1;
         if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.out.println("esc");
             System.exit(0);
         }
-//        if (ke.getKeyCode() == KeyEvent.VK_PERIOD) {
-//            camera.zoomIn();
-//            System.out.println("Zoom In");
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_COMMA) {
-//            camera.zoomOut();
-//            System.out.println("Zoom Out");
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_UP) {
-//            camera.changePosition(cameraSpeed, 'w');
-//            System.out.println("UP");
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-//            camera.changePosition(cameraSpeed, 's');
-//            System.out.println("DOWN");
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-//            camera.changePosition(cameraSpeed, 'a');
-//            System.out.println("LEFT");
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-//            camera.changePosition(cameraSpeed, 'd');
-//            System.out.println("RIGHT");
-//        }
-//        
-//        
-//        
+        if (ke.getKeyCode() == KeyEvent.VK_PERIOD) {
+            gameBoard.updateScaling(1);
+            System.out.println("Zoom In");
+        }
+        if (ke.getKeyCode() == KeyEvent.VK_COMMA) {
+            gameBoard.updateScaling(-1);
+            System.out.println("Zoom Out");
+        }
+        if (ke.getKeyCode() == KeyEvent.VK_UP) {
+            
+            System.out.println("UP");
+        }
+        if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
+            
+            System.out.println("DOWN");
+        }
+        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+            
+            System.out.println("LEFT");
+        }
+        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+            
+            System.out.println("RIGHT");
+        }
+        
+        
+        
 
     }
 
@@ -111,8 +113,10 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
         
         
         
+        gameBoard.handleClick(mouseX, mouseY);
         
-        System.out.println("MousePosition: " + changeX + " " + changeY );
+        
+//        System.out.println("MousePosition: " + mouseX + " " + mouseY );
         
         
     }
@@ -135,3 +139,32 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
     }
     
 }
+
+
+//        if (ke.getKeyCode() == KeyEvent.VK_PERIOD) {
+//            camera.zoomIn();
+//            System.out.println("Zoom In");
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_COMMA) {
+//            camera.zoomOut();
+//            System.out.println("Zoom Out");
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_UP) {
+//            camera.changePosition(cameraSpeed, 'w');
+//            System.out.println("UP");
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
+//            camera.changePosition(cameraSpeed, 's');
+//            System.out.println("DOWN");
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+//            camera.changePosition(cameraSpeed, 'a');
+//            System.out.println("LEFT");
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+//            camera.changePosition(cameraSpeed, 'd');
+//            System.out.println("RIGHT");
+//        }
+//        
+//        
+//       

@@ -31,8 +31,28 @@ public class Map {
         this.topography = new int[width][length];
         this.tiles = new Tile[width][length];
         this.entities = new Entity[width][length];
+        
+        for (int y = 0; y < length; y++) {
+            for (int x = 0; x < width; x++) {
+                tiles[x][y] = new Tile();
+            }
+        }
+        
+        sowGrass();
 
+        plantTrees(100);
+        plantBushes(300);
+        
+        for (int i = 0; i < 1500; i++) {
+            plantForest(100, 100);
+        }
+        
+        for (int i = 0; i < 100; i++) {
+            formRiver(random.nextInt(5));
+        }
+        
 
+        
     }
 
     
@@ -68,29 +88,29 @@ public class Map {
 //        }
 //    }
 //
-//    void sowGrass() {
-//        for (int y = 0; y < length; y++) {
-//            for (int x = 0; x < width; x++) {
-//                terrain[x][y] = grass;//„ 
-//            }
-//        }
-//    }
+    void sowGrass() {
+        for (int y = 0; y < length; y++) {
+            for (int x = 0; x < width; x++) {
+                tiles[x][y].terrainType = '„';//„ 
+            }
+        }
+    }
+    
+    void plantBushes(int density) {
+        for (int y = 0; y < length; y++) {
+            for (int x = 0; x < random.nextInt(density); x++) {
+                tiles[random.nextInt(width)][y].terrainType = 'ϫ';
+            }
+        }
+    }
 //
-//    void plantBushes(int density) {
-//        for (int y = 0; y < length; y++) {
-//            for (int x = 0; x < random.nextInt(density); x++) {
-//                terrain[random.nextInt(width)][y] = bush;
-//            }
-//        }
-//    }
-//
-//    void plantTrees(int density) {
-//        for (int y = 0; y < length; y++) {
-//            for (int x = 0; x < random.nextInt(density); x++) {
-//                terrain[random.nextInt(width)][y] = tree;
-//            }
-//        }
-//    }
+    void plantTrees(int density) {
+        for (int y = 0; y < length; y++) {
+            for (int x = 0; x < random.nextInt(density); x++) {
+                tiles[random.nextInt(width)][y].terrainType = 'ϒ';
+            }
+        }
+    }
 //
 //    void drawFissure() {
 //        int x = random.nextInt(width);
@@ -104,41 +124,41 @@ public class Map {
 //        }
 //    }
 //
-//    // Bias can be set
-//    void formRiver(int riverWidth) {
-//        int x = random.nextInt(width);
-//        int randomRigger = 0;
-//        boolean flowingRight = random.nextBoolean();
-//        int flowLeftBias = 3;
-//        int depth = -1;
-//
-//        for (int y = 0; y < length; y++) {
-//            randomRigger++;
-//            for (int i = x, j = riverWidth; i < x + riverWidth; i++) {
-//                if (i > 0 && i < width) {
-//                    if (terrain[i][y] == water) {
-//                        break;
-//                    }
-//                    terrain[i][y] = water;
-//                    topography[i][y] = depth;
-//                }
-//            }
-//
-//            if (flowingRight && x < (width - 1)) {
-//                x++;
-//            } else if (x > 0) {
-//                x--;
-//            }
-//
-//            if (random.nextInt(flowLeftBias) % flowLeftBias == 0 || randomRigger > 6) {
-//                flowingRight = true;
-//                randomRigger = 0;
-//            } else {
-//                flowingRight = false;
-//            }
-//        }
-//
-//    }
+    // Bias can be set
+    void formRiver(int riverWidth) {
+        int x = random.nextInt(width);
+        int randomRigger = 0;
+        boolean flowingRight = random.nextBoolean();
+        int flowLeftBias = 3;
+        int depth = -1;
+
+        for (int y = 0; y < length; y++) {
+            randomRigger++;
+            for (int i = x, j = riverWidth; i < x + riverWidth; i++) {
+                if (i > 0 && i < width) {
+                    if (tiles[i][y].terrainType == '~') {
+                        break;
+                    }
+                    tiles[i][y].terrainType = '~';
+                    //topography[i][y] = depth;
+                }
+            }
+
+            if (flowingRight && x < (width - 1)) {
+                x++;
+            } else if (x > 0) {
+                x--;
+            }
+
+            if (random.nextInt(flowLeftBias) % flowLeftBias == 0 || randomRigger > 6) {
+                flowingRight = true;
+                randomRigger = 0;
+            } else {
+                flowingRight = false;
+            }
+        }
+
+    }
 //
 //    void makeHill(int size, int numberNodes) {
 //
@@ -213,83 +233,83 @@ public class Map {
 //        }
 //    }
 //
-//    void plantForest(int size, int density) {
-//
-//        size = 50;
-//        density = 100;
-//
-//        int radius = random.nextInt(size);
-//        int sourceX = random.nextInt(width);
-//        int sourceY = random.nextInt(length);
-//        int startX = sourceX - radius;
-//        int startY = sourceY - radius;
-//
-//        int endX = sourceX + radius;
-//        int endY = sourceY + radius;
-//
-//        if (startX < 0) {
-//            startX = 0;
-//        }
-//        if (startY < 0) {
-//            startY = 0;
-//        }
-//        if (endX > width) {
-//            endX = width;
-//        }
-//        if (endY > length) {
-//            endY = length;
-//        }
-//
-//        if (startX < 0) {
-//            startX = 0;
-//        }
-//        if (startY < 0) {
-//            startY = 0;
-//        }
-//        if (endX > width) {
-//            endX = width;
-//        }
-//        if (endY > length) {
-//            endY = length;
-//        }
-//
-//        for (int i = 0; i < density; i++) {
-//            int parcelRadius = random.nextInt(size / 10);
-//            int parcelSourceX = startX + random.nextInt(size);
-//            int parcelSourceY = startY + random.nextInt(size);
-//            int parcelStartX = parcelSourceX - radius;
-//            int parcelStartY = parcelSourceY - radius;
-//            int parcelEndX = parcelSourceX + radius;
-//            int parcelEndY = parcelSourceY + radius;
-//
-//            if (parcelStartX < startX) {
-//                parcelStartX = startX;
-//                radius = radius / 2;
-//            }
-//
-//            if (parcelStartY < startY) {
-//                parcelStartY = startY;
-//                radius = radius / 2;
-//            }
-//            if (parcelEndX > endX) {
-//                parcelEndX = endX;
-//                radius = radius / 2;
-//            }
-//            if (parcelEndY > endY) {
-//                parcelEndY = endY;
-//                radius = radius / 2;
-//            }
-//
-//            for (int y = parcelStartY; y < parcelEndY; y++) {
-//                for (int x = parcelStartX; x < parcelEndX; x++) {
-//                    if ((y - parcelSourceY) * (y - parcelSourceY) + (x - parcelSourceX)
-//                            * (x - parcelSourceX) <= (parcelRadius * parcelRadius)) {
-//                        terrain[x][y] = 'ϒ';
-//                    }
-//                }
-//            }
-//        }
-//    }
+    void plantForest(int size, int density) {
+
+        size = 30;
+        density = 80;
+        
+        int radius = random.nextInt(size);
+        int sourceX = random.nextInt(width);
+        int sourceY = random.nextInt(length);
+        int startX = sourceX - radius;
+        int startY = sourceY - radius;
+
+        int endX = sourceX + radius;
+        int endY = sourceY + radius;
+
+        if (startX < 0) {
+            startX = 0;
+        }
+        if (startY < 0) {
+            startY = 0;
+        }
+        if (endX > width) {
+            endX = width;
+        }
+        if (endY > length) {
+            endY = length;
+        }
+
+        if (startX < 0) {
+            startX = 0;
+        }
+        if (startY < 0) {
+            startY = 0;
+        }
+        if (endX > width) {
+            endX = width;
+        }
+        if (endY > length) {
+            endY = length;
+        }
+
+        for (int i = 0; i < density; i++) {
+            int parcelRadius = random.nextInt(size / 10);
+            int parcelSourceX = startX + random.nextInt(size);
+            int parcelSourceY = startY + random.nextInt(size);
+            int parcelStartX = parcelSourceX - radius;
+            int parcelStartY = parcelSourceY - radius;
+            int parcelEndX = parcelSourceX + radius;
+            int parcelEndY = parcelSourceY + radius;
+
+            if (parcelStartX < startX) {
+                parcelStartX = startX;
+                radius = radius / 2;
+            }
+
+            if (parcelStartY < startY) {
+                parcelStartY = startY;
+                radius--;
+            }
+            if (parcelEndX > endX) {
+                parcelEndX = endX;
+                radius--;
+            }
+            if (parcelEndY > endY) {
+                parcelEndY = endY;
+                radius--;
+            }
+
+            for (int y = parcelStartY; y < parcelEndY; y++) {
+                for (int x = parcelStartX; x < parcelEndX; x++) {
+                    if ( random.nextInt(2)%2 != 0 && (y - parcelSourceY) * (y - parcelSourceY) + (x - parcelSourceX)
+                            * (x - parcelSourceX) <= (parcelRadius * parcelRadius)+1) {
+                        tiles[x][y].terrainType = 'ϒ';
+                    }
+                }
+            }
+        }
+    }
 //
 //    void printTopography() {
 //        for (int y = length - 1; y >= 0; y--) {

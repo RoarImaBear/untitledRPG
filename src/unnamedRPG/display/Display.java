@@ -51,7 +51,6 @@ public class Display implements Runnable {
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         this.camera = new Camera();
-        this.controlUnit = new ControlUnit(camera);
         
         this.UIPane = new UIPane(map, camera, boardLimits, frameLimits);
         this.frame.add(UIPane);
@@ -59,6 +58,7 @@ public class Display implements Runnable {
         this.gameBoard = new GameBoard(map, camera, boardLimits);
         this.frame.add(gameBoard);
         
+        this.controlUnit = new ControlUnit(camera, gameBoard);
         this.frame.addKeyListener(controlUnit);
         this.frame.addComponentListener(controlUnit);
         this.frame.addMouseListener(controlUnit);
@@ -70,7 +70,8 @@ public class Display implements Runnable {
     @Override
     public void run() {
         this.frame.requestFocus();
-        displayClock = new Timer(1000/60, (ActionEvent e) -> {
+        displayClock = new Timer(1000/6, (ActionEvent e) -> {
+            this.frame.requestFocus();
             UIPane.refresh();
             gameBoard.repaint();
         });

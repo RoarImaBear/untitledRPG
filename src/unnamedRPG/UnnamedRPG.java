@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JFrame;
 import unnamedRPG.display.Display;
+import unnamedRPG.utilities.Decorator;
 
 /**
  *
@@ -26,6 +27,7 @@ public class UnnamedRPG {
     public static Dimension DISPLAY_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
     
     public static Random random = new Random();
+    public static Decorator decorator = new Decorator();
     
     
     public static final int MAP_WIDTH = 1440;
