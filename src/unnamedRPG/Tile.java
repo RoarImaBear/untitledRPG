@@ -26,7 +26,6 @@ public class Tile {
     int baseTileSize = 16;
 
     public Tile() {
-        
     }
     
 
@@ -34,7 +33,7 @@ public class Tile {
 
         g.setColor(decorator.colorSwitch(terrainType));
 
-        g.fillRect(startX, startY, (baseTileSize * scaling - 1), (baseTileSize * scaling - 1));
+        g.fillRect(startX, startY, ((baseTileSize-1) * scaling), ((baseTileSize-1) * scaling));
 
     }
 

@@ -47,9 +47,8 @@ public class UnnamedRPG {
         Thread displayThread = new Thread(display);
         displayThread.start();
         
+        
         System.out.println("Display: " + DISPLAY_SIZE.height + "x" + DISPLAY_SIZE.width);
-  
-
     }
     
     public static void battleRound (Army attackingArmy, Army defendingArmy){

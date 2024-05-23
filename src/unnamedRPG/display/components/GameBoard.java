@@ -35,13 +35,10 @@ import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
             this.camera = camera;
             this.boardDisplayLimits = boardLimits;
             this.boardTileLimits = new Limits(0, 0, 0, 0);
-            
-            
+
             this.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
-            
-            
-            
             updateBoardTileLimits(scaling);
+            
         }
 
 
@@ -56,8 +53,7 @@ import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
             for (int y = boardTileLimits.startY, displayY = boardDisplayLimits.startY; y < boardTileLimits.lengthY; y++, displayY += tileSize) {
                 for (int x = boardTileLimits.startX, displayX = boardDisplayLimits.startX; x < boardTileLimits.lengthX; x++, displayX += tileSize) {
                     map.tiles[x][y].paint(g, displayX, displayY, scaling);
-                }
-                
+                }            
             }
         }
         
@@ -82,13 +78,14 @@ import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
         
         
         public void handleClick (int pointerX, int pointerY){
-            
+            System.out.println("Tilesize: "+tileSize);
             System.out.println("X: " + pointerX + " Y: " + pointerY);
             int tileX;
             int tileY;
-            
-            tileX = pointerX / tileSize;
-            tileY = pointerY / tileSize;
+            System.out.println("Scaling: " + scaling);
+
+            tileX = (pointerX) / tileSize;
+            tileY = (pointerY) / tileSize;
             System.out.println("tileX: " + tileX + " tileY: " + tileY);
             
             Tile currentTile = map.tiles[boardTileLimits.startX + tileX][boardTileLimits.startY + tileY];

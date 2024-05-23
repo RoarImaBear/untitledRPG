@@ -37,7 +37,6 @@ public class Map {
                 tiles[x][y] = new Tile();
             }
         }
-        
         sowGrass();
 
         plantTrees(100);

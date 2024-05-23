@@ -70,7 +70,7 @@ public class Display implements Runnable {
     @Override
     public void run() {
         this.frame.requestFocus();
-        displayClock = new Timer(1000/6, (ActionEvent e) -> {
+        displayClock = new Timer(1, (ActionEvent e) -> {
             this.frame.requestFocus();
             UIPane.refresh();
             gameBoard.repaint();

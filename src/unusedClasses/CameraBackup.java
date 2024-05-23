@@ -1,4 +1,4 @@
-package unnamedRPG.display;
+package unusedClasses;
 
 import static unnamedRPG.UnnamedRPG.DISPLAY_SIZE;
 import static unnamedRPG.UnnamedRPG.FRAME_CENTER;

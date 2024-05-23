@@ -25,7 +25,6 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
     public ControlUnit(Camera camera, GameBoard gameBoard) {
         this.camera = camera;
         this.gameBoard = gameBoard;
-        
         addKeyListener(this);
         addComponentListener(this);
         addMouseListener(this);
@@ -63,7 +62,6 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
             System.out.println("DOWN");
         }
         if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-            
             System.out.println("LEFT");
         }
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -102,23 +100,15 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
-        int mouseX = e.getX();
-        int mouseY = e.getY();
+        System.out.println("CLICK");
+        int mouseX = e.getX() - 7;
+        int mouseY = e.getY() - 24;
         int centerX = FRAME_CENTER[0];
         int centerY = FRAME_CENTER[1];
         
         int changeX = mouseX - centerX;
         int changeY = mouseY - centerY;
-        
-        
-        
-        gameBoard.handleClick(mouseX, mouseY);
-        
-        
-//        System.out.println("MousePosition: " + mouseX + " " + mouseY );
-        
-        
+        gameBoard.handleClick(mouseX, mouseY); 
     }
 
     @Override
