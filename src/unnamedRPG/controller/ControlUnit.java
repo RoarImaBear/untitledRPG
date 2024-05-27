@@ -19,9 +19,11 @@ import unnamedRPG.display.components.GameBoard;
  */
 public class ControlUnit implements KeyListener, ComponentListener, MouseListener{
     GameBoard gameBoard;
+    Limits boardLimits;
     
     public ControlUnit(Limits boardLimits, Limits frameLimits, GameBoard gameBoard) {
         this.gameBoard = gameBoard;
+        this.boardLimits = boardLimits;
         addKeyListener(this);
         addComponentListener(this);
         addMouseListener(this);        
@@ -42,26 +44,27 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
             System.exit(0);
         }
         if (ke.getKeyCode() == KeyEvent.VK_X) {
-            gameBoard.updateScaling(1);
+            gameBoard.changeScale(1);
             System.out.println("Zoom In");
         }
         if (ke.getKeyCode() == KeyEvent.VK_Z) {
-            gameBoard.updateScaling(-1);
+            gameBoard.changeScale(-1);
             System.out.println("Zoom Out");
         }
         if (ke.getKeyCode() == KeyEvent.VK_W) {
-            
+            gameBoard.changePosition('w', 1);
             System.out.println("UP");
         }
         if (ke.getKeyCode() == KeyEvent.VK_S) {
-            
+            gameBoard.changePosition('s', 1);
             System.out.println("DOWN");
         }
         if (ke.getKeyCode() == KeyEvent.VK_A) {
+            gameBoard.changePosition('a', 1);
             System.out.println("LEFT");
         }
         if (ke.getKeyCode() == KeyEvent.VK_D) {
-            
+            gameBoard.changePosition('d', 1);
             System.out.println("RIGHT");
         }
         
@@ -104,7 +107,12 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
         
         int changeX = mouseX - centerX;
         int changeY = mouseY - centerY;
-        gameBoard.handleClick(mouseX, mouseY); 
+        
+        if(mouseY < boardLimits.endY){
+            gameBoard.handleClick(mouseX, mouseY);             
+        } else {
+            System.out.println("Not map");
+        }
     }
 
     @Override
