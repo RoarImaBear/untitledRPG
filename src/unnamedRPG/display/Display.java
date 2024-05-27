@@ -1,11 +1,12 @@
 package unnamedRPG.display;
 
+import unnamedRPG.controller.ControlUnit;
 import unnamedRPG.display.panes.UIPane;
 import unnamedRPG.display.components.GameBoard;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
-import unnamedRPG.Map;
+import unnamedRPG.model.Map;
 import static unnamedRPG.UnnamedRPG.DISPLAY_SIZE;
 import static unnamedRPG.UnnamedRPG.FRAME_HEIGHT;
 import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
@@ -27,12 +28,10 @@ public class Display implements Runnable {
     JFrame frame;
     
     Timer displayClock;
-    
-    Camera camera;
     ControlUnit controlUnit;
     final int frameWidth = DISPLAY_SIZE.width;
     final int frameHeight = DISPLAY_SIZE.height;
-    final int[] frameCenter = {FRAME_WIDTH/2, FRAME_HEIGHT/2};
+    final int UIHeight = 200;
     
     Limits boardLimits;
     Limits frameLimits;
@@ -41,7 +40,7 @@ public class Display implements Runnable {
     public Display(Map map){
         this.map = map;
         
-        this.boardLimits = new Limits(0, 0, frameWidth, frameHeight-200);
+        this.boardLimits = new Limits(0, 0, frameWidth, frameHeight - UIHeight);
         this.frameLimits = new Limits(0, 0, frameWidth, frameHeight);
         
         this.frame = new JFrame("Game");
@@ -50,22 +49,17 @@ public class Display implements Runnable {
         this.frame.setVisible(true);
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        this.camera = new Camera();
-        
-        this.UIPane = new UIPane(map, camera, boardLimits, frameLimits);
+        this.UIPane = new UIPane(map, boardLimits, frameLimits);
         this.frame.add(UIPane);
         
-        this.gameBoard = new GameBoard(map, camera, boardLimits);
+        this.gameBoard = new GameBoard(map, boardLimits);
         this.frame.add(gameBoard);
         
-        this.controlUnit = new ControlUnit(camera, gameBoard);
+        this.controlUnit = new ControlUnit(boardLimits, frameLimits, gameBoard);
         this.frame.addKeyListener(controlUnit);
         this.frame.addComponentListener(controlUnit);
         this.frame.addMouseListener(controlUnit);
-
     }
-    
-    
     
     @Override
     public void run() {
@@ -76,13 +70,9 @@ public class Display implements Runnable {
             gameBoard.repaint();
         });
         displayClock.start();
-    }
-    
-    
-    
-    void updateBoardLimits(){
-        
-    }
-    
-    
+    }  
 }
+
+//    void updateBoardLimits(){
+//        
+//    }

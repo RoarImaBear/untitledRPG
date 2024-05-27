@@ -1,9 +1,10 @@
 package unnamedRPG;
 
+import unnamedRPG.model.Map;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import unnamedRPG.entities.Army;
-import unnamedRPG.entities.Soldier;
+import unnamedRPG.model.entities.Army;
+import unnamedRPG.model.entities.Soldier;
 //import unnamedRPG.display.MainPane;
 import java.util.ArrayList;
 import java.util.Random;
@@ -39,10 +40,9 @@ public class UnnamedRPG {
     
 
     public static void main(String[] args) {
-        
         Map map = new Map();
-        
         System.out.println("MAP MADE");
+        
         Display display = new Display(map);
         Thread displayThread = new Thread(display);
         displayThread.start();
@@ -50,59 +50,57 @@ public class UnnamedRPG {
         
         System.out.println("Display: " + DISPLAY_SIZE.height + "x" + DISPLAY_SIZE.width);
     }
-    
-    public static void battleRound (Army attackingArmy, Army defendingArmy){
-        ArrayList<Soldier> attackers = attackingArmy.activeSoldiers;
-        ArrayList<Soldier> defenders = defendingArmy.activeSoldiers;
-        
-        int attackerCount = attackers.size();
-        int defenderCount = defenders.size();
-        int sizeDifference = attackerCount - defenderCount;
-        
-        Soldier attacker;
-        Soldier defender;
-        
-        
-        if ( sizeDifference >= 0){
-            
-            for (int i = 0; i < defenderCount; i++){
-                attacker = attackers.get(i);
-                defender = defenders.get(i);
 
-                fight(attacker, defender);
-            }
-        } else if (sizeDifference < 0 ) {
-        
-            for (int i = 0; i < attackerCount; i++){
-                attacker = attackers.get(i);
-                defender = defenders.get(i);
-
-                fight(attacker, defender);
-            }
-        }
-        
-        attackingArmy.filterCasualties();
-        defendingArmy.filterCasualties();
-        
-        
-    }
-    
-    
-    public static int fight (Soldier attacker, Soldier defender) {
-        while(true){    
-            if(attacker.healthPool > 0 && defender.healthPool > 0)
-                attacker.attack(defender);
-            else
-                return attacker.healthPool - defender.healthPool;
-            
-            if(attacker.healthPool > 0 && defender.healthPool > 0)
-                defender.attack(attacker);
-            else
-                return attacker.healthPool - defender.healthPool;
-            
-        }
-    }
-       
-    
-    
 }
+
+//    public static void battleRound (Army attackingArmy, Army defendingArmy){
+//        ArrayList<Soldier> attackers = attackingArmy.activeSoldiers;
+//        ArrayList<Soldier> defenders = defendingArmy.activeSoldiers;
+//        
+//        int attackerCount = attackers.size();
+//        int defenderCount = defenders.size();
+//        int sizeDifference = attackerCount - defenderCount;
+//        
+//        Soldier attacker;
+//        Soldier defender;
+//        
+//        
+//        if ( sizeDifference >= 0){
+//            
+//            for (int i = 0; i < defenderCount; i++){
+//                attacker = attackers.get(i);
+//                defender = defenders.get(i);
+//
+//                fight(attacker, defender);
+//            }
+//        } else if (sizeDifference < 0 ) {
+//        
+//            for (int i = 0; i < attackerCount; i++){
+//                attacker = attackers.get(i);
+//                defender = defenders.get(i);
+//
+//                fight(attacker, defender);
+//            }
+//        }
+//        
+//        attackingArmy.filterCasualties();
+//        defendingArmy.filterCasualties();
+//        
+//        
+//    }
+//    
+//    
+//    public static int fight (Soldier attacker, Soldier defender) {
+//        while(true){    
+//            if(attacker.healthPool > 0 && defender.healthPool > 0)
+//                attacker.attack(defender);
+//            else
+//                return attacker.healthPool - defender.healthPool;
+//            
+//            if(attacker.healthPool > 0 && defender.healthPool > 0)
+//                defender.attack(attacker);
+//            else
+//                return attacker.healthPool - defender.healthPool;
+//            
+//        }
+//    }

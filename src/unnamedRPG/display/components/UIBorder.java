@@ -1,7 +1,7 @@
 package unnamedRPG.display.components;
 
 import java.awt.BasicStroke;
-import unnamedRPG.Map;
+import unnamedRPG.model.Map;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.BLUE;
@@ -11,7 +11,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
-import unnamedRPG.display.Camera;
 import unnamedRPG.display.Limits;
 import static unnamedRPG.UnnamedRPG.DISPLAY_SIZE;
 import static unnamedRPG.UnnamedRPG.FRAME_HEIGHT;
@@ -26,7 +25,6 @@ import static unnamedRPG.UnnamedRPG.random;
  */
     public class UIBorder extends JComponent {
         Map map;
-        Camera camera;
         
         Color brownBush = new Color(108, 80, 7);
         Color greenBush = new Color(34, 139, 34);
@@ -43,9 +41,8 @@ import static unnamedRPG.UnnamedRPG.random;
         Limits frameLimits;
 
 
-        public UIBorder(Map map, Camera camera, Limits boardLimits, Limits frameLimits) {
+        public UIBorder(Map map, Limits boardLimits, Limits frameLimits) {
             this.map = map;
-            this.camera = camera;
             
             this.boardLimits = boardLimits;
             this.frameLimits = frameLimits;
