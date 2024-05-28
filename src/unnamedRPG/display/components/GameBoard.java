@@ -93,6 +93,7 @@ public class GameBoard extends JComponent {
         } 
     }
 
+    // get it to return  absolute tileID
     public void handleClick(int pointerX, int pointerY) {
         System.out.println("Tilesize: " + tileSize);
         System.out.println("X: " + pointerX + " Y: " + pointerY);

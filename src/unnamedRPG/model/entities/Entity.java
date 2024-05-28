@@ -18,7 +18,8 @@ public class Entity {
     String name;
     
     public int soldierID;
-    public int healthPool;
+    public int maxHP;
+    public int currentHP;
     
     public int proficiency;
     
@@ -58,7 +59,7 @@ public class Entity {
             
             
             if (damageValue > 0){
-                enemy.healthPool -= damageValue;
+                enemy.maxHP -= damageValue;
             }
             else {
             }
@@ -89,7 +90,7 @@ public class Entity {
     
     public void printStatus(){
         System.out.println("Soldier " + name);
-        System.out.print("    HP: " + healthPool);
+        System.out.print("    HP: " + maxHP);
         System.out.print("    Agility: " + agility);
         System.out.print("    Protection: " + protection);
         System.out.print("    Proficiency: "+ proficiency);

@@ -40,10 +40,10 @@ import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
             Graphics2D g2d = (Graphics2D) g;
             
             
-            g.setColor(DECORATOR.menuColorSwitch(0));
+            g.setColor(DECORATOR.interfaceBGColors(0));
             g.fillRect(0, boardLimits.endY, frameLimits.lengthX, frameLimits.lengthY - boardLimits.lengthY);
             
-            g2d.setColor(DECORATOR.menuColorSwitch(0));
+            g2d.setColor(DECORATOR.interfaceBGColors(0));
             g2d.setStroke(new BasicStroke(10));
             
             g2d.drawRect(frameLimits.startX, frameLimits.startY, frameLimits.lengthX, boardLimits.lengthY);

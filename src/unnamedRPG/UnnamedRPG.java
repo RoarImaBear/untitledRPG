@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import unnamedRPG.controller.ControlUnit;
 import unnamedRPG.display.Display;
 import unnamedRPG.display.Limits;
+import unnamedRPG.model.GameManager;
+import unnamedRPG.model.entities.Player;
 import unnamedRPG.utilities.Decorator;
 import unnamedRPG.utilities.ImageAssets;
 
@@ -19,9 +21,6 @@ import unnamedRPG.utilities.ImageAssets;
  *
  * @author seb
  * 
- * Use it as a widget.
- * Invade your friends phones.
- * Have their village defend itself from your attacks.
  * 
  */
 public class UnnamedRPG {
@@ -56,9 +55,13 @@ public class UnnamedRPG {
         Map map = new Map();
         System.out.println("MAP MADE");
         
+        Player player = new Player();
+        
         ControlUnit controlUnit = new ControlUnit(boardLimits, frameLimits);
         
-        Display display = new Display(map, boardLimits, frameLimits, controlUnit);
+        Display display = new Display(player, map, boardLimits, frameLimits, controlUnit);
+        
+        GameManager gameManager = new GameManager(controlUnit);
         
         
         
@@ -73,54 +76,3 @@ public class UnnamedRPG {
 
 }
 
-//    public static void battleRound (Army attackingArmy, Army defendingArmy){
-//        ArrayList<Soldier> attackers = attackingArmy.activeSoldiers;
-//        ArrayList<Soldier> defenders = defendingArmy.activeSoldiers;
-//        
-//        int attackerCount = attackers.size();
-//        int defenderCount = defenders.size();
-//        int sizeDifference = attackerCount - defenderCount;
-//        
-//        Soldier attacker;
-//        Soldier defender;
-//        
-//        
-//        if ( sizeDifference >= 0){
-//            
-//            for (int i = 0; i < defenderCount; i++){
-//                attacker = attackers.get(i);
-//                defender = defenders.get(i);
-//
-//                fight(attacker, defender);
-//            }
-//        } else if (sizeDifference < 0 ) {
-//        
-//            for (int i = 0; i < attackerCount; i++){
-//                attacker = attackers.get(i);
-//                defender = defenders.get(i);
-//
-//                fight(attacker, defender);
-//            }
-//        }
-//        
-//        attackingArmy.filterCasualties();
-//        defendingArmy.filterCasualties();
-//        
-//        
-//    }
-//    
-//    
-//    public static int fight (Soldier attacker, Soldier defender) {
-//        while(true){    
-//            if(attacker.healthPool > 0 && defender.healthPool > 0)
-//                attacker.attack(defender);
-//            else
-//                return attacker.healthPool - defender.healthPool;
-//            
-//            if(attacker.healthPool > 0 && defender.healthPool > 0)
-//                defender.attack(attacker);
-//            else
-//                return attacker.healthPool - defender.healthPool;
-//            
-//        }
-//    }

@@ -36,6 +36,14 @@ public class Decorator {
     Color menuColor3 = new Color(180, 180, 180);
     Color menuColor4 = new Color(230, 230, 230);
     
+    Color statusColor0 = new Color(167, 13, 13);
+    Color statusColor1 = new Color(167, 13, 13, 128);
+    Color statusColor2 = new Color(230, 230, 230);
+    Color statusColor3 = new Color(230, 230, 230);
+    Color statusColor4 = new Color(230, 230, 230);
+    
+    
+    
 
     public Decorator() {
         this.grassGreens = createPallette(10, grassAnchor, 5);
@@ -67,9 +75,8 @@ public class Decorator {
         return BLUE;
     }
     
-        public Color menuColorSwitch(int menuColorIndex) {
-
-        switch (menuColorIndex) {
+        public Color interfaceBGColors(int index) {
+        switch (index) {
             case (0):
                 return menuColor0;
             case (1):
@@ -80,6 +87,24 @@ public class Decorator {
                 return menuColor3;
             case (4):
                 return menuColor4;
+        }
+
+        return BLUE;
+    }
+        
+    public Color playerInfoColors (int index) {
+
+        switch (index) {
+            case (0):
+                return statusColor0;
+            case (1):
+                return statusColor1;
+            case (2):
+                return statusColor2;
+            case (3):
+                return statusColor3;
+            case (4):
+                return statusColor4;
         }
         return BLUE;
     }

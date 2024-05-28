@@ -10,6 +10,7 @@ import unnamedRPG.model.Map;
 import static unnamedRPG.UnnamedRPG.DISPLAY_SIZE;
 import static unnamedRPG.UnnamedRPG.FRAME_HEIGHT;
 import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
+import unnamedRPG.model.entities.Player;
 
 /**
  *
@@ -21,7 +22,6 @@ import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
 
 public class Display implements Runnable {
     Map map;
-    //MainPane mainPane;
     UIPane UIPane;
     GameBoard gameBoard;
     
@@ -33,7 +33,7 @@ public class Display implements Runnable {
     Limits frameLimits;
     
     
-    public Display(Map map, Limits boardLimits, Limits frameLimits, ControlUnit controlUnit){
+    public Display(Player player, Map map, Limits boardLimits, Limits frameLimits, ControlUnit controlUnit){
         this.map = map;
         
         this.boardLimits = boardLimits;
@@ -45,7 +45,7 @@ public class Display implements Runnable {
         this.frame.setVisible(true);
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        this.UIPane = new UIPane(map, boardLimits, frameLimits);
+        this.UIPane = new UIPane(player, boardLimits, frameLimits);
         this.frame.add(UIPane);
         
         this.gameBoard = new GameBoard(map, boardLimits);

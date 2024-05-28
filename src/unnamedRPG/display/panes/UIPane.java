@@ -14,6 +14,7 @@ import unnamedRPG.model.Map;
 import unnamedRPG.display.Limits;
 import unnamedRPG.display.components.Console;
 import unnamedRPG.display.components.PlayerDashboard;
+import unnamedRPG.model.entities.Player;
 
 /**
  * @author Sebastian Dymanski
@@ -22,7 +23,6 @@ import unnamedRPG.display.components.PlayerDashboard;
 public class UIPane extends JLayeredPane  {
 
     Color color;
-    Map map;
     JFrame frame;
     Timer timer;
     
@@ -37,15 +37,14 @@ public class UIPane extends JLayeredPane  {
     Console console;
     
     int frameTracker = 0;
-    public UIPane(Map map, Limits boardLimits, Limits frameLimits) {
-        this.map = map;
+    public UIPane(Player player, Limits boardLimits, Limits frameLimits) {
         this.boardLimits = boardLimits;
         this.frameLimits = frameLimits;
         
         this.setFocusable(true);
         this.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
-        this.playerDashboard = new PlayerDashboard(boardLimits, frameLimits);
+        this.playerDashboard = new PlayerDashboard(player, boardLimits, frameLimits);
         this.border = new Border(boardLimits, frameLimits);
         this.textArea = new JTextArea(10, 20);
         this.scrollPane = new JScrollPane(textArea);

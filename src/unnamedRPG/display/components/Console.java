@@ -21,8 +21,8 @@ import unnamedRPG.display.Limits;
         setViewportView(textArea);
         
         textArea.setEditable(false);  
-        textArea.setBackground(DECORATOR.menuColorSwitch(3)); // Set background color
-        textArea.setForeground(DECORATOR.menuColorSwitch(0));
+        textArea.setBackground(DECORATOR.interfaceBGColors(3)); // Set background color
+        textArea.setForeground(DECORATOR.interfaceBGColors(0));
     }
     
     public void appendText(String text) {

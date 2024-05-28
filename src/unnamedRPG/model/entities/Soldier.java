@@ -20,7 +20,7 @@ public class Soldier extends Entity{
 
     public Soldier(String name) {
         this.name = name;
-        this.healthPool = 50;
+        this.maxHP = 50;
         this.dead = false;
         
         this.proficiency = rollDice(1, 3);;

@@ -27,7 +27,8 @@ public class Player extends Entity{
         this.tokenString = "@";
         
         
-        this.healthPool = 50;
+        this.maxHP = 50;
+        this.currentHP = 35;
         this.dead = false;
         
         this.proficiency = rollDice(1, 3);
