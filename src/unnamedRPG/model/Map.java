@@ -7,8 +7,6 @@ package unnamedRPG.model;
 import static unnamedRPG.UnnamedRPG.MAP_LENGTH;
 import static unnamedRPG.UnnamedRPG.MAP_WIDTH;
 import unnamedRPG.model.entities.Entity;
-import unnamedRPG.model.entities.Player;
-import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
  *

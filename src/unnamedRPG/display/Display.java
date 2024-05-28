@@ -31,7 +31,7 @@ public class Display implements Runnable {
     ControlUnit controlUnit;
     final int frameWidth = DISPLAY_SIZE.width;
     final int frameHeight = DISPLAY_SIZE.height;
-    final int UIHeight = 200;
+    final int UIHeight = 256;
     
     Limits boardLimits;
     Limits frameLimits;
@@ -64,7 +64,7 @@ public class Display implements Runnable {
     @Override
     public void run() {
         this.frame.requestFocus();
-        displayClock = new Timer(1, (ActionEvent e) -> {
+        displayClock = new Timer(1000/10, (ActionEvent e) -> {
             this.frame.requestFocus();
             UIPane.refresh();
             gameBoard.repaint();

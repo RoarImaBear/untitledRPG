@@ -24,7 +24,7 @@ public class FloraGod {
     }
 
     
-    public void floraSpawn(Tile tiles[][]){
+    public void floraSpawn(Tile[][] tiles){
         this.tiles = tiles;
         sowGrass();
         plantTrees(100);

@@ -52,6 +52,7 @@ public class UnnamedRPG {
         displayThread.start();
         
         
+        
         System.out.println("Display: " + DISPLAY_SIZE.height + "x" + DISPLAY_SIZE.width);
     }
 

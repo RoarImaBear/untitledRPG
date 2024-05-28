@@ -30,6 +30,12 @@ public class Decorator {
     Color friendlyAura = new Color(73, 222, 25, 200);
     Color hostileAura = new Color(225, 19, 19, 200);
     
+    Color menuColor0 = new Color(30, 30, 30);
+    Color menuColor1 = new Color(80, 80, 80);
+    Color menuColor2 = new Color(130, 130, 130);
+    Color menuColor3 = new Color(180, 180, 180);
+    Color menuColor4 = new Color(230, 230, 230);
+    
 
     public Decorator() {
         this.grassGreens = createPallette(10, grassAnchor, 5);
@@ -57,6 +63,23 @@ public class Decorator {
                 return friendlyAura;
             case ('h'):
                 return hostileAura;
+        }
+        return BLUE;
+    }
+    
+        public Color menuColorSwitch(int menuColorIndex) {
+
+        switch (menuColorIndex) {
+            case (0):
+                return menuColor0;
+            case (1):
+                return menuColor1;
+            case (2):
+                return menuColor2;
+            case (3):
+                return menuColor3;
+            case (4):
+                return menuColor4;
         }
         return BLUE;
     }

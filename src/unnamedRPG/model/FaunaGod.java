@@ -16,7 +16,10 @@ public class FaunaGod {
     public FaunaGod (int mapWidth, int mapLength) {
         this.mapWidth = mapWidth;
         this.mapLength = mapLength;
-  
+    }
+    
+    public void spawnPlayer(Tile[][] tiles){
+        
     }
     
 }
