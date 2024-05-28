@@ -23,7 +23,7 @@ public class Map {
     private FaunaGod faunaGod;
 
 
-
+    
     public Map() {
 
         this.width = MAP_WIDTH;
@@ -32,15 +32,21 @@ public class Map {
         this.tiles = new Tile[width][length];
         this.entities = new Entity[width][length];
         this.floraGod = new FloraGod(width, length);
+        // Fauna God
         
         for (int y = 0; y < length; y++) {
             for (int x = 0; x < width; x++) {
                 tiles[x][y] = new Tile();
             }
         }
-        
         System.out.println(width + " " + length);
         floraGod.floraSpawn(tiles);
-
     }
+    
+    public void insertEntity(Entity entity, int x, int y) {
+        tiles[x][y].occupant = entity;
+        tiles[x][y].containsEntity = true;
+        entities[x][y] = entity;
+    }
+    
 }

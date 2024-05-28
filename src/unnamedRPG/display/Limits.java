@@ -28,8 +28,8 @@ public class Limits {
         this.centerY = startY + lengthY/2;
     }
     
-    public void shiftDimension (char dimension, int amount){
-        switch(dimension){
+    public void shiftPosition (char axis, int amount){
+        switch(axis){
             case 'x':
                 startX += amount;
                 if(startX < 0){
@@ -51,6 +51,15 @@ public class Limits {
                 centerY += amount;
                 break;
         }
+    }
+    
+    public void goTo(int x, int y) {
+        this.startX = x;
+        this.startY = y;
+        this.endX = x + this.lengthX;
+        this.endY = y + this.endY;
+        this.centerX = startX + this.lengthX/2;
+        this.centerY = startY + this.lengthY/2;
     }
     
     public void resizeLimits(int newLengthX, int newLengthY){

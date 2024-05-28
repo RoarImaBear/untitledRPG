@@ -80,22 +80,26 @@ public class GameBoard extends JComponent {
         boardTileLimits.resizeLimits(newLengthX, newLengthY);
     }
     
-    public void changePosition(char direction, int magnitude){
+    public void shiftPosition(char direction, int magnitude){
         
         switch (direction){
             case 'w':
-                boardTileLimits.shiftDimension('y', -1);
+                boardTileLimits.shiftPosition('y', -1);
                 break;
             case 's':
-                boardTileLimits.shiftDimension('y', 1);
+                boardTileLimits.shiftPosition('y', 1);
                 break;       
             case 'a':
-                boardTileLimits.shiftDimension('x', -1);
+                boardTileLimits.shiftPosition('x', -1);
                 break;    
             case 'd':
-                boardTileLimits.shiftDimension('x', 1);              
+                boardTileLimits.shiftPosition('x', 1);              
                 break;               
         } 
+    }
+    
+    public void goTo (int centerX, int centerY){
+        boardTileLimits.goTo(centerX, centerY);
     }
 
     // get it to return  absolute tileID

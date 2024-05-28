@@ -1,6 +1,5 @@
 package unnamedRPG.display.components;
 
-import java.awt.Component;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import static unnamedRPG.UnnamedRPG.DECORATOR;

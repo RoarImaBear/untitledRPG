@@ -70,7 +70,3 @@ public class Display implements Runnable {
         displayClock.start();
     }  
 }
-
-//    void updateBoardLimits(){
-//        
-//    }
