@@ -17,7 +17,7 @@ import static unnamedRPG.UnnamedRPG.FRAME_HEIGHT;
 import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
 import static unnamedRPG.UnnamedRPG.MAP_LENGTH;
 import static unnamedRPG.UnnamedRPG.MAP_WIDTH;
-import static unnamedRPG.UnnamedRPG.random;
+import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
  *

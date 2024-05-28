@@ -9,11 +9,15 @@ import static java.awt.Color.BLACK;
 import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
 import static java.awt.Color.RED;
+import static java.awt.Color.WHITE;
+import static java.awt.Color.YELLOW;
 import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JComponent;
-import static unnamedRPG.UnnamedRPG.decorator;
-import static unnamedRPG.UnnamedRPG.random;
+import unnamedRPG.model.entities.Entity;
+import unnamedRPG.model.entities.Player;
+import static unnamedRPG.UnnamedRPG.DECORATOR;
+import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
  *
@@ -26,26 +30,30 @@ public class Tile {
     int altitude;
     int baseTileSize = 16;
     boolean containsEntity;
+    Entity occupant;
 
     public Tile() {
-        this.containsEntity = random.nextBoolean();
+        this.containsEntity = RANDOM.nextBoolean();
+        this.occupant = new Player();
     }
-    
 
     public void paint(Graphics g, int startX, int startY, int tileScale) {
+        g.setColor(DECORATOR.colorSwitch(terrainType));
+        g.fillRect(startX, startY, ((baseTileSize - 1) * tileScale), ((baseTileSize - 1) * tileScale));
 
-        g.setColor(decorator.colorSwitch(terrainType));
-
-        g.fillRect(startX, startY, ((baseTileSize-1) * tileScale), ((baseTileSize-1) * tileScale));
-        
-                
-        if (containsEntity){
-            g.setColor(RED);
-            g.fillOval(startX, startY, ((baseTileSize-1) * tileScale), ((baseTileSize-1) * tileScale));
+        if (containsEntity) {
+            paintOccupant(g, startX, startY, tileScale);
         }
 
     }
+    
+    private void paintOccupant(Graphics g, int startX, int startY, int tileScale){
+            int offset = tileScale * 2;
+            int auraOffset = tileScale * 1;
+            g.setColor(DECORATOR.colorSwitch('p'));
+            g.fillOval(startX + auraOffset, startY + auraOffset, ((baseTileSize - 3) * tileScale), ((baseTileSize - 3) * tileScale));
 
-
+            g.drawImage(occupant.token, startX + offset, startY + offset, ((baseTileSize - 5) * tileScale), ((baseTileSize - 5) * tileScale), null);
+    }
 
 }

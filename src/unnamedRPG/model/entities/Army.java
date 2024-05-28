@@ -1,8 +1,8 @@
 package unnamedRPG.model.entities;
 
 import unnamedRPG.model.entities.Soldier;
-import static unnamedRPG.UnnamedRPG.random;
 import java.util.ArrayList;
+import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
  *
@@ -27,7 +27,7 @@ public class Army {
 
     
     public void generate (){
-        for (int i = 0; i < (10 + random.nextInt(10)); i++) {
+        for (int i = 0; i < (10 + RANDOM.nextInt(10)); i++) {
             Soldier soldier = new Soldier( Integer.toString(i) );
             soldier.soldierID = i;
             

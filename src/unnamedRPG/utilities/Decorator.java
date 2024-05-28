@@ -7,7 +7,7 @@ package unnamedRPG.utilities;
 import java.awt.Color;
 import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
-import static unnamedRPG.UnnamedRPG.random;
+import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
  *
@@ -25,10 +25,15 @@ public class Decorator {
     Color brownTree = new Color(74, 61, 29);
     Color greenTree = new Color(0, 128, 0);
     Color blackFissure = new Color(0, 0, 0);
+    
+    Color playerAura = new Color(255,250,250, 200);
+    Color friendlyAura = new Color(73, 222, 25, 200);
+    Color hostileAura = new Color(225, 19, 19, 200);
+    
 
     public Decorator() {
         this.grassGreens = createPallette(10, grassAnchor, 5);
-        this.waterBlues = createPallette(10, waterAnchor, 20);;
+        this.waterBlues = createPallette(10, waterAnchor, 20);
     }
     
     
@@ -37,7 +42,7 @@ public class Decorator {
 
         switch (subject) {
             case ('„'):
-                return grassGreens[random.nextInt(10)];
+                return grassGreens[RANDOM.nextInt(10)];
             case ('ϫ'):
                 return brownBush;
             case ('ϒ'):
@@ -45,7 +50,13 @@ public class Decorator {
             case ('|'):
                 return blackFissure;
             case ('~'):
-                return waterBlues[random.nextInt(10)];
+                return waterBlues[RANDOM.nextInt(10)];
+            case ('p'):
+                return playerAura;
+            case ('f'):
+                return friendlyAura;
+            case ('h'):
+                return hostileAura;
         }
         return BLUE;
     }
@@ -53,9 +64,9 @@ public class Decorator {
     Color[] createPallette(int numberOfColors, int[] anchorValue, int variance) {
         Color[] pallette = new Color[numberOfColors];
         for (int i = 0; i < pallette.length; i++) {
-            pallette[i] = new Color(anchorValue[0] + random.nextInt(variance), 
-                anchorValue[1] + random.nextInt(variance), anchorValue[2] + 
-                random.nextInt(variance));
+            pallette[i] = new Color(anchorValue[0] + RANDOM.nextInt(variance), 
+                anchorValue[1] + RANDOM.nextInt(variance), anchorValue[2] + 
+                RANDOM.nextInt(variance));
         }
         return pallette;
     }

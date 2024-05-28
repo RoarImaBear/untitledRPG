@@ -11,6 +11,7 @@ import java.util.Random;
 import javax.swing.JFrame;
 import unnamedRPG.display.Display;
 import unnamedRPG.utilities.Decorator;
+import unnamedRPG.utilities.ImageAssets;
 
 /**
  *
@@ -27,8 +28,8 @@ public class UnnamedRPG {
     
     public static Dimension DISPLAY_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
     
-    public static Random random = new Random();
-    public static Decorator decorator = new Decorator();
+    public static Random RANDOM = new Random();
+    public static Decorator DECORATOR = new Decorator();
     
     
     public static final int MAP_WIDTH = 1440;
@@ -37,9 +38,12 @@ public class UnnamedRPG {
     public static final int FRAME_WIDTH = DISPLAY_SIZE.width;
     public static final int FRAME_HEIGHT = DISPLAY_SIZE.height;
     public static final int[] FRAME_CENTER = {FRAME_WIDTH/2, FRAME_HEIGHT/2};
+    public static ImageAssets IMAGE_ASSETS;
     
 
     public static void main(String[] args) {
+        IMAGE_ASSETS = new ImageAssets();
+        
         Map map = new Map();
         System.out.println("MAP MADE");
         

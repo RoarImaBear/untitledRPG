@@ -5,8 +5,9 @@ import unnamedRPG.items.Armour;
 import unnamedRPG.items.BronzeSpear;
 import unnamedRPG.items.Weapon;
 import unnamedRPG.model.entities.Entity;
-import static unnamedRPG.UnnamedRPG.random;
 import static unnamedRPG.utilities.Dice.rollDice;
+import unnamedRPG.utilities.ImageAssets;
+import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
  *
@@ -29,12 +30,12 @@ public class Player extends Entity{
         this.healthPool = 50;
         this.dead = false;
         
-        this.proficiency = rollDice(1, 3);;
+        this.proficiency = rollDice(1, 3);
         
         this.agility = rollDice(1, 3);
         
         
-        
+        this.token = ImageAssets.playerIcon;
         
         this.protection = 1;
         

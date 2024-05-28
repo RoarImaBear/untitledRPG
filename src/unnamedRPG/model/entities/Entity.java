@@ -1,9 +1,13 @@
 package unnamedRPG.model.entities;
 
 import java.awt.Color;
+import static java.awt.Color.YELLOW;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import unnamedRPG.items.Armour;
 import unnamedRPG.items.Weapon;
 import static unnamedRPG.utilities.Dice.rollDice;
+import static unnamedRPG.UnnamedRPG.DECORATOR;
 
 /**
  *
@@ -38,6 +42,7 @@ public class Entity {
     
     public Color tokenColor;
     public String tokenString;
+    public BufferedImage token;
 
     public Entity() {
     }

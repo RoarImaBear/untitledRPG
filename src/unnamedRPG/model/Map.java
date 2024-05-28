@@ -6,9 +6,9 @@ package unnamedRPG.model;
 
 import static unnamedRPG.UnnamedRPG.MAP_LENGTH;
 import static unnamedRPG.UnnamedRPG.MAP_WIDTH;
-import static unnamedRPG.UnnamedRPG.random;
 import unnamedRPG.model.entities.Entity;
 import unnamedRPG.model.entities.Player;
+import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
  *
@@ -47,7 +47,7 @@ public class Map {
         }
         
         for (int i = 0; i < 100; i++) {
-            formRiver(random.nextInt(5));
+            formRiver(RANDOM.nextInt(5));
         }
         
 
@@ -97,16 +97,16 @@ public class Map {
     
     void plantBushes(int density) {
         for (int y = 0; y < length; y++) {
-            for (int x = 0; x < random.nextInt(density); x++) {
-                tiles[random.nextInt(width)][y].terrainType = 'ϫ';
+            for (int x = 0; x < RANDOM.nextInt(density); x++) {
+                tiles[RANDOM.nextInt(width)][y].terrainType = 'ϫ';
             }
         }
     }
 //
     void plantTrees(int density) {
         for (int y = 0; y < length; y++) {
-            for (int x = 0; x < random.nextInt(density); x++) {
-                tiles[random.nextInt(width)][y].terrainType = 'ϒ';
+            for (int x = 0; x < RANDOM.nextInt(density); x++) {
+                tiles[RANDOM.nextInt(width)][y].terrainType = 'ϒ';
             }
         }
     }
@@ -125,9 +125,9 @@ public class Map {
 //
     // Bias can be set
     void formRiver(int riverWidth) {
-        int x = random.nextInt(width);
+        int x = RANDOM.nextInt(width);
         int randomRigger = 0;
-        boolean flowingRight = random.nextBoolean();
+        boolean flowingRight = RANDOM.nextBoolean();
         int flowLeftBias = 3;
         int depth = -1;
 
@@ -149,7 +149,7 @@ public class Map {
                 x--;
             }
 
-            if (random.nextInt(flowLeftBias) % flowLeftBias == 0 || randomRigger > 6) {
+            if (RANDOM.nextInt(flowLeftBias) % flowLeftBias == 0 || randomRigger > 6) {
                 flowingRight = true;
                 randomRigger = 0;
             } else {
@@ -237,9 +237,9 @@ public class Map {
         size = 30;
         density = 80;
         
-        int radius = random.nextInt(size);
-        int sourceX = random.nextInt(width);
-        int sourceY = random.nextInt(length);
+        int radius = RANDOM.nextInt(size);
+        int sourceX = RANDOM.nextInt(width);
+        int sourceY = RANDOM.nextInt(length);
         int startX = sourceX - radius;
         int startY = sourceY - radius;
 
@@ -273,9 +273,9 @@ public class Map {
         }
 
         for (int i = 0; i < density; i++) {
-            int parcelRadius = random.nextInt(size / 10);
-            int parcelSourceX = startX + random.nextInt(size);
-            int parcelSourceY = startY + random.nextInt(size);
+            int parcelRadius = RANDOM.nextInt(size / 10);
+            int parcelSourceX = startX + RANDOM.nextInt(size);
+            int parcelSourceY = startY + RANDOM.nextInt(size);
             int parcelStartX = parcelSourceX - radius;
             int parcelStartY = parcelSourceY - radius;
             int parcelEndX = parcelSourceX + radius;
@@ -301,7 +301,7 @@ public class Map {
 
             for (int y = parcelStartY; y < parcelEndY; y++) {
                 for (int x = parcelStartX; x < parcelEndX; x++) {
-                    if ( random.nextInt(2)%2 != 0 && (y - parcelSourceY) * (y - parcelSourceY) + (x - parcelSourceX)
+                    if ( RANDOM.nextInt(2)%2 != 0 && (y - parcelSourceY) * (y - parcelSourceY) + (x - parcelSourceX)
                             * (x - parcelSourceX) <= (parcelRadius * parcelRadius)+1) {
                         tiles[x][y].terrainType = 'ϒ';
                     }
