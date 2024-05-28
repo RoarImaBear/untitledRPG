@@ -33,8 +33,8 @@ public class Tile {
     Entity occupant;
 
     public Tile() {
-        this.containsEntity = RANDOM.nextBoolean();
-        this.occupant = new Player();
+//        this.containsEntity = RANDOM.nextBoolean();
+//        this.occupant = new Player();
     }
 
     public void paint(Graphics g, int startX, int startY, int tileScale) {
