@@ -1,5 +1,5 @@
 
-package unnamedRPG.display.panes;
+package unnamedRPG.display;
 
 import unnamedRPG.display.components.Border;
 import static unnamedRPG.UnnamedRPG.FRAME_HEIGHT;
@@ -60,8 +60,11 @@ public class UIPane extends JLayeredPane  {
             border.repaint();
             playerDashboard.repaint();
             console.repaint();
-            console.appendText("FUCK\n");
         }
         frameTracker++;
+    }
+    
+    public void appendConsole(String text){
+        console.appendText(text);
     }
 }

@@ -5,6 +5,7 @@
 package unnamedRPG.model;
 
 import unnamedRPG.controller.ControlUnit;
+import unnamedRPG.display.Display;
 import unnamedRPG.model.entities.Player;
 
 /**
@@ -16,23 +17,23 @@ public class GameManager {
     Player player;
     Map map;
     ControlUnit controlUnit;
+    Display display;
     
     
     
-    public GameManager( Player player, Map map, ControlUnit controlUnit) {
-        this.controlUnit = controlUnit;
-        this.map = map;
+    public GameManager( Player player, Map map, Display display, ControlUnit controlUnit) {
         this.player = player;
+        this.map = map;
+        this.display = display;
+        this.controlUnit = controlUnit;
+        
         spawnPlayer(player);
     }
-    
     
     public void spawnPlayer(Player player){
        map.insertEntity(player, 206, 203);
        controlUnit.mapGoTo(200, 200);
+       display.appendConsole("Player spawned.");
     }
-    
-    // Insert Player Method
-    
-    
+ 
 }

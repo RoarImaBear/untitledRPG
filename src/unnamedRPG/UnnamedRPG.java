@@ -3,12 +3,7 @@ package unnamedRPG;
 import unnamedRPG.model.Map;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import unnamedRPG.model.entities.Army;
-import unnamedRPG.model.entities.Soldier;
-//import unnamedRPG.display.MainPane;
-import java.util.ArrayList;
 import java.util.Random;
-import javax.swing.JFrame;
 import unnamedRPG.controller.ControlUnit;
 import unnamedRPG.display.Display;
 import unnamedRPG.display.Limits;
@@ -61,7 +56,7 @@ public class UnnamedRPG {
         
         Display display = new Display(player, map, boardLimits, frameLimits, controlUnit);
         
-        GameManager gameManager = new GameManager( player, map, controlUnit);
+        GameManager gameManager = new GameManager( player, map, display, controlUnit);
         
         
         

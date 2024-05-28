@@ -1,7 +1,6 @@
 package unnamedRPG.display;
 
 import unnamedRPG.controller.ControlUnit;
-import unnamedRPG.display.panes.UIPane;
 import unnamedRPG.display.components.GameBoard;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
@@ -68,5 +67,10 @@ public class Display implements Runnable {
             gameBoard.repaint();
         });
         displayClock.start();
-    }  
+    }
+    
+    public void appendConsole(String text){
+        UIPane.appendConsole(text);
+    }
+    
 }
