@@ -1,5 +1,7 @@
 package unnamedRPG.items;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author seb
@@ -7,6 +9,7 @@ package unnamedRPG.items;
 public class Weapon {
     
     String name;
+    public BufferedImage image;
     
     public int damageDiceCount;
     public int damageDiceLimit;

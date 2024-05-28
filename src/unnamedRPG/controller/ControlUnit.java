@@ -9,6 +9,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import static unnamedRPG.UnnamedRPG.FRAME_CENTER;
 import unnamedRPG.display.Limits;
 import unnamedRPG.display.components.GameBoard;
@@ -17,7 +19,7 @@ import unnamedRPG.display.components.GameBoard;
  *
  * @author seb
  */
-public class ControlUnit implements KeyListener, ComponentListener, MouseListener{
+public class ControlUnit implements KeyListener, ComponentListener, MouseListener, MouseWheelListener {
     GameBoard gameBoard;
     Limits boardLimits;
     Limits frameLimits;
@@ -132,34 +134,11 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
     public void mouseExited(MouseEvent e) {
 
     }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        int wheelInput = e.getWheelRotation();
+        gameBoard.changeScale(-wheelInput);
+    }
     
 }
-
-
-//        if (ke.getKeyCode() == KeyEvent.VK_PERIOD) {
-//            camera.zoomIn();
-//            System.out.println("Zoom In");
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_COMMA) {
-//            camera.zoomOut();
-//            System.out.println("Zoom Out");
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_UP) {
-//            camera.changePosition(cameraSpeed, 'w');
-//            System.out.println("UP");
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-//            camera.changePosition(cameraSpeed, 's');
-//            System.out.println("DOWN");
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-//            camera.changePosition(cameraSpeed, 'a');
-//            System.out.println("LEFT");
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-//            camera.changePosition(cameraSpeed, 'd');
-//            System.out.println("RIGHT");
-//        }
-//        
-//        
-//       

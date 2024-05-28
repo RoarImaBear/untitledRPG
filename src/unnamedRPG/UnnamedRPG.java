@@ -61,7 +61,7 @@ public class UnnamedRPG {
         
         Display display = new Display(player, map, boardLimits, frameLimits, controlUnit);
         
-        GameManager gameManager = new GameManager(controlUnit);
+        GameManager gameManager = new GameManager( player, map, controlUnit);
         
         
         

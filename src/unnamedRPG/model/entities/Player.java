@@ -17,30 +17,29 @@ public class Player extends Entity{
     
     boolean deserter;
     
-    Weapon equippedWeapon;
-    Armour equippedArmour;
+    public Weapon equippedWeapon = new BronzeSpear();
+    public Armour equippedArmour;
 
     public Player() {
         super();
-        this.name = name;
+        this.name = "Player";
+        this.token = ImageAssets.playerIcon;
+        
         this.tokenColor = new Color(200, 200, 200);
         this.tokenString = "@";
         
         
         this.maxHP = 50;
         this.currentHP = 35;
+        this.maxStamina = 35;
+        this.currentStamina = 14;
         this.dead = false;
         
         this.proficiency = rollDice(1, 3);
         
         this.agility = rollDice(1, 3);
-        
-        
-        this.token = ImageAssets.playerIcon;
-        
+   
         this.protection = 1;
-        
-        equipWeapon(new BronzeSpear());
     }
 
 }

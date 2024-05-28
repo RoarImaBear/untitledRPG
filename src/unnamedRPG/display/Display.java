@@ -56,6 +56,7 @@ public class Display implements Runnable {
         this.frame.addKeyListener(controlUnit);
         this.frame.addComponentListener(controlUnit);
         this.frame.addMouseListener(controlUnit);
+        this.frame.addMouseWheelListener(controlUnit);
     }
     
     @Override

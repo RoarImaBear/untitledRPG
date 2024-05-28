@@ -52,7 +52,6 @@ public class Tile {
             int auraOffset = tileScale * 1;
             g.setColor(DECORATOR.colorSwitch('p'));
             g.fillOval(startX + auraOffset, startY + auraOffset, ((baseTileSize - 3) * tileScale), ((baseTileSize - 3) * tileScale));
-
             g.drawImage(occupant.token, startX + offset, startY + offset, ((baseTileSize - 5) * tileScale), ((baseTileSize - 5) * tileScale), null);
     }
 

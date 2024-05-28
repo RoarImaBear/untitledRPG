@@ -27,6 +27,9 @@ public class GameBoard extends JComponent {
     int tileCountX;
     int tileCountY;
     int tileScale = 8;
+    
+    int zoomOutLimit = 3;
+    int zoomInLimit = 10;
 
     public GameBoard(Map map, Limits boardLimits) {
         this.map = map;
@@ -39,7 +42,6 @@ public class GameBoard extends JComponent {
 
         this.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
         updateBoardScale(tileScale);
-
     }
 
     @Override
@@ -59,9 +61,12 @@ public class GameBoard extends JComponent {
 
     public void changeScale(int value) {
         tileScale += value;
-        if (tileScale < 1) {
-            tileScale = 1;
+        if (tileScale < zoomOutLimit) {
+            tileScale = zoomOutLimit;
             System.out.println("Can't zoom out any further.");
+        } else if (tileScale > zoomInLimit){
+            tileScale = zoomInLimit;
+            System.out.println("Can't zoom in any closer.");
         }
         updateBoardScale(tileScale);
     }

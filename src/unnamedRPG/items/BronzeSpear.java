@@ -1,5 +1,7 @@
 package unnamedRPG.items;
 
+import unnamedRPG.utilities.ImageAssets;
+
 /**
  *
  * @author seb
@@ -8,7 +10,7 @@ public class BronzeSpear extends Weapon {
     
     public BronzeSpear() {
         this.name = "Bronze Spear";
-        
+        this.image = ImageAssets.spear;
         this.ranged = false;
         
         this.attackDiceCount = 2;

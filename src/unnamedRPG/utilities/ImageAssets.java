@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 public class ImageAssets {
 
     public static BufferedImage playerIcon;
+    public static BufferedImage spear;
     
     
     public ImageAssets() {
@@ -26,7 +27,13 @@ public class ImageAssets {
         try {
             // Load the PNG image
             playerIcon = ImageIO.read(new File("resources/playerIcon.png"));
-            System.out.println(playerIcon);
+        } catch (IOException e) {
+            // Handle image loading errors
+            System.out.println("error loading image: " + e.getMessage());
+        }
+        try {
+            // Load the PNG image
+            spear = ImageIO.read(new File("resources/spear.png"));
         } catch (IOException e) {
             // Handle image loading errors
             System.out.println("error loading image: " + e.getMessage());

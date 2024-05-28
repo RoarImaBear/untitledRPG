@@ -15,11 +15,14 @@ import static unnamedRPG.UnnamedRPG.DECORATOR;
  */
 public class Entity {
     
-    String name;
+    public String name;
+    public BufferedImage token;
     
     public int soldierID;
     public int maxHP;
     public int currentHP;
+    public int maxStamina;
+    public int currentStamina;
     
     public int proficiency;
     
@@ -43,7 +46,7 @@ public class Entity {
     
     public Color tokenColor;
     public String tokenString;
-    public BufferedImage token;
+    
 
     public Entity() {
     }

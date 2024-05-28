@@ -6,7 +6,6 @@ package unnamedRPG.utilities;
 
 import java.awt.Color;
 import static java.awt.Color.BLUE;
-import static java.awt.Color.GREEN;
 import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
@@ -38,8 +37,8 @@ public class Decorator {
     
     Color statusColor0 = new Color(167, 13, 13);
     Color statusColor1 = new Color(167, 13, 13, 128);
-    Color statusColor2 = new Color(230, 230, 230);
-    Color statusColor3 = new Color(230, 230, 230);
+    Color statusColor2 = new Color(213, 196, 50);
+    Color statusColor3 = new Color(213, 196, 50, 128);
     Color statusColor4 = new Color(230, 230, 230);
     
     

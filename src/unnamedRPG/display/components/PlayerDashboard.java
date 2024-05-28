@@ -1,17 +1,10 @@
 package unnamedRPG.display.components;
 
-import java.awt.BasicStroke;
-import static java.awt.Color.BLACK;
-import static java.awt.Color.BLUE;
-import static java.awt.Color.RED;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import javax.swing.JComponent;
 import static unnamedRPG.UnnamedRPG.DECORATOR;
 import unnamedRPG.display.Limits;
-import static unnamedRPG.UnnamedRPG.FRAME_HEIGHT;
-import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
 import unnamedRPG.model.entities.Player;
 
 /**
@@ -40,19 +33,11 @@ import unnamedRPG.model.entities.Player;
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);  
             paintBackground(g);
-            paintTextPanel(g);
+            paintConsoleBackground(g);
             paintHPBar(g);
-            
-            
-            Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(RED);
-            g2d.setStroke(new BasicStroke(10));
-
-            
-            
-            textFont =  new Font("Arial", Font.PLAIN, (50));
-            System.out.println(player.currentHP +"/"+ player.maxHP);
-
+            paintStaminaBar(g);
+            paintPlayerIcon(g);
+            paintWeapon(g);
         }
         
         private void paintBackground(Graphics g){
@@ -69,24 +54,72 @@ import unnamedRPG.model.entities.Player;
             
         }
         
-        private void paintTextPanel(Graphics g){
+        private void paintConsoleBackground(Graphics g){
             g.setColor(DECORATOR.interfaceBGColors(0));
             g.fillRect(frameLimits.endX - 424, 4, 400, 1000);
+        }
+        
+        private void paintPlayerIcon(Graphics g){
+            int yMargin = 20;
+            int yMarginImg = 25;
+            int xMarginImg = 75;
+            int xMaringAura = 70;
+            int imgSize = 150;
+            int auraSize = 160;
+            
+            g.setColor(DECORATOR.interfaceBGColors(2));
+            g.fillOval(frameLimits.startX + xMaringAura, yMargin, auraSize, auraSize);
+            g.setColor(DECORATOR.interfaceBGColors(0));
+            g.drawOval(frameLimits.startX + xMaringAura, yMargin, auraSize, auraSize);
+            g.drawImage(player.token, frameLimits.startX + xMarginImg, yMarginImg, imgSize, imgSize, null);
+        }
+        
+        private void paintWeapon(Graphics g){
+            int yMargin = 20;
+            int yMarginImg = 25;
+            int xMarginImg = frameLimits.startX + frameLimits.lengthX/5;
+            int xMaringAura = frameLimits.startX + frameLimits.lengthX/5 - 5;
+            int imgSize = 150;
+            int auraSize = 160;
+            
+            g.setColor(DECORATOR.interfaceBGColors(2));
+            g.fillRect(frameLimits.startX + xMaringAura, yMargin, auraSize, auraSize);
+            g.setColor(DECORATOR.interfaceBGColors(0));
+            g.drawRect(frameLimits.startX + xMaringAura, yMargin, auraSize, auraSize);
+            g.drawImage(player.equippedWeapon.image, xMarginImg, yMarginImg, imgSize, imgSize, null);
+
         }
         
         private void paintHPBar(Graphics g){
             int maxHPLength = frameLimits.lengthX/3;
             int currentHPLength = player.currentHP* (maxHPLength/player.maxHP); 
+            int yMargin = 20;
             
             g.setColor(DECORATOR.interfaceBGColors(0));
-            g.fillRect(frameLimits.startX + maxHPLength - 3, 19, maxHPLength + 6, 10);
+            g.fillRect(frameLimits.startX + maxHPLength - 3, yMargin, maxHPLength + 6, 10);
             g.drawString((player.currentHP +"/"+ player.maxHP), frameLimits.lengthX/2 - 20, 18);
             
             g.setColor(DECORATOR.playerInfoColors(1));
-            g.fillRect(frameLimits.startX + maxHPLength - 2, 20, maxHPLength + 4, 8);
+            g.fillRect(frameLimits.startX + maxHPLength - 2, yMargin + 1, maxHPLength + 4, 8);
             
             g.setColor(DECORATOR.playerInfoColors(0));
-            g.fillRect(frameLimits.startX + maxHPLength, 22, currentHPLength, 4);
+            g.fillRect(frameLimits.startX + maxHPLength, yMargin + 3, currentHPLength, 4);
+        }
+        private void paintStaminaBar(Graphics g){
+            int maxStaminaLength = frameLimits.lengthX/3;
+            int currentStaminaLength = player.currentStamina* (maxStaminaLength/player.maxStamina);
+            int yMargin = 50;
+            
+            g.setColor(DECORATOR.interfaceBGColors(0));
+            g.fillRect(frameLimits.startX + maxStaminaLength - 3, yMargin, maxStaminaLength + 6, 10);
+            
+            g.drawString((player.currentStamina +"/"+ player.maxStamina), frameLimits.lengthX/2 - 20, yMargin-2);
+            
+            g.setColor(DECORATOR.playerInfoColors(3));
+            g.fillRect(frameLimits.startX + maxStaminaLength - 2, yMargin + 1, maxStaminaLength + 4, 8);
+            
+            g.setColor(DECORATOR.playerInfoColors(2));
+            g.fillRect(frameLimits.startX + maxStaminaLength, yMargin + 3, currentStaminaLength, 4);
         }
 
 }
