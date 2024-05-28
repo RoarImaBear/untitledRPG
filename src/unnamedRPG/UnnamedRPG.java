@@ -9,7 +9,9 @@ import unnamedRPG.model.entities.Soldier;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JFrame;
+import unnamedRPG.controller.ControlUnit;
 import unnamedRPG.display.Display;
+import unnamedRPG.display.Limits;
 import unnamedRPG.utilities.Decorator;
 import unnamedRPG.utilities.ImageAssets;
 
@@ -38,16 +40,29 @@ public class UnnamedRPG {
     public static final int FRAME_WIDTH = DISPLAY_SIZE.width;
     public static final int FRAME_HEIGHT = DISPLAY_SIZE.height;
     public static final int[] FRAME_CENTER = {FRAME_WIDTH/2, FRAME_HEIGHT/2};
-    public static ImageAssets IMAGE_ASSETS;
+    public static final int UI_HEIGHT = 256;
     
+    
+    public static ImageAssets IMAGE_ASSETS;
+   
+
 
     public static void main(String[] args) {
         IMAGE_ASSETS = new ImageAssets();
         
+        Limits boardLimits = new Limits(0, 0, FRAME_WIDTH, FRAME_HEIGHT - UI_HEIGHT);
+        Limits frameLimits = new Limits(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        
         Map map = new Map();
         System.out.println("MAP MADE");
         
-        Display display = new Display(map);
+        ControlUnit controlUnit = new ControlUnit(boardLimits, frameLimits);
+        
+        Display display = new Display(map, boardLimits, frameLimits, controlUnit);
+        
+        
+        
+        
         Thread displayThread = new Thread(display);
         displayThread.start();
         

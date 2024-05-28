@@ -29,22 +29,18 @@ public class Display implements Runnable {
     
     Timer displayClock;
     ControlUnit controlUnit;
-    final int frameWidth = DISPLAY_SIZE.width;
-    final int frameHeight = DISPLAY_SIZE.height;
-    final int UIHeight = 256;
-    
     Limits boardLimits;
     Limits frameLimits;
     
     
-    public Display(Map map){
+    public Display(Map map, Limits boardLimits, Limits frameLimits, ControlUnit controlUnit){
         this.map = map;
         
-        this.boardLimits = new Limits(0, 0, frameWidth, frameHeight - UIHeight);
-        this.frameLimits = new Limits(0, 0, frameWidth, frameHeight);
+        this.boardLimits = boardLimits;
+        this.frameLimits = frameLimits;
         
         this.frame = new JFrame("Game");
-        this.frame.setSize(frameWidth, frameHeight);
+        this.frame.setSize(frameLimits.lengthX, frameLimits.lengthY);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -55,7 +51,8 @@ public class Display implements Runnable {
         this.gameBoard = new GameBoard(map, boardLimits);
         this.frame.add(gameBoard);
         
-        this.controlUnit = new ControlUnit(boardLimits, frameLimits, gameBoard);
+        this.controlUnit = controlUnit;
+        this.controlUnit.connectToGameBoard(gameBoard);
         this.frame.addKeyListener(controlUnit);
         this.frame.addComponentListener(controlUnit);
         this.frame.addMouseListener(controlUnit);

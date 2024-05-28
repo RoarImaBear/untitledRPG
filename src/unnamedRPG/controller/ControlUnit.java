@@ -20,16 +20,17 @@ import unnamedRPG.display.components.GameBoard;
 public class ControlUnit implements KeyListener, ComponentListener, MouseListener{
     GameBoard gameBoard;
     Limits boardLimits;
+    Limits frameLimits;
     
-    public ControlUnit(Limits boardLimits, Limits frameLimits, GameBoard gameBoard) {
-        this.gameBoard = gameBoard;
-        this.boardLimits = boardLimits;
-        addKeyListener(this);
-        addComponentListener(this);
-        addMouseListener(this);        
+    public ControlUnit(Limits boardLimits, Limits frameLimits) {
+
+        this.boardLimits = boardLimits;  
+        this.frameLimits = frameLimits;
     }
     
-    
+    public void connectToGameBoard(GameBoard gameBoard){
+        this.gameBoard = gameBoard;
+    }
     
     
     @Override
@@ -102,8 +103,8 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
         System.out.println("CLICK");
         int mouseX = e.getX() - 7;
         int mouseY = e.getY() - 24;
-        int centerX = FRAME_CENTER[0];
-        int centerY = FRAME_CENTER[1];
+        int centerX = frameLimits.centerX;
+        int centerY = frameLimits.centerY;
         
         int changeX = mouseX - centerX;
         int changeY = mouseY - centerY;
