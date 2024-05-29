@@ -1,14 +1,11 @@
 package unnamedRPG.model.entities;
 
 import java.awt.Color;
-import java.awt.Point;
 import unnamedRPG.items.Armour;
 import unnamedRPG.items.BronzeSpear;
 import unnamedRPG.items.Weapon;
-import unnamedRPG.model.entities.Entity;
 import static unnamedRPG.utilities.Dice.rollDice;
 import unnamedRPG.utilities.ImageAssets;
-import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
  *
@@ -33,6 +30,7 @@ public class Player extends Entity{
         this.currentHP = 50;
         this.maxStamina = 35;
         this.currentStamina = 35;
+        this.staminaRegen = 5;
         this.dead = false;
         
         this.proficiency = rollDice(1, 3);

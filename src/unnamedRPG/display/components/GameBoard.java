@@ -28,8 +28,8 @@ public class GameBoard extends JComponent {
     int tileCountY;
     int tileScale = 8;
     
-    int zoomOutLimit = 3;
-    int zoomInLimit = 10;
+    int zoomOutLimit = 4;
+    int zoomInLimit = 8;
 
     public GameBoard(Limits boardLimits) {
         this.map = new Map();

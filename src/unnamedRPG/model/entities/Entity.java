@@ -76,12 +76,11 @@ public class Entity {
         
     }
     
-    public void staminaRegen(){        
+    public void staminaRegen(){   
+        currentStamina += staminaRegen;
         if (currentStamina > maxStamina){
             currentStamina = maxStamina;
-            return;
         }
-        currentStamina += staminaRegen;
     }
     
     

@@ -18,7 +18,7 @@ public class FaunaGod {
         this.mapLength = mapLength;
     }
     
-    public void spawnPlayer(Tile[][] tiles){
+    public void spawnEnemies(Tile[][] tiles){
         
     }
     
