@@ -1,12 +1,8 @@
 package unnamedRPG.model.entities;
 
-import java.awt.Color;
 import static unnamedRPG.UnnamedRPG.DECORATOR;
-import unnamedRPG.items.Armour;
-import unnamedRPG.items.BronzeSpear;
+import static unnamedRPG.UnnamedRPG.RANDOM;
 import unnamedRPG.items.Unarmed;
-import unnamedRPG.items.Weapon;
-import static unnamedRPG.utilities.Dice.rollDice;
 import unnamedRPG.utilities.ImageAssets;
 
 /**
@@ -14,17 +10,13 @@ import unnamedRPG.utilities.ImageAssets;
  * @author seb
  */
 public class Ghoul extends Entity{
-    
-    boolean deserter;
-    
-    public Weapon equippedWeapon = new Unarmed();
-    public Armour equippedArmour;
 
     public Ghoul(String name) {
         super(name);
         this.name = "Ghoul" + name;
         this.token = ImageAssets.ghoul;
         this.auraColor = DECORATOR.colorSwitch('h');       
+        this.scoreValue = 5 + RANDOM.nextInt(8);
         
         this.maxHP = 50;
         this.currentHP = maxHP;

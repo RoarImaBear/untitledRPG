@@ -94,6 +94,11 @@ public class Arena implements Runnable{
         cleanRooms();
     }
     
+    private void killEntity(Entity entity){
+        attacker.dead = true;
+        attacker.token = null;
+    }
+    
     private void cleanRooms(){
         ArrayList<Entity[]> cleanedRooms = new ArrayList();
         for(Entity[] room : arenaRooms){

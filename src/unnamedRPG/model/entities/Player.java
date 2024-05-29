@@ -28,6 +28,8 @@ public class Player extends Entity{
         this.maxStamina = 35;
         this.currentStamina = maxStamina;
         this.staminaRegen = 5;
+        this.maxScore = 600;
+        
         this.dead = false;
         
         this.proficiency = 3;

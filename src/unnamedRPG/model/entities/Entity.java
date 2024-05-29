@@ -1,13 +1,10 @@
 package unnamedRPG.model.entities;
 
 import java.awt.Color;
-import static java.awt.Color.YELLOW;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import unnamedRPG.items.Armour;
 import unnamedRPG.items.Weapon;
 import static unnamedRPG.utilities.Dice.rollDice;
-import static unnamedRPG.UnnamedRPG.DECORATOR;
 
 /**
  *
@@ -19,8 +16,10 @@ public class Entity {
     public BufferedImage token;
     public Color auraColor;
     public int[] currentXY = new int[2];
+    public int scoreValue;
+    public int currentScore;
+    public int maxScore;
     
-    public boolean inCombat = false;
     
     public int maxHP;
     public int currentHP;
@@ -33,7 +32,6 @@ public class Entity {
     public int agility;
     public int protection;
     
-    public int experience;
     public int weaponExpertise;
     
     public int damageDiceCount;
@@ -42,8 +40,9 @@ public class Entity {
     public int attackDiceCount;
     public int attackDiceLimit;
     
+    public boolean inCombat = false;
     public boolean dead;
-    public boolean wounded;
+    public boolean looted;
     
     public Weapon equippedWeapon;
     public Armour equippedArmour;
@@ -88,6 +87,12 @@ public class Entity {
         return outcome;
     }
     
+    public String loot(Entity targetEntity){
+        int lootScore = targetEntity.scoreValue;
+        this.currentScore += lootScore;
+        this.looted = true;
+        return "" + lootScore + "shards";
+    }
     
     public void equipWeapon(Weapon weapon) {
         equippedWeapon = weapon;

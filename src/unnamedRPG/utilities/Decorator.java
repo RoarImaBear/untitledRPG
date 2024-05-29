@@ -35,7 +35,9 @@ public class Decorator {
     Color statusColor1 = new Color(167, 13, 13, 128);
     Color statusColor2 = new Color(213, 196, 50);
     Color statusColor3 = new Color(213, 196, 50, 128);
-    Color statusColor4 = new Color(230, 230, 230);
+    Color statusColor4 = new Color(11, 235, 231);
+    Color statusColor5 = new Color(11, 235, 231, 128);
+    Color statusColor6 = new Color(230, 230, 230);
     
     
     
@@ -100,6 +102,10 @@ public class Decorator {
                 return statusColor3;
             case (4):
                 return statusColor4;
+            case (5):
+                return statusColor5;
+            case (6):
+                return statusColor6;
         }
         return BLUE;
     }

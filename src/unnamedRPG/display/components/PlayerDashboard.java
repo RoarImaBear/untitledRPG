@@ -36,6 +36,7 @@ import unnamedRPG.model.entities.Player;
             paintConsoleBackground(g);
             paintHPBar(g);
             paintStaminaBar(g);
+            paintScore(g);
             paintPlayerIcon(g);
             paintWeapon(g);
         }
@@ -108,7 +109,7 @@ import unnamedRPG.model.entities.Player;
         private void paintStaminaBar(Graphics g){
             int maxStaminaLength = frameLimits.lengthX/3;
             int currentStaminaLength = (int) ((double)player.currentStamina* ((double)maxStaminaLength/player.maxStamina));
-            int yMargin = 50;
+            int yMargin = 60;
             
             g.setColor(DECORATOR.interfaceBGColors(0));
             g.fillRect(frameLimits.startX + maxStaminaLength - 3, yMargin, maxStaminaLength + 6, 10);
@@ -119,6 +120,23 @@ import unnamedRPG.model.entities.Player;
             g.fillRect(frameLimits.startX + maxStaminaLength - 2, yMargin + 1, maxStaminaLength + 4, 8);
             
             g.setColor(DECORATOR.playerInfoColors(2));
+            g.fillRect(frameLimits.startX + maxStaminaLength, yMargin + 3, currentStaminaLength, 4);
+        }
+        
+        private void paintScore(Graphics g){
+            int maxStaminaLength = frameLimits.lengthX/3;
+            int currentStaminaLength = (int) ((double)player.currentScore* ((double)maxStaminaLength/player.maxScore));
+            int yMargin = 100;
+            
+            g.setColor(DECORATOR.interfaceBGColors(0));
+            g.fillRect(frameLimits.startX + maxStaminaLength - 3, yMargin, maxStaminaLength + 6, 10);
+            
+            g.drawString((player.currentScore+""), frameLimits.lengthX/2 - 9, yMargin-2);
+            
+            g.setColor(DECORATOR.playerInfoColors(5));
+            g.fillRect(frameLimits.startX + maxStaminaLength - 2, yMargin + 1, maxStaminaLength + 4, 8);
+            
+            g.setColor(DECORATOR.playerInfoColors(4));
             g.fillRect(frameLimits.startX + maxStaminaLength, yMargin + 3, currentStaminaLength, 4);
         }
 

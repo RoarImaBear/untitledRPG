@@ -58,8 +58,8 @@ public class GameMaster implements Runnable {
         int endY = player.currentXY[1] + 20;
         for (int y = startY; y < endY; y++) {
             for (int x = startX; x < endX; x++) {
-                if(map.entitiesMap[x][y] != null){   
-                    map.entitiesMap[x][y].staminaRegen();
+                if(map.entities[x][y] != null){   
+                    map.entities[x][y].staminaRegen();
                 }
             }
         }
@@ -82,11 +82,11 @@ public class GameMaster implements Runnable {
         int endY = player.currentXY[1] + 20;
         for (int y = startY; y < endY; y++) {
             for (int x = startX; x < endX; x++) {
-                if(map.entitiesMap[x][y] != null && !map.entitiesMap[x][y].inCombat && map.entitiesMap[x][y] != player && !map.entitiesMap[x][y].dead){
+                if(map.entities[x][y] != null && !map.entities[x][y].inCombat && map.entities[x][y] != player && !map.entities[x][y].dead){
                     if(RANDOM.nextInt(150)%150 == 0){
-                        requestMoveEntity(map.entitiesMap[x][y], xy[RANDOM.nextInt(2)], plusMinusOne[RANDOM.nextInt(2)]);  
+                        requestMoveEntity(map.entities[x][y], xy[RANDOM.nextInt(2)], plusMinusOne[RANDOM.nextInt(2)]);  
                     }       
-                    map.entitiesMap[x][y].staminaRegen();
+                    map.entities[x][y].staminaRegen();
                 }
             }
         }
@@ -103,15 +103,18 @@ public class GameMaster implements Runnable {
         if (trueXY[0] == player.currentXY[0] && trueXY[1] == player.currentXY[1]) {
             display.appendConsole("This is you. Never cold. Never alone.\n");
         } else {
-            handleTile(trueXY[0], trueXY[1]);
+            handlePlayerEntersTile(trueXY[0], trueXY[1]);
         }
     }
 
 
-    private void handleTile(int x, int y) {
+    private void handlePlayerEntersTile(int x, int y) {
         Tile targetTile = map.tiles[x][y];
         if (!targetTile.occupied) {
             moveEntity(player, x, y);
+        } else if (targetTile.occupant.dead){
+            String lootText = player.loot(targetTile.occupant);
+            display.appendConsole("You've looted " + lootText + "\n");
         } else {
             enterCombat (player, targetTile.occupant);
         }
