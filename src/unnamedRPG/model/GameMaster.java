@@ -88,7 +88,13 @@ public class GameMaster implements Runnable {
         }
     }
     
-    private void initiateCombat(Entity attacker, Entity defender){
+    private void enterCombat (Entity attacker, Entity defender){
+        
+        
+        while(true){
+            
+            attacker.attack(defender);
+        }
         
     }
     
@@ -111,7 +117,7 @@ public class GameMaster implements Runnable {
         if (!targetTile.occupied) {
             moveEntity(player, x, y);
         } else {
-            initiateCombat(player, targetTile.occupant);
+            enterCombat (player, targetTile.occupant);
         }
     }
     
@@ -131,7 +137,7 @@ public class GameMaster implements Runnable {
         }
         Tile targetTile = map.tiles[targetX][targetY];
         if (targetTile.occupied){
-            initiateCombat(entity, targetTile.occupant);
+            enterCombat (entity, targetTile.occupant);
         } else {
         moveEntity(entity, targetX, targetY);            
         }
