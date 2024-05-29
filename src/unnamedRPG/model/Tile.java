@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package unnamedRPG.model;
 
 import java.awt.Graphics;
@@ -15,8 +11,6 @@ import static unnamedRPG.UnnamedRPG.DECORATOR;
 public class Tile {
 
     public char terrainType;
-
-    int altitude;
     int baseTileSize = 16;
     boolean occupied;
     Entity occupant;
@@ -31,7 +25,6 @@ public class Tile {
         if (occupied) {
             paintOccupant(g, startX, startY, tileScale);
         }
-
     }
     
     private void paintOccupant(Graphics g, int startX, int startY, int tileScale){

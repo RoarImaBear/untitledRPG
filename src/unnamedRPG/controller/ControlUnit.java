@@ -11,7 +11,6 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import unnamedRPG.display.Display;
 import unnamedRPG.display.Limits;
-import unnamedRPG.display.components.Console;
 import unnamedRPG.display.components.GameBoard;
 import unnamedRPG.model.GameMaster;
 
@@ -26,7 +25,6 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
     Limits boardLimits;
     Limits frameLimits;
     GameMaster gameManager;
-    boolean[] keyComboWSAD = new boolean[4];
 
     public ControlUnit(GameBoard gameBoard, Limits boardLimits, Limits frameLimits) {
         this.gameBoard = gameBoard;
@@ -41,7 +39,6 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
 
     public void connectGameManager(GameMaster gameManager) {
         this.gameManager = gameManager;
-        System.out.println(gameManager);
     }
 
     @Override
@@ -117,15 +114,11 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
     public void mouseClicked(MouseEvent e) {
         int mouseX = e.getX() - 7;
         int mouseY = e.getY() - 24;
-//        int centerX = frameLimits.centerX;
-//        int centerY = frameLimits.centerY;        
-//        int changeX = mouseX - centerX;
-//        int changeY = mouseY - centerY;
-//        
+     
         if (mouseY < boardLimits.endY) {
             gameManager.handleClick(mouseX, mouseY);
         } else {
-            System.out.println("Not map");
+            System.out.println("Not on map");
         }
     }
 
@@ -158,25 +151,6 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
 
     @Override
     public void mouseMoved(MouseEvent e) {
-//        int mouseX = e.getX();
-//        int mouseY = e.getY();
-//        int margin = 20;
-//
-//        if (display.frameCounter % 2  == 0) {
-//            if (mouseY - margin*4 < boardLimits.startY) {
-//                gameBoard.shiftPosition('w', 1);
-//            }
-//            if (mouseY + margin > boardLimits.endY) {
-//                gameBoard.shiftPosition('s', 1);
-//            }
-//            if (mouseX - margin*2 < boardLimits.startX) {
-//                gameBoard.shiftPosition('a', 1);
-//            }
-//            if (mouseX + margin > boardLimits.endX) {
-//                gameBoard.shiftPosition('d', 1);
-//            }
-//        }
- 
     }
 
 }
@@ -213,3 +187,23 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
 //            keyComboWSAD[3] = false;
 //        }
 //    }
+//    @Override
+//    public void mouseMoved(MouseEvent e) {
+//        int mouseX = e.getX();
+//        int mouseY = e.getY();
+//        int margin = 20;
+//
+//        if (display.frameCounter % 2  == 0) {
+//            if (mouseY - margin*4 < boardLimits.startY) {
+//                gameBoard.shiftPosition('w', 1);
+//            }
+//            if (mouseY + margin > boardLimits.endY) {
+//                gameBoard.shiftPosition('s', 1);
+//            }
+//            if (mouseX - margin*2 < boardLimits.startX) {
+//                gameBoard.shiftPosition('a', 1);
+//            }
+//            if (mouseX + margin > boardLimits.endX) {
+//                gameBoard.shiftPosition('d', 1);
+//            }
+//        }

@@ -80,8 +80,7 @@ public class GameBoard extends JComponent {
         boardTileLimits.resizeLimits(newLengthX, newLengthY);
     }
     
-    public void shiftPosition(char direction, int magnitude){
-        
+    public void shiftPosition(char direction, int magnitude){        
         switch (direction){
             case 'w':
                 boardTileLimits.shiftPosition('y', -1);
@@ -102,7 +101,6 @@ public class GameBoard extends JComponent {
         boardTileLimits.goTo(centerX, centerY);
     }
 
-    // get it to return  absolute tileID
     public void handleClick(int pointerX, int pointerY) {
         int tileX;
         int tileY;
@@ -115,9 +113,6 @@ public class GameBoard extends JComponent {
         } else {
             currentTile.terrainType = '~';
         }
-    //        System.out.println("Tilesize: " + tileSize);
-    //        System.out.println("X: " + pointerX + " Y: " + pointerY);
-    //        System.out.println("tileX: " + tileX + " tileY: " + tileY);
     }
     public int[] getTrueXY(int pointerX, int pointerY) {
         int tileX;

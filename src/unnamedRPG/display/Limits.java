@@ -63,7 +63,6 @@ public class Limits {
     }
     
     public void resizeLimits(int newLengthX, int newLengthY){
-        System.out.println("entered resizeLimits");
         startX = centerX - newLengthX/2;
         startY = centerY - newLengthY/2;
         

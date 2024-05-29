@@ -5,10 +5,6 @@ import unnamedRPG.display.components.GameBoard;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
-import unnamedRPG.model.Map;
-import static unnamedRPG.UnnamedRPG.DISPLAY_SIZE;
-import static unnamedRPG.UnnamedRPG.FRAME_HEIGHT;
-import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
 import unnamedRPG.model.entities.Player;
 
 /**
@@ -20,12 +16,12 @@ import unnamedRPG.model.entities.Player;
 
 
 public class Display implements Runnable {
-    UIPane UIPane;
-    GameBoard gameBoard;
-    
-    JFrame frame;
     
     Timer displayClock;
+    
+    JFrame frame;
+    UIPane UIPane;
+    GameBoard gameBoard;
     ControlUnit controlUnit;
     Limits boardLimits;
     Limits frameLimits;
@@ -35,6 +31,7 @@ public class Display implements Runnable {
     public Display(Player player, ControlUnit controlUnit, GameBoard gameBoard, Limits boardLimits, Limits frameLimits){
         this.boardLimits = boardLimits;
         this.frameLimits = frameLimits;
+        this.controlUnit = controlUnit;
         
         this.frame = new JFrame("Game");
         this.frame.setSize(frameLimits.lengthX, frameLimits.lengthY);
@@ -46,9 +43,8 @@ public class Display implements Runnable {
         this.frame.add(UIPane);
         
         this.gameBoard = gameBoard;
-        this.frame.add(gameBoard);
         
-        this.controlUnit = controlUnit;
+        this.frame.add(gameBoard);
         this.frame.addKeyListener(controlUnit);
         this.frame.addComponentListener(controlUnit);
         this.frame.addMouseListener(controlUnit);

@@ -23,11 +23,8 @@ import unnamedRPG.model.entities.Player;
             this.player = player;
             this.boardLimits = boardLimits;
             this.frameLimits = frameLimits;
-            
             this.setBounds(0+10, boardLimits.endY + 8, frameLimits.lengthX-20, frameLimits.lengthY - boardLimits.lengthY);
-            System.out.println(boardLimits.endY );
         }
-
 
         @Override
         protected void paintComponent(Graphics g) {

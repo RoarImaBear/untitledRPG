@@ -10,8 +10,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
-import unnamedRPG.model.Map;
-import unnamedRPG.display.Limits;
 import unnamedRPG.display.components.Console;
 import unnamedRPG.display.components.PlayerDashboard;
 import unnamedRPG.model.entities.Player;
@@ -20,12 +18,7 @@ import unnamedRPG.model.entities.Player;
  * @author Sebastian Dymanski
  * @id 14850975
  */
-public class UIPane extends JLayeredPane  {
-
-    Color color;
-    JFrame frame;
-    Timer timer;
-    
+public class UIPane extends JLayeredPane  { 
     
     Border border;
     PlayerDashboard playerDashboard;
