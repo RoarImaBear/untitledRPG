@@ -104,15 +104,10 @@ public class GameBoard extends JComponent {
 
     // get it to return  absolute tileID
     public void handleClick(int pointerX, int pointerY) {
-        System.out.println("Tilesize: " + tileSize);
-        System.out.println("X: " + pointerX + " Y: " + pointerY);
         int tileX;
         int tileY;
-        System.out.println("Scaling: " + tileScale);
-
         tileX = (pointerX) / tileSize;
         tileY = (pointerY) / tileSize;
-        System.out.println("tileX: " + tileX + " tileY: " + tileY);
 
         Tile currentTile = map.tiles[boardTileLimits.startX + tileX][boardTileLimits.startY + tileY];
         if (currentTile.terrainType != 'ϒ') {
@@ -120,6 +115,9 @@ public class GameBoard extends JComponent {
         } else {
             currentTile.terrainType = '~';
         }
+    //        System.out.println("Tilesize: " + tileSize);
+    //        System.out.println("X: " + pointerX + " Y: " + pointerY);
+    //        System.out.println("tileX: " + tileX + " tileY: " + tileY);
     }
     public int[] getTrueXY(int pointerX, int pointerY) {
         int tileX;

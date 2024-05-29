@@ -19,7 +19,8 @@ public class Entity {
     public BufferedImage token;
     public int[] currentXY = new int[2];
     
-    public int soldierID;
+    public boolean inCombat = false;
+    
     public int maxHP;
     public int currentHP;
     public int maxStamina;
@@ -54,6 +55,14 @@ public class Entity {
         this.name = name;
     }
     
+        
+    public void staminaRegen(){   
+        currentStamina += staminaRegen;
+        if (currentStamina > maxStamina){
+            currentStamina = maxStamina;
+        }
+    }
+    
     
     public void attack(Entity enemy) {
         int attackValue = proficiency + rollDice(attackDiceCount, attackDiceLimit);
@@ -62,26 +71,15 @@ public class Entity {
         if (attackValue > enemyAgility){
             int damageValue = proficiency + rollDice(damageDiceCount, damageDiceLimit); 
             damageValue -= enemy.protection;
-            
-            
+
             if (damageValue > 0){
                 enemy.maxHP -= damageValue;
             }
-            else {
-            }
         }
-        
         if ( enemyAgility > (attackValue * 3) ){
             enemy.attack(this); // Triggers enemy to get an extra attack.
         }
         
-    }
-    
-    public void staminaRegen(){   
-        currentStamina += staminaRegen;
-        if (currentStamina > maxStamina){
-            currentStamina = maxStamina;
-        }
     }
     
     

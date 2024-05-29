@@ -8,7 +8,7 @@ import unnamedRPG.controller.ControlUnit;
 import unnamedRPG.display.Display;
 import unnamedRPG.display.Limits;
 import unnamedRPG.display.components.GameBoard;
-import unnamedRPG.model.GameManager;
+import unnamedRPG.model.GameMaster;
 import unnamedRPG.model.entities.Player;
 import unnamedRPG.utilities.Decorator;
 import unnamedRPG.utilities.ImageAssets;
@@ -53,7 +53,7 @@ public class UnnamedRPG {
         
         ControlUnit controlUnit = new ControlUnit(gameBoard, boardLimits, frameLimits);    
         Display display = new Display(player, controlUnit, gameBoard, boardLimits, frameLimits);   
-        GameManager gameManager = new GameManager( player, gameBoard, display);
+        GameMaster gameManager = new GameMaster( player, gameBoard, display);
         
         controlUnit.connectGameManager(gameManager);
         controlUnit.connectDisplay(display);

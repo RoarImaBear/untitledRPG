@@ -18,7 +18,7 @@ public class Map {
 
     public int[][] topography; // 0 - 4, depending on difficulty
     public Tile[][] tiles;
-    public Entity[][] entities;
+    public Entity[][] entitiesMap;
     private FloraGod floraGod;
     private FaunaGod faunaGod;
 
@@ -30,9 +30,9 @@ public class Map {
         this.length = MAP_LENGTH;
         this.topography = new int[width][length];
         this.tiles = new Tile[width][length];
-        this.entities = new Entity[width][length];
+        this.entitiesMap = new Entity[width][length];
         this.floraGod = new FloraGod(width, length);
-        this.faunaGod = new FaunaGod(width, length);
+        this.faunaGod = new FaunaGod(width, length, entitiesMap);
         
         
         for (int y = 0; y < length; y++) {
@@ -47,7 +47,7 @@ public class Map {
     public void insertEntity(Entity entity, int x, int y) {
         tiles[x][y].occupant = entity;
         tiles[x][y].occupied = true;
-        entities[x][y] = entity;
+        entitiesMap[x][y] = entity;
     }
     
 }

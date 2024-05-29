@@ -13,7 +13,7 @@ import unnamedRPG.display.Display;
 import unnamedRPG.display.Limits;
 import unnamedRPG.display.components.Console;
 import unnamedRPG.display.components.GameBoard;
-import unnamedRPG.model.GameManager;
+import unnamedRPG.model.GameMaster;
 
 /**
  *
@@ -25,7 +25,7 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
     Display display;
     Limits boardLimits;
     Limits frameLimits;
-    GameManager gameManager;
+    GameMaster gameManager;
     boolean[] keyComboWSAD = new boolean[4];
 
     public ControlUnit(GameBoard gameBoard, Limits boardLimits, Limits frameLimits) {
@@ -39,7 +39,7 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
         this.display = display;
     }
 
-    public void connectGameManager(GameManager gameManager) {
+    public void connectGameManager(GameMaster gameManager) {
         this.gameManager = gameManager;
         System.out.println(gameManager);
     }
@@ -158,24 +158,24 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        int mouseX = e.getX();
-        int mouseY = e.getY();
-        int margin = 20;
-
-        if (display.frameCounter % 2  == 0) {
-            if (mouseY - margin*4 < boardLimits.startY) {
-                gameBoard.shiftPosition('w', 1);
-            }
-            if (mouseY + margin > boardLimits.endY) {
-                gameBoard.shiftPosition('s', 1);
-            }
-            if (mouseX - margin*2 < boardLimits.startX) {
-                gameBoard.shiftPosition('a', 1);
-            }
-            if (mouseX + margin > boardLimits.endX) {
-                gameBoard.shiftPosition('d', 1);
-            }
-        }
+//        int mouseX = e.getX();
+//        int mouseY = e.getY();
+//        int margin = 20;
+//
+//        if (display.frameCounter % 2  == 0) {
+//            if (mouseY - margin*4 < boardLimits.startY) {
+//                gameBoard.shiftPosition('w', 1);
+//            }
+//            if (mouseY + margin > boardLimits.endY) {
+//                gameBoard.shiftPosition('s', 1);
+//            }
+//            if (mouseX - margin*2 < boardLimits.startX) {
+//                gameBoard.shiftPosition('a', 1);
+//            }
+//            if (mouseX + margin > boardLimits.endX) {
+//                gameBoard.shiftPosition('d', 1);
+//            }
+//        }
  
     }
 
