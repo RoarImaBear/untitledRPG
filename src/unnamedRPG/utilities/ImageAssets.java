@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 public class ImageAssets {
 
     public static BufferedImage playerIcon;
+    public static BufferedImage ghoul;
     public static BufferedImage spear;
     
     
@@ -27,6 +28,13 @@ public class ImageAssets {
         try {
             // Load the PNG image
             playerIcon = ImageIO.read(new File("resources/playerIcon.png"));
+        } catch (IOException e) {
+            // Handle image loading errors
+            System.out.println("error loading image: " + e.getMessage());
+        }
+        try {
+            // Load the PNG image
+            ghoul = ImageIO.read(new File("resources/ghoul.png"));
         } catch (IOException e) {
             // Handle image loading errors
             System.out.println("error loading image: " + e.getMessage());

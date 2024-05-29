@@ -50,7 +50,8 @@ public class Entity {
     public String tokenString;
     
 
-    public Entity() {
+    public Entity(String name) {
+        this.name = name;
     }
     
     

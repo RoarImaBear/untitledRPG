@@ -49,7 +49,7 @@ public class UnnamedRPG {
         Limits frameLimits = new Limits(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
         GameBoard gameBoard = new GameBoard(boardLimits);
-        Player player = new Player();
+        Player player = new Player("Creature");
         
         ControlUnit controlUnit = new ControlUnit(gameBoard, boardLimits, frameLimits);    
         Display display = new Display(player, controlUnit, gameBoard, boardLimits, frameLimits);   

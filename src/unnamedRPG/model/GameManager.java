@@ -77,7 +77,7 @@ public class GameManager implements Runnable {
 
     private void handleTile(int x, int y) {
         Tile currentTile = map.tiles[x][y];
-        if (!currentTile.containsEntity) {
+        if (!currentTile.occupied) {
             moveEntity(player, x, y);
         }
     }
@@ -121,9 +121,9 @@ public class GameManager implements Runnable {
         }
         // Check if terrain is passable
         map.tiles[entityX][entityY].occupant = null;
-        map.tiles[entityX][entityY].containsEntity = false;
+        map.tiles[entityX][entityY].occupied = false;
         map.tiles[targetX][targetY].occupant = entity;
-        map.tiles[targetX][targetY].containsEntity = true;
+        map.tiles[targetX][targetY].occupied = true;
         entity.currentXY[0] = targetX;
         entity.currentXY[1] = targetY;
         // Deduct stamina

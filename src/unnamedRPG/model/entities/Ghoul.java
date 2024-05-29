@@ -3,6 +3,7 @@ package unnamedRPG.model.entities;
 import java.awt.Color;
 import unnamedRPG.items.Armour;
 import unnamedRPG.items.BronzeSpear;
+import unnamedRPG.items.Unarmed;
 import unnamedRPG.items.Weapon;
 import static unnamedRPG.utilities.Dice.rollDice;
 import unnamedRPG.utilities.ImageAssets;
@@ -11,33 +12,32 @@ import unnamedRPG.utilities.ImageAssets;
  *
  * @author seb
  */
-public class Player extends Entity{
+public class Ghoul extends Entity{
     
     boolean deserter;
     
-    public Weapon equippedWeapon = new BronzeSpear();
+    public Weapon equippedWeapon = new Unarmed();
     public Armour equippedArmour;
 
-    public Player(String name) {
+    public Ghoul(String name) {
         super(name);
-        this.name = "Player";
-        this.token = ImageAssets.playerIcon;
+        this.name = "Ghoul" + name;
+        this.token = ImageAssets.ghoul;
         this.tokenColor = new Color(200, 200, 200);
-        this.tokenString = "@";
+        this.tokenString = "G";        
         
-        
-        this.maxHP = 50;
+        this.maxHP = 20;
         this.currentHP = maxHP;
-        this.maxStamina = 35;
+        this.maxStamina = 25;
         this.currentStamina = maxStamina;
         this.staminaRegen = 5;
         this.dead = false;
         
-        this.proficiency = rollDice(1, 3);
+        this.proficiency = 1;
         
-        this.agility = rollDice(1, 3);
+        this.agility = 1;
    
-        this.protection = 1;
+        this.protection = 0;
     }
 
 }

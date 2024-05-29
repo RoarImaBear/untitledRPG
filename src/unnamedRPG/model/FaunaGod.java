@@ -4,6 +4,9 @@
  */
 package unnamedRPG.model;
 
+import static unnamedRPG.UnnamedRPG.RANDOM;
+import unnamedRPG.model.entities.Ghoul;
+
 /**
  *
  * @author sdyma
@@ -19,6 +22,16 @@ public class FaunaGod {
     }
     
     public void spawnEnemies(Tile[][] tiles){
+        for (int y = 0; y < mapLength; y += RANDOM.nextInt(10)) {
+            for (int x = 0; x < mapWidth; x += RANDOM.nextInt(10)) {
+                tiles[x][y].occupant = new Ghoul("");
+                tiles[x][y].occupied = true;
+            }
+        }
+        
+        if(RANDOM.nextInt(10)%10 == 0){
+            
+        }
         
     }
     

@@ -4,16 +4,7 @@
  */
 package unnamedRPG.model;
 
-import java.awt.Color;
-import static java.awt.Color.BLACK;
-import static java.awt.Color.BLUE;
-import static java.awt.Color.GREEN;
-import static java.awt.Color.RED;
-import static java.awt.Color.WHITE;
-import static java.awt.Color.YELLOW;
-import java.awt.Font;
 import java.awt.Graphics;
-import javax.swing.JComponent;
 import unnamedRPG.model.entities.Entity;
 import static unnamedRPG.UnnamedRPG.DECORATOR;
 
@@ -27,7 +18,7 @@ public class Tile {
 
     int altitude;
     int baseTileSize = 16;
-    boolean containsEntity;
+    boolean occupied;
     Entity occupant;
 
     public Tile() {
@@ -39,7 +30,7 @@ public class Tile {
         g.setColor(DECORATOR.colorSwitch(terrainType));
         g.fillRect(startX, startY, ((baseTileSize - 1) * tileScale), ((baseTileSize - 1) * tileScale));
 
-        if (containsEntity) {
+        if (occupied) {
             paintOccupant(g, startX, startY, tileScale);
         }
 

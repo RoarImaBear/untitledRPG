@@ -32,20 +32,21 @@ public class Map {
         this.tiles = new Tile[width][length];
         this.entities = new Entity[width][length];
         this.floraGod = new FloraGod(width, length);
-        // Fauna God
+        this.faunaGod = new FaunaGod(width, length);
+        
         
         for (int y = 0; y < length; y++) {
             for (int x = 0; x < width; x++) {
                 tiles[x][y] = new Tile();
             }
         }
-        System.out.println(width + " " + length);
         floraGod.floraSpawn(tiles);
+        faunaGod.spawnEnemies(tiles);
     }
     
     public void insertEntity(Entity entity, int x, int y) {
         tiles[x][y].occupant = entity;
-        tiles[x][y].containsEntity = true;
+        tiles[x][y].occupied = true;
         entities[x][y] = entity;
     }
     
