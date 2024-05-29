@@ -1,6 +1,7 @@
 package unnamedRPG.model.entities;
 
 import java.awt.Color;
+import static unnamedRPG.UnnamedRPG.DECORATOR;
 import unnamedRPG.items.Armour;
 import unnamedRPG.items.BronzeSpear;
 import unnamedRPG.items.Unarmed;
@@ -23,10 +24,9 @@ public class Ghoul extends Entity{
         super(name);
         this.name = "Ghoul" + name;
         this.token = ImageAssets.ghoul;
-        this.tokenColor = new Color(200, 200, 200);
-        this.tokenString = "G";        
+        this.auraColor = DECORATOR.colorSwitch('h');       
         
-        this.maxHP = 20;
+        this.maxHP = 50;
         this.currentHP = maxHP;
         this.maxStamina = 25;
         this.currentStamina = maxStamina;
@@ -38,6 +38,7 @@ public class Ghoul extends Entity{
         this.agility = 1;
    
         this.protection = 0;
+        equipWeapon(new Unarmed());
     }
 
 }

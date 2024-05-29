@@ -22,8 +22,6 @@ public class Tile {
     Entity occupant;
 
     public Tile() {
-//        this.containsEntity = RANDOM.nextBoolean();
-//        this.occupant = new Player();
     }
 
     public void paint(Graphics g, int startX, int startY, int tileScale) {
@@ -39,7 +37,7 @@ public class Tile {
     private void paintOccupant(Graphics g, int startX, int startY, int tileScale){
             int offset = tileScale * 2;
             int auraOffset = tileScale * 1;
-            g.setColor(DECORATOR.colorSwitch('p'));
+            g.setColor(occupant.auraColor);
             g.fillOval(startX + auraOffset, startY + auraOffset, ((baseTileSize - 3) * tileScale), ((baseTileSize - 3) * tileScale));
             g.drawImage(occupant.token, startX + offset, startY + offset, ((baseTileSize - 5) * tileScale), ((baseTileSize - 5) * tileScale), null);
     }

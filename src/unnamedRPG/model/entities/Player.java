@@ -1,10 +1,9 @@
 package unnamedRPG.model.entities;
 
-import java.awt.Color;
+import static unnamedRPG.UnnamedRPG.DECORATOR;
 import unnamedRPG.items.Armour;
 import unnamedRPG.items.BronzeSpear;
 import unnamedRPG.items.Weapon;
-import static unnamedRPG.utilities.Dice.rollDice;
 import unnamedRPG.utilities.ImageAssets;
 
 /**
@@ -22,9 +21,7 @@ public class Player extends Entity{
         super(name);
         this.name = "Player";
         this.token = ImageAssets.playerIcon;
-        this.tokenColor = new Color(200, 200, 200);
-        this.tokenString = "@";
-        
+        this.auraColor = DECORATOR.colorSwitch('p');
         
         this.maxHP = 50;
         this.currentHP = maxHP;
@@ -33,11 +30,13 @@ public class Player extends Entity{
         this.staminaRegen = 5;
         this.dead = false;
         
-        this.proficiency = rollDice(1, 3);
+        this.proficiency = 3;
         
-        this.agility = rollDice(1, 3);
+        this.agility = 3;
    
-        this.protection = 1;
+        this.protection = 2;
+        
+        equipWeapon(new BronzeSpear());
     }
 
 }

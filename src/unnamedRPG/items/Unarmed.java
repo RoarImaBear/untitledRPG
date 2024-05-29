@@ -15,7 +15,7 @@ public class Unarmed extends Weapon {
         this.attackDiceLimit = 10;
         
         this.damageDiceCount = 1;
-        this.damageDiceLimit = 2;
+        this.damageDiceLimit = 6;
     }
     
 }

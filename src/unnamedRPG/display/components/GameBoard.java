@@ -122,8 +122,6 @@ public class GameBoard extends JComponent {
     public int[] getTrueXY(int pointerX, int pointerY) {
         int tileX;
         int tileY;
-
-        System.out.println("GameBoard.getTrueXY" + pointerX + " "  + pointerY);
         tileX = (pointerX) / tileSize;
         tileY = (pointerY) / tileSize;
         return new int[]{boardTileLimits.startX + tileX, boardTileLimits.startY + tileY};

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package unnamedRPG.utilities;
 
 import java.awt.Color;
@@ -119,21 +115,3 @@ public class Decorator {
     }
     
 }
-
-
-//    Font fontSwitch (char subject) {
-//
-//        switch (subject) {
-//            case ('„'):
-//                return new Font("Arial", Font.PLAIN, (50));
-//            case ('ϫ'):
-//                return new Font("Arial", Font.PLAIN, (80));
-//            case ('ϒ'):
-//                return new Font("Arial", Font.PLAIN, (12));
-//            case ('|'):
-//                return new Font("Arial", Font.PLAIN, 50);
-//            case ('~'):
-//                return new Font("Arial", Font.PLAIN, 50);
-//        }
-//        return new Font("Arial", Font.PLAIN, (50));
-//    }

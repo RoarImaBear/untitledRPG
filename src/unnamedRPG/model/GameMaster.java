@@ -24,12 +24,17 @@ public class GameMaster implements Runnable {
     public GameBoard gameBoard;
     Map map;
     Display display;
+    
+    Arena arena;
 
     public GameMaster(Player player, GameBoard gameBoard, Display display) {
         this.player = player;
         this.gameBoard = gameBoard;
         this.map = gameBoard.map;
         this.display = display;
+        
+        this.arena = new Arena();
+        arena.run();
     }
 
     @Override
@@ -39,6 +44,8 @@ public class GameMaster implements Runnable {
             if(clockCounter%gamePace == 0){
                 gameTick();
             }
+                    
+            arena.performRound();
             entitiesMove(player);
             clockCounter++;
         });
@@ -47,9 +54,9 @@ public class GameMaster implements Runnable {
     }
     
     public void gameTick() {        
-        int startX = player.currentXY[0]-30;
-        int endX = player.currentXY[0]+20;
-        int startY = player.currentXY[1]-30;
+        int startX = player.currentXY[0] - 30;
+        int endX = player.currentXY[0] + 20;
+        int startY = player.currentXY[1] - 30;
         int endY = player.currentXY[1] + 20;
         for (int y = startY; y < endY; y++) {
             for (int x = startX; x < endX; x++) {
@@ -58,7 +65,6 @@ public class GameMaster implements Runnable {
                 }
             }
         }
-
     }
     
     public void spawnPlayer(Player player, GameBoard gameBoard) {
@@ -78,7 +84,7 @@ public class GameMaster implements Runnable {
         int endY = player.currentXY[1] + 20;
         for (int y = startY; y < endY; y++) {
             for (int x = startX; x < endX; x++) {
-                if(map.entitiesMap[x][y] != null && !map.entitiesMap[x][y].inCombat &&map.entitiesMap[x][y] != player){
+                if(map.entitiesMap[x][y] != null && !map.entitiesMap[x][y].inCombat && map.entitiesMap[x][y] != player && !map.entitiesMap[x][y].dead){
                     if(RANDOM.nextInt(150)%150 == 0){
                         requestMoveEntity(map.entitiesMap[x][y], xy[RANDOM.nextInt(2)], plusMinusOne[RANDOM.nextInt(2)]);  
                     }       
@@ -88,18 +94,10 @@ public class GameMaster implements Runnable {
         }
     }
     
-    private void enterCombat (Entity attacker, Entity defender){
-        
-        
-        while(true){
-            
-            attacker.attack(defender);
-        }
-        
+    private void enterCombat (Entity attacker, Entity defender){  
+        Entity[]pairing = {attacker, defender};
+        arena.addCombatants(pairing);
     }
-    
-    
-
 
     public void handleClick(int displayX, int displayY) {
         int[] trueXY;
@@ -127,6 +125,12 @@ public class GameMaster implements Runnable {
         
         int targetX = entityX;
         int targetY = entityY;
+        
+                // Check if in bounds
+        if (targetX < 0 || targetX >= map.width || targetY < 0 || targetY >= map.length){
+            return;
+        }
+        
         switch(axis){
             case('x'):
                 targetX += magnitude;
@@ -162,10 +166,6 @@ public class GameMaster implements Runnable {
             return;
         }
         
-        // Check if in bounds
-        if (targetX < 0 || targetX >= map.width || targetY < 0 || targetY >= map.length){
-            return;
-        }
         
         if(targetTile.terrainType == 'ϒ' || targetTile.terrainType == '|'){
             if (playerCheck) 

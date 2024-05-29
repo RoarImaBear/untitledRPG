@@ -17,6 +17,7 @@ public class Entity {
     
     public String name;
     public BufferedImage token;
+    public Color auraColor;
     public int[] currentXY = new int[2];
     
     public boolean inCombat = false;
@@ -71,9 +72,9 @@ public class Entity {
         if (attackValue > enemyAgility){
             int damageValue = proficiency + rollDice(damageDiceCount, damageDiceLimit); 
             damageValue -= enemy.protection;
-
+            
             if (damageValue > 0){
-                enemy.maxHP -= damageValue;
+                enemy.currentHP -= damageValue;
             }
         }
         if ( enemyAgility > (attackValue * 3) ){
