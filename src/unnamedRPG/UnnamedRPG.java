@@ -1,6 +1,5 @@
 package unnamedRPG;
 
-import unnamedRPG.model.Map;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Random;
@@ -33,13 +32,12 @@ public class UnnamedRPG {
     public static final int FRAME_WIDTH = DISPLAY_SIZE.width;
     public static final int FRAME_HEIGHT = DISPLAY_SIZE.height;
     public static final int UI_HEIGHT = 256;
-    
-    
-
-   
-
 
     public static void main(String[] args) {
+        
+        DBManager dbManager = new DBManager();
+        System.out.println("Connection: " + dbManager.getConnection());
+        
         IMAGE_ASSETS = new ImageAssets();
         
         Limits boardLimits = new Limits(0, 0, FRAME_WIDTH, FRAME_HEIGHT - UI_HEIGHT);
