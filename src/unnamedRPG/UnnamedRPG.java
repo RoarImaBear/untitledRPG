@@ -7,6 +7,7 @@ import java.util.Random;
 import unnamedRPG.controller.ControlUnit;
 import unnamedRPG.display.Display;
 import unnamedRPG.display.Limits;
+import unnamedRPG.display.components.GameBoard;
 import unnamedRPG.model.GameManager;
 import unnamedRPG.model.entities.Player;
 import unnamedRPG.utilities.Decorator;
@@ -46,25 +47,24 @@ public class UnnamedRPG {
         
         Limits boardLimits = new Limits(0, 0, FRAME_WIDTH, FRAME_HEIGHT - UI_HEIGHT);
         Limits frameLimits = new Limits(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
-        
-        Map map = new Map();
-        System.out.println("MAP MADE");
-        
+
+        GameBoard gameBoard = new GameBoard(boardLimits);
         Player player = new Player();
         
-        ControlUnit controlUnit = new ControlUnit(boardLimits, frameLimits);
+        ControlUnit controlUnit = new ControlUnit(gameBoard, boardLimits, frameLimits);    
+        Display display = new Display(player, controlUnit, gameBoard, boardLimits, frameLimits);   
+        GameManager gameManager = new GameManager( player, gameBoard, display);
         
-        Display display = new Display(player, map, boardLimits, frameLimits, controlUnit);
-        
-        GameManager gameManager = new GameManager( player, map, display, controlUnit);
-        
-        
-        
+        controlUnit.connectGameManager(gameManager);
+        controlUnit.connectDisplay(display);
+
         
         Thread displayThread = new Thread(display);
+        Thread gameManagerThread = new Thread(gameManager);
         displayThread.start();
+        gameManagerThread.start();
         
-        
+        gameManager.spawnPlayer(player, gameBoard);
         
         System.out.println("Display: " + DISPLAY_SIZE.height + "x" + DISPLAY_SIZE.width);
     }

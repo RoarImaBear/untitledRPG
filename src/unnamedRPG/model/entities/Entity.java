@@ -17,12 +17,14 @@ public class Entity {
     
     public String name;
     public BufferedImage token;
+    public int[] currentXY = new int[2];
     
     public int soldierID;
     public int maxHP;
     public int currentHP;
     public int maxStamina;
     public int currentStamina;
+    public int staminaRegen;
     
     public int proficiency;
     
@@ -72,6 +74,14 @@ public class Entity {
             enemy.attack(this); // Triggers enemy to get an extra attack.
         }
         
+    }
+    
+    public void staminaRegen(){        
+        if (currentStamina > maxStamina){
+            currentStamina = maxStamina;
+            return;
+        }
+        currentStamina += staminaRegen;
     }
     
     

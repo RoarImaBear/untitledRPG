@@ -15,7 +15,7 @@ import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
  */
 public class GameBoard extends JComponent {
 
-    Map map;
+    public Map map;
 
     Limits boardDisplayLimits;
 
@@ -31,8 +31,8 @@ public class GameBoard extends JComponent {
     int zoomOutLimit = 3;
     int zoomInLimit = 10;
 
-    public GameBoard(Map map, Limits boardLimits) {
-        this.map = map;
+    public GameBoard(Limits boardLimits) {
+        this.map = new Map();
         this.boardDisplayLimits = boardLimits;
         
         tileCountX = boardDisplayLimits.lengthX/ (tileScale*baseTileSize);
@@ -120,5 +120,14 @@ public class GameBoard extends JComponent {
         } else {
             currentTile.terrainType = '~';
         }
+    }
+    public int[] getTrueXY(int pointerX, int pointerY) {
+        int tileX;
+        int tileY;
+
+        System.out.println("GameBoard.getTrueXY" + pointerX + " "  + pointerY);
+        tileX = (pointerX) / tileSize;
+        tileY = (pointerY) / tileSize;
+        return new int[]{boardTileLimits.startX + tileX, boardTileLimits.startY + tileY};
     }
 }

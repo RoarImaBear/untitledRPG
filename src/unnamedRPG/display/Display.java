@@ -20,7 +20,6 @@ import unnamedRPG.model.entities.Player;
 
 
 public class Display implements Runnable {
-    Map map;
     UIPane UIPane;
     GameBoard gameBoard;
     
@@ -31,10 +30,9 @@ public class Display implements Runnable {
     Limits boardLimits;
     Limits frameLimits;
     
-    
-    public Display(Player player, Map map, Limits boardLimits, Limits frameLimits, ControlUnit controlUnit){
-        this.map = map;
-        
+    public int frameCounter = 0;
+
+    public Display(Player player, ControlUnit controlUnit, GameBoard gameBoard, Limits boardLimits, Limits frameLimits){
         this.boardLimits = boardLimits;
         this.frameLimits = frameLimits;
         
@@ -47,15 +45,15 @@ public class Display implements Runnable {
         this.UIPane = new UIPane(player, boardLimits, frameLimits);
         this.frame.add(UIPane);
         
-        this.gameBoard = new GameBoard(map, boardLimits);
+        this.gameBoard = gameBoard;
         this.frame.add(gameBoard);
         
         this.controlUnit = controlUnit;
-        this.controlUnit.connectToGameBoard(gameBoard);
         this.frame.addKeyListener(controlUnit);
         this.frame.addComponentListener(controlUnit);
         this.frame.addMouseListener(controlUnit);
         this.frame.addMouseWheelListener(controlUnit);
+        this.frame.addMouseMotionListener(controlUnit);
     }
     
     @Override
@@ -65,6 +63,7 @@ public class Display implements Runnable {
             this.frame.requestFocus();
             UIPane.refresh();
             gameBoard.repaint();
+            frameCounter++;
         });
         displayClock.start();
     }

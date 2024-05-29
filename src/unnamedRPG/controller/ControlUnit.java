@@ -6,89 +6,92 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import unnamedRPG.display.Display;
 import unnamedRPG.display.Limits;
 import unnamedRPG.display.components.Console;
 import unnamedRPG.display.components.GameBoard;
+import unnamedRPG.model.GameManager;
 
 /**
  *
  * @author seb
  */
-public class ControlUnit implements KeyListener, ComponentListener, MouseListener, MouseWheelListener {
+public class ControlUnit implements KeyListener, ComponentListener, MouseListener, MouseWheelListener, MouseMotionListener {
+
     GameBoard gameBoard;
-    Console console;
+    Display display;
     Limits boardLimits;
     Limits frameLimits;
-    
-    public ControlUnit(Limits boardLimits, Limits frameLimits) {
+    GameManager gameManager;
+    boolean[] keyComboWSAD = new boolean[4];
 
-        this.boardLimits = boardLimits;  
+    public ControlUnit(GameBoard gameBoard, Limits boardLimits, Limits frameLimits) {
+        this.gameBoard = gameBoard;
+        this.boardLimits = boardLimits;
         this.frameLimits = frameLimits;
     }
-    
-    public void connectToGameBoard(GameBoard gameBoard){
-        this.gameBoard = gameBoard;
+
+    // Required for console connectivity
+    public void connectDisplay(Display display) {
+        this.display = display;
     }
-    
-    public void connectConsole (Console console){
-        this.console = console;
+
+    public void connectGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
+        System.out.println(gameManager);
     }
-    
-    public void mapGoTo(int x, int y){
-        gameBoard.goTo(x, y);
-    }
-    
+
     @Override
     public void keyTyped(KeyEvent ke) {
     }
 
     @Override
     public void keyPressed(KeyEvent ke) {
+        int keyCode = ke.getKeyCode();
         
-        if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
             System.out.println("esc");
             System.exit(0);
         }
-        if (ke.getKeyCode() == KeyEvent.VK_X) {
+        if (keyCode == KeyEvent.VK_X) {
             gameBoard.changeScale(1);
             System.out.println("Zoom In");
         }
-        if (ke.getKeyCode() == KeyEvent.VK_Z) {
+        if (keyCode == KeyEvent.VK_Z) {
             gameBoard.changeScale(-1);
             System.out.println("Zoom Out");
         }
-        if (ke.getKeyCode() == KeyEvent.VK_W) {
+        if (keyCode == KeyEvent.VK_W) {
             gameBoard.shiftPosition('w', 1);
             System.out.println("UP");
         }
-        if (ke.getKeyCode() == KeyEvent.VK_S) {
+        if (keyCode == KeyEvent.VK_S) {
             gameBoard.shiftPosition('s', 1);
             System.out.println("DOWN");
         }
-        if (ke.getKeyCode() == KeyEvent.VK_A) {
+        if (keyCode == KeyEvent.VK_A) {
             gameBoard.shiftPosition('a', 1);
             System.out.println("LEFT");
         }
-        if (ke.getKeyCode() == KeyEvent.VK_D) {
+        if (keyCode == KeyEvent.VK_D) {
             gameBoard.shiftPosition('d', 1);
             System.out.println("RIGHT");
         }
-        
-        if (ke.getKeyCode() == KeyEvent.VK_M) {
-            gameBoard.goTo(0, 0);
-            System.out.println("GO TO 0,0");
+
+        if (keyCode == KeyEvent.VK_SPACE) {
+            int x = gameManager.player.currentXY[0];
+            int y = gameManager.player.currentXY[1];
+            gameBoard.goTo(x, y);
+            System.out.println("GO TO PLAYER");
         }
         
-        
-        
-
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
-
     }
 
     @Override
@@ -112,17 +115,15 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("CLICK");
         int mouseX = e.getX() - 7;
         int mouseY = e.getY() - 24;
-        int centerX = frameLimits.centerX;
-        int centerY = frameLimits.centerY;
-        
-        int changeX = mouseX - centerX;
-        int changeY = mouseY - centerY;
-        
-        if(mouseY < boardLimits.endY){
-            gameBoard.handleClick(mouseX, mouseY);             
+//        int centerX = frameLimits.centerX;
+//        int centerY = frameLimits.centerY;        
+//        int changeX = mouseX - centerX;
+//        int changeY = mouseY - centerY;
+//        
+        if (mouseY < boardLimits.endY) {
+            gameManager.handleClick(mouseX, mouseY);
         } else {
             System.out.println("Not map");
         }
@@ -150,5 +151,65 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
         int wheelInput = e.getWheelRotation();
         gameBoard.changeScale(-wheelInput);
     }
-    
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        int mouseX = e.getX();
+        int mouseY = e.getY();
+        int margin = 20;
+
+        if (display.frameCounter % 2  == 0) {
+            if (mouseY - margin*4 < boardLimits.startY) {
+                gameBoard.shiftPosition('w', 1);
+            }
+            if (mouseY + margin > boardLimits.endY) {
+                gameBoard.shiftPosition('s', 1);
+            }
+            if (mouseX - margin*2 < boardLimits.startX) {
+                gameBoard.shiftPosition('a', 1);
+            }
+            if (mouseX + margin > boardLimits.endX) {
+                gameBoard.shiftPosition('d', 1);
+            }
+        }
+ 
+    }
+
 }
+
+
+//        if (keyCode == KeyEvent.VK_W) {
+//            keyComboWSAD[0] = true;
+//        }
+//        if (keyCode == KeyEvent.VK_S) {
+//            keyComboWSAD[1] = true;
+//        }
+//        if (keyCode == KeyEvent.VK_A) {
+//            keyComboWSAD[2] = true;
+//        }
+//        if (keyCode == KeyEvent.VK_D) {
+//            keyComboWSAD[3] = true;
+//        }
+//        gameManager.handleKeyboardMove(keyComboWSAD);
+//        
+//
+//    @Override
+//    public void keyReleased(KeyEvent ke) {
+//        int keyCode = ke.getKeyCode();
+//        if (keyCode == KeyEvent.VK_W) {
+//            keyComboWSAD[0] = false;
+//        }
+//        if (keyCode == KeyEvent.VK_S) {
+//            keyComboWSAD[1] = false;
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_A) {
+//            keyComboWSAD[2] = false;
+//        }
+//        if (ke.getKeyCode() == KeyEvent.VK_D) {
+//            keyComboWSAD[3] = false;
+//        }
+//    }

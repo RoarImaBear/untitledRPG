@@ -57,7 +57,7 @@ public class Limits {
         this.startX = x;
         this.startY = y;
         this.endX = x + this.lengthX;
-        this.endY = y + this.endY;
+        this.endY = y + this.lengthY;
         this.centerX = startX + this.lengthX/2;
         this.centerY = startY + this.lengthY/2;
     }

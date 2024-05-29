@@ -15,9 +15,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 import unnamedRPG.model.entities.Entity;
-import unnamedRPG.model.entities.Player;
 import static unnamedRPG.UnnamedRPG.DECORATOR;
-import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
  *

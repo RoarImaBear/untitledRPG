@@ -92,7 +92,7 @@ import unnamedRPG.model.entities.Player;
         
         private void paintHPBar(Graphics g){
             int maxHPLength = frameLimits.lengthX/3;
-            int currentHPLength = player.currentHP* (maxHPLength/player.maxHP); 
+            int currentHPLength = (int) ((double) player.currentHP * ((double) maxHPLength / player.maxHP));
             int yMargin = 20;
             
             g.setColor(DECORATOR.interfaceBGColors(0));
@@ -107,7 +107,7 @@ import unnamedRPG.model.entities.Player;
         }
         private void paintStaminaBar(Graphics g){
             int maxStaminaLength = frameLimits.lengthX/3;
-            int currentStaminaLength = player.currentStamina* (maxStaminaLength/player.maxStamina);
+            int currentStaminaLength = (int) ((double)player.currentStamina* ((double)maxStaminaLength/player.maxStamina));
             int yMargin = 50;
             
             g.setColor(DECORATOR.interfaceBGColors(0));

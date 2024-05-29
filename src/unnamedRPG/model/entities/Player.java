@@ -1,6 +1,7 @@
 package unnamedRPG.model.entities;
 
 import java.awt.Color;
+import java.awt.Point;
 import unnamedRPG.items.Armour;
 import unnamedRPG.items.BronzeSpear;
 import unnamedRPG.items.Weapon;
@@ -24,15 +25,14 @@ public class Player extends Entity{
         super();
         this.name = "Player";
         this.token = ImageAssets.playerIcon;
-        
         this.tokenColor = new Color(200, 200, 200);
         this.tokenString = "@";
         
         
         this.maxHP = 50;
-        this.currentHP = 35;
+        this.currentHP = 50;
         this.maxStamina = 35;
-        this.currentStamina = 14;
+        this.currentStamina = 35;
         this.dead = false;
         
         this.proficiency = rollDice(1, 3);
