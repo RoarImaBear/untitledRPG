@@ -65,22 +65,27 @@ public class Entity {
     }
     
     
-    public void attack(Entity enemy) {
+    public String attack(Entity enemy) {
+        String outcome = "";
         int attackValue = proficiency + rollDice(attackDiceCount, attackDiceLimit);
         int enemyAgility = enemy.agility;
        
         if (attackValue > enemyAgility){
+            outcome += "It's a HIT ";
             int damageValue = proficiency + rollDice(damageDiceCount, damageDiceLimit); 
             damageValue -= enemy.protection;
             
             if (damageValue > 0){
                 enemy.currentHP -= damageValue;
+                outcome+= "dealing " + damageValue + "damage.";
             }
+        } else if ( enemyAgility > (attackValue * 3) ){
+            String counterOutcome = enemy.attack(this); // Triggers enemy to get an extra attack.
+            outcome = "but it was a miss, prompting the enemy to... \n" + "COUNTER!\n" + counterOutcome + "\n";
+        } else {
+            outcome = "but it was a miss.\n";
         }
-        if ( enemyAgility > (attackValue * 3) ){
-            enemy.attack(this); // Triggers enemy to get an extra attack.
-        }
-        
+        return outcome;
     }
     
     

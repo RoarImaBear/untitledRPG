@@ -15,7 +15,7 @@ import unnamedRPG.display.Limits;
     JTextArea textArea;
         
     public Console(Limits boardLimits, Limits frameLimits)  {
-        this.setBounds(frameLimits.endX - 411, boardLimits.endY + 15, 395, 190);
+        this.setBounds(frameLimits.endX - 411, boardLimits.endY + 15, 395, 180);
         this.textArea = new JTextArea(10, 20);
         setViewportView(textArea);
         

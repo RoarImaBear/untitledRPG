@@ -33,7 +33,7 @@ public class GameMaster implements Runnable {
         this.map = gameBoard.map;
         this.display = display;
         
-        this.arena = new Arena();
+        this.arena = new Arena(display);
         arena.run();
     }
 
@@ -44,8 +44,6 @@ public class GameMaster implements Runnable {
             if(clockCounter%gamePace == 0){
                 gameTick();
             }
-                    
-            arena.performRound();
             entitiesMove(player);
             clockCounter++;
         });
