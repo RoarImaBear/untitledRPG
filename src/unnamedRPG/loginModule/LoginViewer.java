@@ -4,21 +4,22 @@
  */
 package unnamedRPG.loginModule;
 
-import java.util.concurrent.CountDownLatch;
+import java.awt.Graphics;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import static unnamedRPG.UnnamedRPG.IMAGE_ASSETS;
+import unnamedRPG.utilities.ImageAssets;
 
 /**
  *
  * @author sdyma
  */
 public class LoginViewer extends JFrame {
-    
-    protected JPanel userPanel = new JPanel();
-    protected JPanel calcPanel = new JPanel();
+
+    protected JPanel userPanel;
     protected JLabel playerName = new JLabel("PlayerName: ");
     protected JLabel password = new JLabel("Password: ");
     protected JTextField nameInput = new JTextField(10);
@@ -26,10 +27,23 @@ public class LoginViewer extends JFrame {
     protected JLabel wrongName = new JLabel("Wrong username or password.");
     protected JButton loginButton = new JButton("Log in");
     
-    
+
     public LoginViewer() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(600, 200);
+        this.setSize(600, 380);
+        this.setTitle("UnnamedRPG");
+
+        this.userPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                if (ImageAssets.loginBackground != null) {
+                    g.drawImage(ImageAssets.loginBackground, 0, 50, getWidth(), getHeight(), this);
+                }
+            }
+
+        };
 
         userPanel.add(playerName);
         userPanel.add(nameInput);
@@ -37,15 +51,5 @@ public class LoginViewer extends JFrame {
         userPanel.add(passwordInput);
         userPanel.add(loginButton);
         this.add(userPanel);
-    }
-
-    void displayExitScreen (int score){
-        JPanel quitPanel = new JPanel();
-            JLabel scoreLabel = new JLabel("Your score: " + score);
-            quitPanel.add(scoreLabel);
-            this.getContentPane().removeAll();
-            this.add(quitPanel);
-            this.revalidate();
-            this.repaint();
     }
 }
