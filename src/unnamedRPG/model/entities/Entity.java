@@ -17,7 +17,7 @@ public class Entity {
     public Color auraColor;
     public int[] currentXY = new int[2];
     public int scoreValue;
-    public int currentScore;
+    public int currentScore = 0;
     public int maxScore;
     
     
@@ -90,7 +90,7 @@ public class Entity {
     public String loot(Entity targetEntity){
         int lootScore = targetEntity.scoreValue;
         this.currentScore += lootScore;
-        this.looted = true;
+        targetEntity.looted = true;
         return "" + lootScore + "shards";
     }
     

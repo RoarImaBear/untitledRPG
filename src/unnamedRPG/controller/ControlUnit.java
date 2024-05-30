@@ -9,6 +9,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import unnamedRPG.display.Display;
 import unnamedRPG.display.Limits;
 import unnamedRPG.display.components.GameBoard;
@@ -24,7 +27,7 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
     Display display;
     Limits boardLimits;
     Limits frameLimits;
-    GameMaster gameManager;
+    GameMaster gameMaster;
 
     public ControlUnit(GameBoard gameBoard, Limits boardLimits, Limits frameLimits) {
         this.gameBoard = gameBoard;
@@ -38,7 +41,7 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
     }
 
     public void connectGameManager(GameMaster gameManager) {
-        this.gameManager = gameManager;
+        this.gameMaster = gameManager;
     }
 
     @Override
@@ -51,6 +54,11 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
         
         if (keyCode == KeyEvent.VK_ESCAPE) {
             System.out.println("esc");
+            try {
+                gameMaster.saveGame();
+            } catch (SQLException ex) {
+                System.out.println("Couldn't save game. SQL error: " + ex);
+            }
             System.exit(0);
         }
         if (keyCode == KeyEvent.VK_X) {
@@ -79,8 +87,8 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
         }
 
         if (keyCode == KeyEvent.VK_SPACE) {
-            int x = gameManager.player.currentXY[0];
-            int y = gameManager.player.currentXY[1];
+            int x = gameMaster.player.currentXY[0];
+            int y = gameMaster.player.currentXY[1];
             gameBoard.goTo(x, y);
             System.out.println("GO TO PLAYER");
         }
@@ -116,7 +124,7 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
         int mouseY = e.getY() - 24;
      
         if (mouseY < boardLimits.endY) {
-            gameManager.handleClick(mouseX, mouseY);
+            gameMaster.handleClick(mouseX, mouseY);
         } else {
             System.out.println("Not on map");
         }

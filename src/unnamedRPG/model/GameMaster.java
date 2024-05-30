@@ -1,7 +1,9 @@
 package unnamedRPG.model;
 
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 import javax.swing.Timer;
+import static unnamedRPG.UnnamedRPG.DATABASE;
 import static unnamedRPG.UnnamedRPG.RANDOM;
 import unnamedRPG.display.Display;
 import unnamedRPG.display.components.GameBoard;
@@ -32,7 +34,7 @@ public class GameMaster implements Runnable {
         this.gameBoard = gameBoard;
         this.map = gameBoard.map;
         this.display = display;
-        
+        System.out.println("Game master: " + player);
         this.arena = new Arena(display);
         arena.run();
     }
@@ -44,6 +46,7 @@ public class GameMaster implements Runnable {
             if(clockCounter%gamePace == 0){
                 gameTick();
             }
+            player.levelCheck();
             entitiesMove(player);
             clockCounter++;
         });
@@ -73,6 +76,10 @@ public class GameMaster implements Runnable {
         player.currentXY[0] = x;
         player.currentXY[1] = y;
         display.appendConsole("Player spawned.\n");
+    }
+    
+    public void saveGame() throws SQLException{
+        DATABASE.savePlayerStats(player.maxHP, player.maxStamina, player.currentScore, player.maxScore);
     }
     
     private void entitiesMove(Player player){
