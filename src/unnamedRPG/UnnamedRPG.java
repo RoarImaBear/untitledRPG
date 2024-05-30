@@ -7,6 +7,8 @@ import unnamedRPG.controller.ControlUnit;
 import unnamedRPG.display.Display;
 import unnamedRPG.display.Limits;
 import unnamedRPG.display.components.GameBoard;
+import unnamedRPG.loginModule.LoginViewer;
+import unnamedRPG.loginModule.LoginManager;
 import unnamedRPG.model.GameMaster;
 import unnamedRPG.model.entities.Player;
 import unnamedRPG.utilities.Decorator;
@@ -24,7 +26,7 @@ public class UnnamedRPG {
     
     public static Random RANDOM = new Random();
     public static Decorator DECORATOR = new Decorator();
-    public static ImageAssets IMAGE_ASSETS;    
+    public static ImageAssets IMAGE_ASSETS = new ImageAssets();   
     
     public static final int MAP_WIDTH = 1440;
     public static final int MAP_LENGTH = 900;
@@ -32,14 +34,16 @@ public class UnnamedRPG {
     public static final int FRAME_WIDTH = DISPLAY_SIZE.width;
     public static final int FRAME_HEIGHT = DISPLAY_SIZE.height;
     public static final int UI_HEIGHT = 256;
+    public static DBManager DATABASE;
 
     public static void main(String[] args) {
-        
-        DBManager dbManager = new DBManager();
-        System.out.println("Connection: " + dbManager.getConnection());
-        
-        IMAGE_ASSETS = new ImageAssets();
-        
+        // Instantiate DB
+        DATABASE = new DBManager();
+        System.out.println("Connection: " + DATABASE.getConnection());
+
+        LoginManager loginManager = new LoginManager();        
+        loginManager.login();
+
         Limits boardLimits = new Limits(0, 0, FRAME_WIDTH, FRAME_HEIGHT - UI_HEIGHT);
         Limits frameLimits = new Limits(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
