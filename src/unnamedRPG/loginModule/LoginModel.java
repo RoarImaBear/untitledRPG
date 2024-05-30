@@ -4,6 +4,7 @@
  */
 package unnamedRPG.loginModule;
 
+import java.util.concurrent.CountDownLatch;
 import static unnamedRPG.UnnamedRPG.DATABASE;
 
 /**
@@ -13,20 +14,24 @@ import static unnamedRPG.UnnamedRPG.DATABASE;
 public class LoginModel {
     
     LoginViewer viewer;
-    public String username = null;
+    private final CountDownLatch latch;
+    public String playerName = null;
     public String password = null;
     
-    public LoginModel(LoginViewer loginViewer) {
+    public LoginModel(LoginViewer loginViewer, CountDownLatch latch) {
+        this.latch = latch;
         this.viewer = loginViewer;
     }
     
     public boolean userLogin(){
-        username = viewer.unInput.getText();
-        password = viewer.pwInput.getText();
-        if (username != null && password != null) {
-            if (DATABASE.checkUser(username, password));
+        playerName = viewer.nameInput.getText();
+        password = viewer.passwordInput.getText();
+        if (playerName != null && password != null) {
+            if (DATABASE.manageUserLogin(playerName, password));
             {
-                viewer.show = false;
+                System.out.println("Welcome " + playerName + ".");
+                DATABASE.updatePlayerName(playerName);
+                latch.countDown();
                 return true;
             }
         }

@@ -41,4 +41,11 @@ public class Player extends Entity{
         equipWeapon(new BronzeSpear());
     }
 
+    public void setStats(int hp, int stamina, int score){
+        this.maxHP = hp;
+        this.currentHP = maxHP;
+        this.maxStamina = stamina;
+        this.currentStamina = maxStamina;
+        this.currentScore = score; 
+    }   
 }

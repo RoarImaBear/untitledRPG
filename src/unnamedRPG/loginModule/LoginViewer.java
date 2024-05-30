@@ -4,6 +4,7 @@
  */
 package unnamedRPG.loginModule;
 
+import java.util.concurrent.CountDownLatch;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,24 +19,22 @@ public class LoginViewer extends JFrame {
     
     protected JPanel userPanel = new JPanel();
     protected JPanel calcPanel = new JPanel();
-    protected JLabel uName = new JLabel("Username: ");
-    protected JLabel pWord = new JLabel("Password: ");
-    protected JTextField unInput = new JTextField(10);
-    protected JTextField pwInput = new JTextField(10);
+    protected JLabel playerName = new JLabel("PlayerName: ");
+    protected JLabel password = new JLabel("Password: ");
+    protected JTextField nameInput = new JTextField(10);
+    protected JTextField passwordInput = new JTextField(10);
     protected JLabel wrongName = new JLabel("Wrong username or password.");
     protected JButton loginButton = new JButton("Log in");
     
-    protected boolean show;
     
     public LoginViewer() {
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 200);
 
-        userPanel.add(uName);
-        userPanel.add(unInput);
-        userPanel.add(pWord);
-        userPanel.add(pwInput);
+        userPanel.add(playerName);
+        userPanel.add(nameInput);
+        userPanel.add(password);
+        userPanel.add(passwordInput);
         userPanel.add(loginButton);
         this.add(userPanel);
     }

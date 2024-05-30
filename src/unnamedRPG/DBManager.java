@@ -8,15 +8,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import unnamedRPG.loginModule.LoginController;
+import unnamedRPG.model.entities.Player;
 
 public final class DBManager {
 
-    private static final String USER_NAME = "pdc";
-    private static final String PASSWORD = "pdc";
     private static final String URL = "jdbc:derby:Game_EDB; create=true";
+    
+    public String playerName = "";
     
     
     Connection conn;
@@ -25,7 +24,10 @@ public final class DBManager {
         establishConnection();
     }
 
-
+    public void updatePlayerName(String name){
+        this.playerName = name;
+    }
+    
     public Connection getConnection() {
         return this.conn;
     }
@@ -38,151 +40,119 @@ public final class DBManager {
             Statement statement = conn.createStatement();
             String tableName = "UserInfo";
 
-            if (!checkTableExisting(tableName)) {
-                statement.executeUpdate("CREATE TABLE " + tableName + " (userid VARCHAR(12), password VARCHAR(12), score INT)");
+            if (!checkTableExists(tableName)) {
+                statement.executeUpdate("CREATE TABLE " + tableName + " (userid VARCHAR(12), password VARCHAR(12),"
+                        + " existingCharacter BOOLEAN, hp INT, stamina INT, score INT)");
             }
-            statement.close();
-            
-            
+            statement.close();  
         } catch (SQLException ex) {
-            Logger.getLogger("SQL Exception: " + ex.getMessage());
+            System.out.println("SQL Exception establishConnection: " + ex);
         }    
     }
+    
+    public Player getPlayerChar() throws SQLException{
+        Player playerChar = new Player("");
+        ResultSet resultSet = queryDB("SELECT * FROM APP.USERINFO WHERE USERID = " + "'" + playerName + "'");
+        Statement statement = conn.createStatement();;
+        
+        while(resultSet.next()){
+            System.out.println("QueryResult: " +  resultSet.getString("EXISTINGCHARACTER"));
+            if(resultSet.getBoolean("existingCharacter")){
+                System.out.println("Character exists.\nLoading character.");
+                int hp = resultSet.getInt("HP");
+                int stamina = resultSet.getInt("STAMINA");
+                int score = resultSet.getInt("SCORE");
+                System.out.println("Char stats: " +hp+stamina+score);
+                playerChar.setStats(hp, stamina, score);
+            } else {
+                System.out.println("Creating new character");
+                String query = ("UPDATE UserInfo SET EXISTINGCHARACTER = true WHERE USERID = 'seb'");
+                statement.executeUpdate(query);
+            }
+        }
+        statement.close();
+        System.out.println(playerChar.name + ": " + playerChar.currentHP );
+        return playerChar;
+    }
 
+    public ResultSet queryDB(String sql) {
 
-    public boolean checkUser(String username, String password) {
+        Connection connection = this.conn;
+        Statement statement;
+        ResultSet resultSet = null;
+
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception queryDB: " + ex);
+        }
+        return resultSet;
+    }
+
+    public void updateDB(String sql) {
+
+        Connection connection = this.conn;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception updateDB: " + ex);
+        }
+    }
+    
+    private boolean checkTableExists(String newTableName) {
+        boolean exists = false;
+        try {
+            System.out.println("Checking if table exists");
+            DatabaseMetaData dbMetaData = conn.getMetaData();
+            ResultSet resultSetMetaData = dbMetaData.getTables(null, null, null, null);
+            while (resultSetMetaData.next()) {
+                String tableName = resultSetMetaData.getString("TABLE_NAME");
+                if (tableName.compareToIgnoreCase(newTableName) == 0) {
+                    System.out.println(tableName + " exists");
+                    exists = true;
+                }
+            }
+            if (resultSetMetaData != null) {
+                resultSetMetaData.close();
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception checkTableExists: " + ex);
+        }
+        return exists;
+    }
+    
+    // UserLogin
+    public boolean manageUserLogin(String username, String password) {
         boolean userCheck = false;
         try {
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT userid, password, score FROM UserInfo "
+            ResultSet rs = statement.executeQuery("SELECT userid, password FROM UserInfo "
                     + "WHERE userid = '" + username + "'");
             if (rs.next()) {
                 String pass = rs.getString("password");
-                System.out.println("***" + pass);
-                System.out.println("found user");
+                System.out.println("User exists.");
                 if (password.compareTo(pass) == 0) {
-//                    score = rs.getInt("score");
                     userCheck = true;
                 } else {
                     userCheck = false;
                 }
             } else {
-                System.out.println("no such user");
-                statement.executeUpdate("INSERT INTO UserInfo "
-                        + "VALUES('" + username + "', '" + password + "', 0)");
+                String query = ("INSERT INTO UserInfo (userid, password, existingCharacter) VALUES ('" 
+                        + username + "', '" + password + "', false)");
+                System.out.println("No such user.");
+                System.out.println("Creating new user.");
+                statement.executeUpdate(query);
                 userCheck = true;
             }
         } catch (SQLException ex) {
-            System.out.println("SQL Exception: " + ex);
+            System.out.println("SQL Exception manageUserLogin: " + ex);
         }
         return userCheck;
     }
-
-
-    
-    private boolean checkTableExisting(String newTableName) {
-        boolean flag = false;
-        try {
-
-            System.out.println("check existing tables.... ");
-            String[] types = {"TABLE"};
-            DatabaseMetaData dbmd = conn.getMetaData();
-            ResultSet rsDBMeta = dbmd.getTables(null, null, null, null);//types);
-            //Statement dropStatement=null;
-            while (rsDBMeta.next()) {
-                String tableName = rsDBMeta.getString("TABLE_NAME");
-                if (tableName.compareToIgnoreCase(newTableName) == 0) {
-                    System.out.println(tableName + "  is there");
-                    flag = true;
-                }
-            }
-            if (rsDBMeta != null) {
-                rsDBMeta.close();
-            }
-        } catch (SQLException ex) {
-        }
-        return flag;
-    }
-    
 }
-
-//
-//    public void closeConnections() {
-//        if (conn != null) {
-//            try {
-//                conn.close();
-//            } catch (SQLException ex) {
-//                System.out.println("Couldn't close connection " + ex.getMessage());
-//            }
-//        }
-//    }
-//
-//    public ResultSet queryDB(String sql) {
-//
-//        Connection connection = this.conn;
-//        Statement statement = null;
-//        ResultSet resultSet = null;
-//
-//        try {
-//            statement = connection.createStatement();
-//            resultSet = statement.executeQuery(sql);
-//
-//        } catch (SQLException ex) {
-//            System.out.println("3 " + ex.getMessage());
-//        }
-//        return resultSet;
-//    }
-//
-//    public void updateDB(String sql) {
-//
-//        Connection connection = this.conn;
-//        Statement statement = null;
-//        ResultSet resultSet = null;
-//
-//        try {
-//            statement = connection.createStatement();
-//            statement.executeUpdate(sql);
-//
-//        } catch (SQLException ex) {
-//            System.out.println("4 " + ex.getMessage());
-//        }
-//    }
-//    
-//    // SQL query searching all schemas for tables with name matching tableName.
-//    // If exists, it's appended to ResultSet tableCheck before being deleted.
-//    public void handleExistingTable(String tableName){
-//        Connection connection = this.conn;
-//        
-//        try{
-//            DatabaseMetaData metaData = connection.getMetaData();
-//            ResultSet tableCheck = metaData.getTables(null, null, tableName, null);
-//            
-//            if(tableCheck.next()){
-//                String dropTable = "DROP TABLE " + tableName;
-//                updateDB(dropTable);
-//                System.out.println("Existing table " +tableName+ " deleted.");
-//            }
-//            
-//            
-//            tableCheck.close();
-//        }catch (SQLException ex){
-//            System.out.println("Error in deleting existing table. " + ex.getMessage());
-//        } 
-//    }
-//    
-//    public void dbSetup() {
-//        try {
-//            conn = DriverManager.getConnection(url, dbusername, dbpassword);
-//            Statement statement = conn.createStatement();
-//            String tableName = "UserInfo";
-//
-//            if (!checkTableExisting(tableName)) {
-//                statement.executeUpdate("CREATE TABLE " + tableName + " (userid VARCHAR(12), password VARCHAR(12), score INT)");
-//            }
-//            //statement.executeUpdate("INSERT INTO " + tableName + " VALUES('Fiction',0),('Non-fiction',10),('Textbook',20)");
-//            statement.close();
-//        } catch (Throwable e) {
-//            System.out.println("dbSetup error" + e.getMessage());
-//
-//        }
-//    }

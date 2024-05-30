@@ -4,28 +4,33 @@
  */
 package unnamedRPG.loginModule;
 
+import java.util.concurrent.CountDownLatch;
+import unnamedRPG.model.entities.Player;
+
 /**
  *
  * @author sdyma
  */
 public class LoginManager {
 
-    private LoginViewer loginViewer;
-    private LoginModel loginModel;
-    private LoginController loginController;
+    private final LoginViewer loginViewer;
+    private final LoginModel loginModel;
+    private final LoginController loginController;
+    private final CountDownLatch latch;
     
     public LoginManager() {    
+        this.latch = new CountDownLatch(1);
         this.loginViewer = new LoginViewer();
-        this.loginModel = new LoginModel(loginViewer);
+        this.loginModel = new LoginModel(loginViewer, latch);
         this.loginController = new LoginController(loginViewer, loginModel);
     }
-
     
     public void login(){
-        loginViewer.show = true;
         loginViewer.setVisible(true);
-        while(loginViewer.show){
-            System.out.println(loginViewer.show);
+        try {
+            latch.await();
+        } catch (InterruptedException e){
+            Thread.currentThread().interrupt();
         }
         loginViewer.setVisible(false);
     }

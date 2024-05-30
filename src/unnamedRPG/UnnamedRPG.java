@@ -2,6 +2,7 @@ package unnamedRPG;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import java.util.Random;
 import unnamedRPG.controller.ControlUnit;
 import unnamedRPG.display.Display;
@@ -36,19 +37,19 @@ public class UnnamedRPG {
     public static final int UI_HEIGHT = 256;
     public static DBManager DATABASE;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // Instantiate DB
         DATABASE = new DBManager();
         System.out.println("Connection: " + DATABASE.getConnection());
 
         LoginManager loginManager = new LoginManager();        
         loginManager.login();
+        Player player = DATABASE.getPlayerChar();
 
         Limits boardLimits = new Limits(0, 0, FRAME_WIDTH, FRAME_HEIGHT - UI_HEIGHT);
         Limits frameLimits = new Limits(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
         GameBoard gameBoard = new GameBoard(boardLimits);
-        Player player = new Player("Creature");
         
         ControlUnit controlUnit = new ControlUnit(gameBoard, boardLimits, frameLimits);    
         Display display = new Display(player, controlUnit, gameBoard, boardLimits, frameLimits);   

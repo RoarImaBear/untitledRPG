@@ -33,10 +33,8 @@ public class LoginController extends JFrame{
     }
     
     void handleLoginButton(){
-        System.out.println("You clicked the login button");
-        
         if (model.userLogin()){
-            System.out.println("Logged IN");
+            System.out.println("You've successfully logged in.");
         } else {
             System.out.println("Couldn't login.");
         }
