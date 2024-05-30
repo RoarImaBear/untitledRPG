@@ -1,7 +1,9 @@
 package unnamedRPG.display.components;
 
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import static unnamedRPG.UnnamedRPG.DECORATOR;
 import unnamedRPG.display.Limits;
 
@@ -13,10 +15,12 @@ import unnamedRPG.display.Limits;
     public class Console extends JScrollPane {
 
     JTextArea textArea;
+    JScrollBar scrollBar;
         
     public Console(Limits boardLimits, Limits frameLimits)  {
         this.setBounds(frameLimits.endX - 411, boardLimits.endY + 15, 395, 180);
         this.textArea = new JTextArea(10, 20);
+        this.scrollBar = this.getVerticalScrollBar();
         setViewportView(textArea);
         
         textArea.setEditable(false);  
@@ -26,9 +30,6 @@ import unnamedRPG.display.Limits;
     
     public void appendText(String text) {
         textArea.append(text);
+        scrollBar.setValue(scrollBar.getMaximum());
     } 
-
-    
-
-
 }
