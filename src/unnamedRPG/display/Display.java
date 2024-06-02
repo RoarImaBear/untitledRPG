@@ -17,14 +17,14 @@ import unnamedRPG.model.entities.Player;
 
 public class Display implements Runnable {
     
-    Timer displayClock;
+    private Timer displayClock;
     
-    JFrame frame;
-    UIPane UIPane;
-    GameBoard gameBoard;
-    ControlUnit controlUnit;
-    Limits boardLimits;
-    Limits frameLimits;
+    private JFrame frame;
+    private UIPane UIPane;
+    private GameBoard gameBoard;
+    private ControlUnit controlUnit;
+    private Limits boardLimits;
+    private Limits frameLimits;
     
     public int frameCounter = 0;
 

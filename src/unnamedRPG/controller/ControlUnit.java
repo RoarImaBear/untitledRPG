@@ -23,11 +23,11 @@ import unnamedRPG.model.GameMaster;
  */
 public class ControlUnit implements KeyListener, ComponentListener, MouseListener, MouseWheelListener, MouseMotionListener {
 
-    GameBoard gameBoard;
-    Display display;
-    Limits boardLimits;
-    Limits frameLimits;
-    GameMaster gameMaster;
+    private GameBoard gameBoard;
+    private Display display;
+    private Limits boardLimits;
+    private Limits frameLimits;
+    private GameMaster gameMaster;
 
     public ControlUnit(GameBoard gameBoard, Limits boardLimits, Limits frameLimits) {
         this.gameBoard = gameBoard;
