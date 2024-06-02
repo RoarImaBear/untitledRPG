@@ -15,28 +15,28 @@ import static unnamedRPG.UnnamedRPG.FRAME_WIDTH;
  */
 public class GameBoard extends JComponent {
 
-    public Map map;
+    private  Map map;
 
-    Limits boardDisplayLimits;
+    private Limits boardDisplayLimits;
 
-    Limits boardTileLimits;
+    private Limits boardTileLimits;
 
-    int tileSize;
-    int baseTileSize = 16;
+    private int tileSize;
+    private int baseTileSize = 16;
 
-    int tileCountX;
-    int tileCountY;
-    int tileScale = 8;
+    private int tileCountX;
+    private int tileCountY;
+    private int tileScale = 8;
     
-    int zoomOutLimit = 4;
-    int zoomInLimit = 8;
+    private int zoomOutLimit = 4;
+    private int zoomInLimit = 8;
 
     public GameBoard(Limits boardLimits) {
         this.map = new Map();
         this.boardDisplayLimits = boardLimits;
         
-        tileCountX = boardDisplayLimits.lengthX/ (tileScale*baseTileSize);
-        tileCountY = boardDisplayLimits.lengthY/ (tileScale*baseTileSize) + 1;
+        tileCountX = boardDisplayLimits.getLengthX() / (tileScale*baseTileSize);
+        tileCountY = boardDisplayLimits.getLengthY()/ (tileScale*baseTileSize) + 1;
         
         this.boardTileLimits = new Limits(0, 0, tileCountX, tileCountY);
 
@@ -50,15 +50,21 @@ public class GameBoard extends JComponent {
 
         g.setColor(BLACK);
 
-        g.fillRect(boardDisplayLimits.startX, boardDisplayLimits.startY, boardDisplayLimits.lengthX, boardDisplayLimits.lengthY);
+        g.fillRect(boardDisplayLimits.getStartX(), boardDisplayLimits.getStartY(), boardDisplayLimits.getLengthX(), boardDisplayLimits.getLengthY());
 
-        for (int y = boardTileLimits.startY, displayY = boardDisplayLimits.startY; y < boardTileLimits.endY; y++, displayY += tileSize) {
-            for (int x = boardTileLimits.startX, displayX = boardDisplayLimits.startX; x < boardTileLimits.endX; x++, displayX += tileSize) {
+        for (int y = boardTileLimits.getStartY(), displayY = boardDisplayLimits.getStartY(); y < boardTileLimits.getEndY(); y++, displayY += tileSize) {
+            for (int x = boardTileLimits.getStartX(), displayX = boardDisplayLimits.getStartX(); x < boardTileLimits.getEndX(); x++, displayX += tileSize) {
                 map.tiles[x][y].paint(g, displayX, displayY, tileScale);
             }
         }
     }
 
+    public Map getMap() {
+        return map;
+    }
+
+    
+    
     public void changeScale(int value) {
         tileScale += value;
         if (tileScale < zoomOutLimit) {
@@ -74,8 +80,8 @@ public class GameBoard extends JComponent {
     void updateBoardScale(int tileScale) {
         tileSize = baseTileSize * tileScale;
         
-        int newLengthX = boardDisplayLimits.lengthX / tileSize;
-        int newLengthY = boardDisplayLimits.lengthX / tileSize;
+        int newLengthX = boardDisplayLimits.getLengthX() / tileSize;
+        int newLengthY = boardDisplayLimits.getLengthX() / tileSize;
         
         boardTileLimits.resizeLimits(newLengthX, newLengthY);
     }
@@ -107,7 +113,7 @@ public class GameBoard extends JComponent {
         tileX = (pointerX) / tileSize;
         tileY = (pointerY) / tileSize;
 
-        Tile currentTile = map.tiles[boardTileLimits.startX + tileX][boardTileLimits.startY + tileY];
+        Tile currentTile = map.tiles[boardTileLimits.getStartX() + tileX][boardTileLimits.getStartY() + tileY];
         if (currentTile.terrainType != 'ϒ') {
             currentTile.terrainType = 'ϒ';
         } else {
@@ -119,6 +125,6 @@ public class GameBoard extends JComponent {
         int tileY;
         tileX = (pointerX) / tileSize;
         tileY = (pointerY) / tileSize;
-        return new int[]{boardTileLimits.startX + tileX, boardTileLimits.startY + tileY};
+        return new int[]{boardTileLimits.getStartX() + tileX, boardTileLimits.getStartY() + tileY};
     }
 }

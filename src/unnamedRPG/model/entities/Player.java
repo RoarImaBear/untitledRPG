@@ -38,6 +38,7 @@ public class Player extends Entity{
         
         equipWeapon(new BronzeSpear());
     }
+   
 
     public void setStats(int hp, int stamina, int score, int maxScore){
         this.maxHP = hp;
@@ -62,5 +63,6 @@ public class Player extends Entity{
         this.currentScore = 0;
         return "You've leveled up!";
     }
+
     
 }

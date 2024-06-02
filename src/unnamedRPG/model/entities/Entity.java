@@ -55,14 +55,16 @@ public class Entity {
         this.name = name;
     }
     
-        
+    public int[] getXY() {
+       return currentXY;
+    } 
+    
     public void staminaRegen(){   
         currentStamina += staminaRegen;
         if (currentStamina > maxStamina){
             currentStamina = maxStamina;
         }
     }
-    
     
     public String attack(Entity enemy) {
         String outcome = "";

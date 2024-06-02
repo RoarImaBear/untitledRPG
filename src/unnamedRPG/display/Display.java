@@ -34,7 +34,7 @@ public class Display implements Runnable {
         this.controlUnit = controlUnit;
         
         this.frame = new JFrame("Game");
-        this.frame.setSize(frameLimits.lengthX, frameLimits.lengthY);
+        this.frame.setSize(frameLimits.getLengthX(), frameLimits.getLengthY());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

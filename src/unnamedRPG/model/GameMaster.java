@@ -16,14 +16,14 @@ import unnamedRPG.model.entities.Player;
  */
 public class GameMaster implements Runnable {
 
-    Timer gameClock;
-    int clockCounter;
-    int gamePace = 60;
-    char[] xy = {'x','y'};
-    int[] plusMinusOne = {1, -1};
+    private Timer gameClock;
+    private int clockCounter;
+    private int gamePace = 60;
+    private char[] xy = {'x','y'};
+    private int[] plusMinusOne = {1, -1};
 
-    public Player player;
-    public GameBoard gameBoard;
+    private Player player;
+    private GameBoard gameBoard;
     Map map;
     Display display;
     
@@ -32,11 +32,15 @@ public class GameMaster implements Runnable {
     public GameMaster(Player player, GameBoard gameBoard, Display display) {
         this.player = player;
         this.gameBoard = gameBoard;
-        this.map = gameBoard.map;
+        this.map = gameBoard.getMap();
         this.display = display;
         System.out.println("Game master: " + player);
         this.arena = new Arena(display);
         arena.run();
+    }
+    
+    public int[] getPlayerXY(){
+        return player.getXY();
     }
 
     @Override

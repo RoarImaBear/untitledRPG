@@ -14,11 +14,11 @@ import unnamedRPG.display.Limits;
  */
     public class Console extends JScrollPane {
 
-    JTextArea textArea;
-    JScrollBar scrollBar;
+    private JTextArea textArea;
+    private JScrollBar scrollBar;
         
     public Console(Limits boardLimits, Limits frameLimits)  {
-        this.setBounds(frameLimits.endX - 411, boardLimits.endY + 15, 395, 180);
+        this.setBounds(frameLimits.getEndX() - 411, boardLimits.getEndY() + 15, 395, 180);
         this.textArea = new JTextArea(10, 20);
         this.scrollBar = this.getVerticalScrollBar();
         setViewportView(textArea);

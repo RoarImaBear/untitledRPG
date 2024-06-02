@@ -5,17 +5,17 @@ package unnamedRPG.display;
  * @author seb
  */
 public class Limits {
-    
-    public int startX;
-    public int startY;
-    public int endX;
-    public int endY;
-    
-    public int lengthX;
-    public int lengthY;
-    
-    public int centerX;
-    public int centerY;
+
+    private int startX;
+    private int startY;
+    private int endX;
+    private int endY;
+
+    private int lengthX;
+    private int lengthY;
+
+    private int centerX;
+    private int centerY;
 
     public Limits(int startX, int startY, int endX, int endY) {
         this.startX = startX;
@@ -24,15 +24,47 @@ public class Limits {
         this.endY = endY;
         this.lengthX = endX - startX;
         this.lengthY = endY - startY;
-        this.centerX = startX + lengthX/2;
-        this.centerY = startY + lengthY/2;
+        this.centerX = startX + lengthX / 2;
+        this.centerY = startY + lengthY / 2;
     }
-    
-    public void shiftPosition (char axis, int amount){
-        switch(axis){
+
+    public int getStartX() {
+        return startX;
+    }
+
+    public int getStartY() {
+        return startY;
+    }
+
+    public int getEndX() {
+        return endX;
+    }
+
+    public int getEndY() {
+        return endY;
+    }
+
+    public int getLengthX() {
+        return lengthX;
+    }
+
+    public int getLengthY() {
+        return lengthY;
+    }
+
+    public int getCenterX() {
+        return centerX;
+    }
+
+    public int getCenterY() {
+        return centerY;
+    }
+
+    public void shiftPosition(char axis, int amount) {
+        switch (axis) {
             case 'x':
                 startX += amount;
-                if(startX < 0){
+                if (startX < 0) {
                     startX = 0;
                     break;
                 }
@@ -42,7 +74,7 @@ public class Limits {
                 break;
             case 'y':
                 startY += amount;
-                if(startY < 0){
+                if (startY < 0) {
                     startY = 0;
                     break;
                 }
@@ -52,24 +84,24 @@ public class Limits {
                 break;
         }
     }
-    
+
     public void goTo(int x, int y) {
         this.startX = x;
         this.startY = y;
         this.endX = x + this.lengthX;
         this.endY = y + this.lengthY;
-        this.centerX = startX + this.lengthX/2;
-        this.centerY = startY + this.lengthY/2;
+        this.centerX = startX + this.lengthX / 2;
+        this.centerY = startY + this.lengthY / 2;
     }
-    
-    public void resizeLimits(int newLengthX, int newLengthY){
-        startX = centerX - newLengthX/2;
-        startY = centerY - newLengthY/2;
-        
-        if (startX < 0){
+
+    public void resizeLimits(int newLengthX, int newLengthY) {
+        startX = centerX - newLengthX / 2;
+        startY = centerY - newLengthY / 2;
+
+        if (startX < 0) {
             startX = 0;
         }
-        if (startY < 0){
+        if (startY < 0) {
             startY = 0;
         }
         lengthX = newLengthX + 1;
@@ -78,10 +110,4 @@ public class Limits {
         endY = startY + lengthY;
 
     }
-    
-    
-    //128; 64; 32; 16
-    
-    
-    
 }

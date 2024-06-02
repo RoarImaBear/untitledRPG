@@ -10,8 +10,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import unnamedRPG.display.Display;
 import unnamedRPG.display.Limits;
 import unnamedRPG.display.components.GameBoard;
@@ -87,8 +85,8 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
         }
 
         if (keyCode == KeyEvent.VK_SPACE) {
-            int x = gameMaster.player.currentXY[0];
-            int y = gameMaster.player.currentXY[1];
+            int x = gameMaster.getPlayerXY()[0];
+            int y = gameMaster.getPlayerXY()[1];
             gameBoard.goTo(x, y);
             System.out.println("GO TO PLAYER");
         }
@@ -123,7 +121,7 @@ public class ControlUnit implements KeyListener, ComponentListener, MouseListene
         int mouseX = e.getX() - 7;
         int mouseY = e.getY() - 24;
      
-        if (mouseY < boardLimits.endY) {
+        if (mouseY < boardLimits.getEndY()) {
             gameMaster.handleClick(mouseX, mouseY);
         } else {
             System.out.println("Not on map");

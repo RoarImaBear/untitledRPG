@@ -20,14 +20,14 @@ import unnamedRPG.model.entities.Player;
  */
 public class UIPane extends JLayeredPane  { 
     
-    Border border;
-    PlayerDashboard playerDashboard;
+    private Border border;
+    private PlayerDashboard playerDashboard;
     
-    Limits boardLimits;
-    Limits frameLimits;
-    JTextArea textArea;
-    JScrollPane scrollPane;
-    Console console;
+    private Limits boardLimits;
+    private Limits frameLimits;
+    private JTextArea textArea;
+    private JScrollPane scrollPane;
+    private Console console;
     
     int frameTracker = 0;
     public UIPane(Player player, Limits boardLimits, Limits frameLimits) {
