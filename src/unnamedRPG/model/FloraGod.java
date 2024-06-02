@@ -12,10 +12,10 @@ import static unnamedRPG.UnnamedRPG.RANDOM;
  */
 public class FloraGod {
     
-    Tile tiles[][];
+    private Tile tiles[][];
 
-    int mapLength;
-    int mapWidth;
+    private int mapLength;
+    private int mapWidth;
     
     public FloraGod(int mapWidth, int mapLength) {
         this.mapLength = mapLength;

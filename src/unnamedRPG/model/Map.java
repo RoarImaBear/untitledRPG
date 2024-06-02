@@ -14,13 +14,13 @@ import unnamedRPG.model.entities.Entity;
  */
 public class Map {
 
-    int width, length;
+    protected final int width, length;
 
-    public int[][] topography; // 0 - 4, depending on difficulty
+    protected int[][] topography; // 0 - 4, depending on difficulty
     public Tile[][] tiles;
-    public Entity[][] entities;
-    private FloraGod floraGod;
-    private FaunaGod faunaGod;
+    protected Entity[][] entities;
+    private final FloraGod floraGod;
+    protected final FaunaGod faunaGod;
 
 
     
@@ -42,6 +42,14 @@ public class Map {
         }
         floraGod.floraSpawn(tiles);
         faunaGod.spawnEnemies(tiles);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getLength() {
+        return length;
     }
     
     public void insertEntity(Entity entity, int x, int y) {

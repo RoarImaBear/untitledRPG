@@ -4,24 +4,20 @@
  */
 package unnamedRPG.utilities;
 
-import java.util.Random;
+import static unnamedRPG.UnnamedRPG.RANDOM;
 
 /**
  *
  * @author seb
  */
 public class Dice {
-    
-    static Random random = new Random();
-    
-    
     // Simulates table top dice roll
     public static int rollDice(int count, int limit) {
         
         int output = count;
         
         for(int i = 0; i < count; i++ ){
-            output += random.nextInt(limit);
+            output += RANDOM.nextInt(limit);
         }
         return output;
     }

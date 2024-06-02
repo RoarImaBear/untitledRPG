@@ -14,9 +14,9 @@ import unnamedRPG.model.entities.Ghoul;
  */
 public class FaunaGod {
     
-    Entity[][] entitiesMap;
-    int mapWidth;
-    int mapLength;
+    private final Entity[][] entitiesMap;
+    private final int mapWidth;
+    private final int mapLength;
     
     public FaunaGod (int mapWidth, int mapLength, Entity[][] entitiesMap) {
         this.entitiesMap = entitiesMap;

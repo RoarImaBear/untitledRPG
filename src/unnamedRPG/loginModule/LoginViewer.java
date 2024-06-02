@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import static unnamedRPG.UnnamedRPG.IMAGE_ASSETS;
 import unnamedRPG.utilities.ImageAssets;
 
 /**

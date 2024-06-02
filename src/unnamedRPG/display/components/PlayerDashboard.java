@@ -84,7 +84,7 @@ import unnamedRPG.model.entities.Player;
             g.fillRect(frameLimits.getStartX() + xMaringAura, yMargin, auraSize, auraSize);
             g.setColor(DECORATOR.interfaceBGColors(0));
             g.drawRect(frameLimits.getStartX() + xMaringAura, yMargin, auraSize, auraSize);
-            g.drawImage(player.equippedWeapon.image, xMarginImg, yMarginImg, imgSize, imgSize, null);
+            g.drawImage(player.equippedWeapon.getImage(), xMarginImg, yMarginImg, imgSize, imgSize, null);
 
         }
         

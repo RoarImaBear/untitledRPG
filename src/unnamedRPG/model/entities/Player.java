@@ -11,9 +11,7 @@ import unnamedRPG.utilities.ImageAssets;
  * @author seb
  */
 public class Player extends Entity{
-    
-    boolean deserter;
-    
+
     public Weapon equippedWeapon = new BronzeSpear();
     public Armour equippedArmour;
 

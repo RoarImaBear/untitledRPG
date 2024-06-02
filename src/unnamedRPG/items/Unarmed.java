@@ -8,14 +8,14 @@ package unnamedRPG.items;
 public class Unarmed extends Weapon {
     
     public Unarmed() {
-        this.name = "Unarmed";
-        this.ranged = false;
+        setName("Unarmed");
         
-        this.attackDiceCount = 2;
-        this.attackDiceLimit = 10;
+        setAttackDiceCount(2);
+        setAttackDiceLimit(10);
         
-        this.damageDiceCount = 1;
-        this.damageDiceLimit = 6;
+        setDamageDiceCount(1);
+        setDamageDiceLimit(4);
+        
     }
     
 }

@@ -24,8 +24,8 @@ public class GameMaster implements Runnable {
 
     private Player player;
     private GameBoard gameBoard;
-    Map map;
-    Display display;
+    private Map map;
+    private Display display;
     
     Arena arena;
 
@@ -139,7 +139,7 @@ public class GameMaster implements Runnable {
         int targetY = entityY;
         
                 // Check if in bounds
-        if (targetX < 0 || targetX >= map.width || targetY < 0 || targetY >= map.length){
+        if (targetX < 0 || targetX >= map.getWidth() || targetY < 0 || targetY >= map.getLength()){
             return;
         }
         
@@ -216,43 +216,3 @@ public class GameMaster implements Runnable {
     }
 
 }
-
-
-//
-//    public void handleKeyboardMove(boolean[] keyComboWSAD) {
-//        int inputCount = 0;
-//        for (int i = 0; i < keyComboWSAD.length; i++) {
-//            if (keyComboWSAD[i])
-//                inputCount++;
-//        }
-//
-//        if(inputCount == 1){
-//            if(keyComboWSAD[0]){
-//                //MOVE UP
-//            }
-//            if(keyComboWSAD[1]){
-//                // MOVE DOWN
-//            }
-//            if(keyComboWSAD[2]){
-//                //MOVE LEFT
-//            }
-//            if(keyComboWSAD[3]){
-//                // MOVE RIGHT
-//            }
-//        }
-//        
-//        if(inputCount == 1){
-//            if(keyComboWSAD[0]){
-//                //MOVE UP
-//            }
-//            if(keyComboWSAD[1]){
-//                // MOVE DOWN
-//            }
-//            if(keyComboWSAD[2]){
-//                //MOVE LEFT
-//            }
-//            if(keyComboWSAD[3]){
-//                // MOVE RIGHT
-//            }
-//        }
-//    }

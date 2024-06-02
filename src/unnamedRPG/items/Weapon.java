@@ -8,22 +8,66 @@ import java.awt.image.BufferedImage;
  */
 public class Weapon {
     
-    String name;
-    public BufferedImage image;
+    private String name;
+    private BufferedImage image;
     
-    public int damageDiceCount;
-    public int damageDiceLimit;
+    private int damageDiceCount;
+    private int damageDiceLimit;
     
-    public int attackDiceCount;
-    public int attackDiceLimit;
-    
-    
-    String type;
-    boolean ranged;
-    
+    private int attackDiceCount;
+    private int attackDiceLimit;
     
     public Weapon (){
         
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public int getDamageDiceCount() {
+        return damageDiceCount;
+    }
+
+    public int getDamageDiceLimit() {
+        return damageDiceLimit;
+    }
+
+    public int getAttackDiceCount() {
+        return attackDiceCount;
+    }
+
+    public int getAttackDiceLimit() {
+        return attackDiceLimit;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+
+    public void setDamageDiceCount(int damageDiceCount) {
+        this.damageDiceCount = damageDiceCount;
+    }
+
+    public void setDamageDiceLimit(int damageDiceLimit) {
+        this.damageDiceLimit = damageDiceLimit;
+    }
+
+    public void setAttackDiceCount(int attackDiceCount) {
+        this.attackDiceCount = attackDiceCount;
+    }
+
+    public void setAttackDiceLimit(int attackDiceLimit) {
+        this.attackDiceLimit = attackDiceLimit;
+    }
+    
     
 }

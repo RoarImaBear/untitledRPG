@@ -7,8 +7,8 @@ package unnamedRPG.items;
 public class LeatherArmour extends Armour{
 
     public LeatherArmour() {
-        this.agilityBonus = -1;
-        this.protectionBonus = -1;
+        this.setAgilityBonus(2);
+        this.setProtectionBonus(1);
         
     }
     

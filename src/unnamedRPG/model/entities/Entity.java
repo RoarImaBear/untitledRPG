@@ -100,15 +100,15 @@ public class Entity {
         equippedWeapon = weapon;
         this.weaponExpertise = 0; // May need to create an array for weapon type expertise.
         
-        this.attackDiceCount = weapon.attackDiceCount;
-        this.attackDiceLimit = weapon.attackDiceLimit;
-        this.damageDiceCount = weapon.damageDiceCount;
-        this.damageDiceLimit = weapon.damageDiceLimit;
+        this.attackDiceCount = weapon.getAttackDiceCount();
+        this.attackDiceLimit = weapon.getAttackDiceLimit();
+        this.damageDiceCount = weapon.getDamageDiceCount();
+        this.damageDiceLimit = weapon.getDamageDiceLimit();
     }
     
     public void equipArmour(Armour armour) {
-        this.agility += armour.agilityBonus;
-        this.protection += armour.protectionBonus;
+        this.agility += armour.getAgilityBonus();
+        this.protection += armour.getProtectionBonus();
     }
     
     

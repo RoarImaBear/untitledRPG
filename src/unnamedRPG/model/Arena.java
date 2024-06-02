@@ -17,13 +17,13 @@ import unnamedRPG.model.entities.Player;
  */
 public class Arena implements Runnable{
     
-    Timer arenaClock;
-    Display display;
+    private Timer arenaClock;
+    private Display display;
     
-    ArrayList<Entity[]> arenaRooms = new ArrayList();
-    Entity[] fighters = new Entity[2];
-    Entity attacker;
-    Entity defender;
+    private ArrayList<Entity[]> arenaRooms = new ArrayList();
+    private Entity[] fighters = new Entity[2];
+    private Entity attacker;
+    private Entity defender;
 
     public Arena(Display display) {
         this.display = display;

@@ -10,10 +10,11 @@ import static unnamedRPG.UnnamedRPG.DECORATOR;
  */
 public class Tile {
 
+    // Left public as it's accessed frequently to render
     public char terrainType;
-    int baseTileSize = 16;
-    boolean occupied;
-    Entity occupant;
+    public int baseTileSize = 16;
+    public boolean occupied;
+    public Entity occupant;
 
     public Tile() {
     }
@@ -26,6 +27,8 @@ public class Tile {
             paintOccupant(g, startX, startY, tileScale);
         }
     }
+    
+    
     
     private void paintOccupant(Graphics g, int startX, int startY, int tileScale){
             int offset = tileScale * 2;

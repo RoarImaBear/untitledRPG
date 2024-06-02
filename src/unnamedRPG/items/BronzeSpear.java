@@ -9,15 +9,14 @@ import unnamedRPG.utilities.ImageAssets;
 public class BronzeSpear extends Weapon {
     
     public BronzeSpear() {
-        this.name = "Bronze Spear";
-        this.image = ImageAssets.spear;
-        this.ranged = false;
+        setName("Bronze Spear");
+        setImage(ImageAssets.spear);
         
-        this.attackDiceCount = 2;
-        this.attackDiceLimit = 10;
+        setAttackDiceCount(2);
+        setAttackDiceLimit(10);
         
-        this.damageDiceCount = 1;
-        this.damageDiceLimit = 8;
+        setDamageDiceCount(1);
+        setDamageDiceLimit(8);
     }
     
 }

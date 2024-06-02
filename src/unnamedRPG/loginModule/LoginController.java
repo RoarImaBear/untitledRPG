@@ -13,8 +13,8 @@ import javax.swing.JFrame;
  * @author sdyma
  */
 public class LoginController extends JFrame{    
-    LoginViewer viewer;
-    LoginModel model;
+    private LoginViewer viewer;
+    private LoginModel model;
 
     public LoginController(LoginViewer loginViewer, LoginModel loginModel) {
         this.model = loginModel;

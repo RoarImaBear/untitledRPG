@@ -13,7 +13,7 @@ import static unnamedRPG.UnnamedRPG.DATABASE;
  */
 public class LoginModel {
     
-    LoginViewer viewer;
+    private LoginViewer viewer;
     private final CountDownLatch latch;
     public String playerName = null;
     public String password = null;

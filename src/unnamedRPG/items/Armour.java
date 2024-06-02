@@ -9,6 +9,26 @@ package unnamedRPG.items;
  * @author sdyma
  */
 public class Armour {
-    public int agilityBonus;
-    public int protectionBonus;
+    private int agilityBonus;
+    private int protectionBonus;
+
+    public int getAgilityBonus() {
+        return agilityBonus;
+    }
+
+    public int getProtectionBonus() {
+        return protectionBonus;
+    }
+
+    public void setAgilityBonus(int agilityBonus) {
+        this.agilityBonus = agilityBonus;
+    }
+
+    public void setProtectionBonus(int protectionBonus) {
+        this.protectionBonus = protectionBonus;
+    }
+    
+    
 }
+
+
