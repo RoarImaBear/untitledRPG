@@ -86,6 +86,10 @@ public class Limits {
     }
 
     public void goTo(int x, int y) {
+        if(x < 0)
+            x = 0;
+        if(y < 0)
+            y = 0;
         this.startX = x;
         this.startY = y;
         this.endX = x + this.lengthX;
@@ -108,6 +112,5 @@ public class Limits {
         lengthY = newLengthY + 1;
         endX = startX + lengthX;
         endY = startY + lengthY;
-
     }
 }

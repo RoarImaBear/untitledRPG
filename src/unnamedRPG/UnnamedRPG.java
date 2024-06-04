@@ -51,19 +51,18 @@ public class UnnamedRPG {
 
         GameBoard gameBoard = new GameBoard(boardLimits);
         
-        ControlUnit controlUnit = new ControlUnit(gameBoard, boardLimits, frameLimits);    
+        ControlUnit controlUnit = new ControlUnit(gameBoard, boardLimits);    
         Display display = new Display(player, controlUnit, gameBoard, boardLimits, frameLimits);   
-        GameMaster gameManager = new GameMaster( player, gameBoard, display);
+        GameMaster gameMaster = new GameMaster( player, gameBoard, display);
         
-        controlUnit.connectGameManager(gameManager);
-        controlUnit.connectDisplay(display);
+        controlUnit.connectGameMaster(gameMaster);
  
         Thread displayThread = new Thread(display);
-        Thread gameManagerThread = new Thread(gameManager);
+        Thread gameManagerThread = new Thread(gameMaster);
         displayThread.start();
         gameManagerThread.start();
         
-        gameManager.spawnPlayer(player, gameBoard);
+        gameMaster.spawnPlayer(player, gameBoard);
     }
 
 }

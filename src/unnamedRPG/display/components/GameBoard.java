@@ -107,19 +107,6 @@ public class GameBoard extends JComponent {
         boardTileLimits.goTo(centerX, centerY);
     }
 
-    public void handleClick(int pointerX, int pointerY) {
-        int tileX;
-        int tileY;
-        tileX = (pointerX) / tileSize;
-        tileY = (pointerY) / tileSize;
-
-        Tile currentTile = map.tiles[boardTileLimits.getStartX() + tileX][boardTileLimits.getStartY() + tileY];
-        if (currentTile.terrainType != 'ϒ') {
-            currentTile.terrainType = 'ϒ';
-        } else {
-            currentTile.terrainType = '~';
-        }
-    }
     public int[] getTrueXY(int pointerX, int pointerY) {
         int tileX;
         int tileY;

@@ -22,24 +22,18 @@ import unnamedRPG.model.GameMaster;
 public class ControlUnit implements KeyListener, ComponentListener, MouseListener, MouseWheelListener, MouseMotionListener {
 
     private GameBoard gameBoard;
-    private Display display;
     private Limits boardLimits;
-    private Limits frameLimits;
     private GameMaster gameMaster;
 
-    public ControlUnit(GameBoard gameBoard, Limits boardLimits, Limits frameLimits) {
+    public ControlUnit(GameBoard gameBoard, Limits boardLimits) {
         this.gameBoard = gameBoard;
         this.boardLimits = boardLimits;
-        this.frameLimits = frameLimits;
     }
 
     // Required for console connectivity
-    public void connectDisplay(Display display) {
-        this.display = display;
-    }
 
-    public void connectGameManager(GameMaster gameManager) {
-        this.gameMaster = gameManager;
+    public void connectGameMaster(GameMaster gameMaster) {
+        this.gameMaster = gameMaster;
     }
 
     @Override
